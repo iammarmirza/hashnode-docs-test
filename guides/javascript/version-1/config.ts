@@ -6,7 +6,7 @@ export default {
     settings: {
         name: "V1",
         slug: "v1",
-        isDefault: false,
+        isDefault: true,
     },
     // Sidebar configuration goes here
     // It is an array of pages, sections or links
