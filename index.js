@@ -172,7 +172,7 @@ function convertMdxToMarkdown(mdxFilePath) {
   // Convert block:image to Markdown image syntax
   content = content.replace(
     /\[block:image\][\s\S]*?"(https:\/\/[^"]+)"[\s\S]*?\[\/block\]/g,
-    "$1"
+    "![]($1)"
   );
 
   // Convert block:parameters to Markdown table
