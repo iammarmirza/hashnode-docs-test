@@ -11,11 +11,11 @@ With Existing Kubernetes Cluster installation, you can install DeepSource Enterp
 If you have an existing Kubernetes cluster you can run the following command from a workstation that has `kubectl` access to the cluster.
 
 ```bash
- curl https://kots.io/install | bash
+ curl [https://kots.io/install](https://kots.io/install) | bash
  kubectl kots install deepsource-fowl
 ```
 
-This will install the KOTS (Kubernetes off-the-shelf software) plugin on the workstation, then install the DeepSource Enterprise Admin Console on the cluster and set up a port forward on the `ClusterIP` to enable you to access the admin from https://localhost:8800. From here you’ll be walked through the preflight checks, configuration and initial deployment of the application.
+This will install the KOTS (Kubernetes off-the-shelf software) plugin on the workstation, then install the DeepSource Enterprise Admin Console on the cluster and set up a port forward on the `ClusterIP` to enable you to access the admin from [https://localhost:8800](https://localhost:8800). From here you’ll be walked through the preflight checks, configuration and initial deployment of the application.
 
 If you need to use your existing deployment pipeline (i.e. internal image registry, version control system), make custom configuration tweaks and/or deploy to multiple or remote environments, please see our advanced existing cluster installation instructions below.
 
@@ -40,10 +40,10 @@ nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
 nginx.ingress.kubernetes.io/use-regex: "true"
 nginx.ingress.kubernetes.io/configuration-snippet: |
   if ($cookie_bifrost = 1) {
-    proxy_pass http://bifrost.<deepsource-application-namespace>;
+    proxy_pass [http://bifrost.<deepsource-application-namespace>;](http://bifrost.<deepsource-application-namespace>;)
   }
   if ($arg_state = "Ymlmcm9zdA==") {
-    proxy_pass http://bifrost.<deepsource-application-namespace>;
+    proxy_pass [http://bifrost.<deepsource-application-namespace>;](http://bifrost.<deepsource-application-namespace>;)
   }
 nginx.ingress.kubernetes.io/server-snippet: |
   add_header X-Frame-Options "SAMEORIGIN";
@@ -54,16 +54,16 @@ nginx.ingress.kubernetes.io/server-snippet: |
   location = /graphql/cli/ {
     client_max_body_size 5M;
     client_body_buffer_size 5M;
-    proxy_pass http://asgard-main.<deepsource-application-namespace>:8000;
+    proxy_pass [http://asgard-main.<deepsource-application-namespace>:8000;](http://asgard-main.<deepsource-application-namespace>:8000;)
   }
   location = /graphql/ {
-    proxy_pass http://asgard-main.<deepsource-application-namespace>:8000;
+    proxy_pass [http://asgard-main.<deepsource-application-namespace>:8000;](http://asgard-main.<deepsource-application-namespace>:8000;)
   }
   location = /dtc/ {
-    proxy_pass http://asgard-main.<deepsource-application-namespace>:8000;
+    proxy_pass [http://asgard-main.<deepsource-application-namespace>:8000;](http://asgard-main.<deepsource-application-namespace>:8000;)
   }
   location @debug {
-    proxy_pass http://mater.<deepsource-application-namespace>;
+    proxy_pass [http://mater.<deepsource-application-namespace>;](http://mater.<deepsource-application-namespace>;)
   }
   location = / {
     rewrite / /login permanent;
@@ -72,39 +72,39 @@ nginx.ingress.kubernetes.io/server-snippet: |
     return 200;
   }
   location ~ ^/api {
-    proxy_pass http://asgard-main.<deepsource-application-namespace>:8000;
+    proxy_pass [http://asgard-main.<deepsource-application-namespace>:8000;](http://asgard-main.<deepsource-application-namespace>:8000;)
   }
   location ~ ^/(bb|gh|gl|gsr|ads|bbd)/(.*)/(.*).svg {
-    proxy_pass http://asgard-main.<deepsource-application-namespace>:8000;
+    proxy_pass [http://asgard-main.<deepsource-application-namespace>:8000;](http://asgard-main.<deepsource-application-namespace>:8000;)
   }
   location ~ ^/directory {
-    proxy_pass http://bifrost.<deepsource-application-namespace>;
+    proxy_pass [http://bifrost.<deepsource-application-namespace>;](http://bifrost.<deepsource-application-namespace>;)
   }
   location ~ ^/groups {
-    proxy_pass http://bifrost.<deepsource-application-namespace>;
+    proxy_pass [http://bifrost.<deepsource-application-namespace>;](http://bifrost.<deepsource-application-namespace>;)
   }
   location ~ ^/services {
     client_body_buffer_size 5M;
     error_page 500 502 503 504 @debug;
-    proxy_pass http://asgard-main.<deepsource-application-namespace>:8000;
+    proxy_pass [http://asgard-main.<deepsource-application-namespace>:8000;](http://asgard-main.<deepsource-application-namespace>:8000;)
   }
   location ~ ^/discover {
-    proxy_pass http://bifrost.<deepsource-application-namespace>;
+    proxy_pass [http://bifrost.<deepsource-application-namespace>;](http://bifrost.<deepsource-application-namespace>;)
   }
   location ~ ^/support {
-    proxy_pass http://bifrost.<deepsource-application-namespace>;
+    proxy_pass [http://bifrost.<deepsource-application-namespace>;](http://bifrost.<deepsource-application-namespace>;)
   }
   location ~ ^/sockets {
-    proxy_pass http://janus.<deepsource-application-namespace>;
+    proxy_pass [http://janus.<deepsource-application-namespace>;](http://janus.<deepsource-application-namespace>;)
   }
   location ~ ^/(prod-asgard-static|asgard-artifacts) {
-    proxy_pass http://minio.<deepsource-application-namespace>:9000;
+    proxy_pass [http://minio.<deepsource-application-namespace>:9000;](http://minio.<deepsource-application-namespace>:9000;)
   }
   location ~ ^/saml2 {
-    proxy_pass http://asgard-main.<deepsource-application-namespace>:8000;
+    proxy_pass [http://asgard-main.<deepsource-application-namespace>:8000;](http://asgard-main.<deepsource-application-namespace>:8000;)
   }
   location ~ ^/scim {
-    proxy_pass http://asgard-main.<deepsource-application-namespace>:8000;
+    proxy_pass [http://asgard-main.<deepsource-application-namespace>:8000;](http://asgard-main.<deepsource-application-namespace>:8000;)
   }
 ```
 
@@ -122,8 +122,8 @@ DeepSource Enterprise is packaged as a Kubernetes application that can run on an
 To verify that your cluster meets the minimum requirements, you can run our preflight checks before installing. To run the preflight checks on your cluster, run:
 
 ```bash
-curl https://krew.sh/preflight | bash
-kubectl preflight https://enterprise.deepsource.io/preflight
+curl [https://krew.sh/preflight](https://krew.sh/preflight) | bash
+kubectl preflight [https://enterprise.deepsource.io/preflight](https://enterprise.deepsource.io/preflight)
 ```
 
 This will not run anything in your cluster, but will review your cluster version and resources and provide a summary to help you identify if the cluster meets the minimum or recommended requirements.
@@ -141,7 +141,7 @@ This will not run anything in your cluster, but will review your cluster version
 If you’re unable or uncomfortable installing the admin console directly from KOTS, you can first pull the manifests that you’ll be deploying and kubectl apply those manifests. By default, these manifests are delivered with an empty kustomization.yaml in case you need to make last mile configuration changes with kustomize.
 
 ```bash
-curl https://kots.io/install | bash
+curl [https://kots.io/install](https://kots.io/install) | bash
 kubectl kots pull deepsource-fowl --license-file ~/path/application-license.yaml
 ```
 
@@ -174,7 +174,7 @@ kubectl kots pull deepsource-fowl \
   --license-file ~/path/application-license.yaml \
   --rewrite-images \
   --image-namespace deepsource-fowl \
-  --registry-endpoint https://registry.yourorg.com
+  --registry-endpoint [https://registry.yourorg.com](https://registry.yourorg.com)
 ```
 
 This command will:

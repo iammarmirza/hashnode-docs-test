@@ -14,7 +14,7 @@ To generate a support bundle (archive of application logs):
 - Click **Analyse DeepSource** button.
 - If you need help from DeepSource Support Engineering team, you can press **Send bundle to vendor** to send the support bundle to DeepSource Engineering team.
 
-![Image](https://files.readme.io/f1bb8a1-troubleshooting.png,,)[/block]
+![](https://files.readme.io/f1bb8a1-troubleshooting.png)
 
 
 ## Generate Support bundle from CLI
@@ -22,8 +22,8 @@ To generate a support bundle (archive of application logs):
 If you are unable to access the Admin Console for any reason, you can run the command below to generate a support bundle from the CLI:
 
 ```bash Shell
-curl https://krew.sh/support-bundle | bash
-kubectl support-bundle --interactive=true https://assets.enterprise.deepsource.com/kots/support-bundle.yaml
+curl [https://krew.sh/support-bundle](https://krew.sh/support-bundle) | bash
+kubectl support-bundle --interactive=true [https://assets.enterprise.deepsource.com/kots/support-bundle.yaml](https://assets.enterprise.deepsource.com/kots/support-bundle.yaml)
 ```
 
 Allow a few minutes for the above command to finish execution. Select `quit[q]` for the checks that run at the end. The support bundle will be saved in the directory the command is executed from.  The support bundle file will look something like `support-bundle-2022-09-29T04_05_00.tar.gz`.
@@ -36,12 +36,12 @@ You can configure Enterprise Server to send Sentry alerts to the DeepSource team
 
 To configure Sentry for your DeepSource installation, you will need to go to the Admin Console and scroll to the section "Export data outside the cluster" section. Then select the "Enable reporting application errors to DeepSource" option.
 
-![Image](https://files.readme.io/95fc694-enable-sentry.png)
+![](https://files.readme.io/95fc694-enable-sentry.png)
 
 
 >  Notes:
 >
-> - You will also need to allow egress to https://sentry.io from the cluster.
+> - You will also need to allow egress to [https://sentry.io](https://sentry.io) from the cluster.
 > - A DSN is already set in your license, so you may have to sync your license (go to Admin Console -> License -> click on Sync License) and redeploy before you can use Sentry.
 
 ### Why should I send application errors to DeepSource through Sentry?
@@ -93,8 +93,8 @@ There are some releases where we change the RabbitMQ definitions for introducing
 Sometimes the normal support-bundle is not enough to diagnose the issue and we might ask you to generate a cluster support-bundle for in-depth information. To generate a support-bundle from CLI, run the following command:
 
 ```
-curl https://krew.sh/support-bundle | bash
-kubectl support-bundle --interactive=true --load-cluster-specs https://raw.githubusercontent.com/replicatedhq/troubleshoot-specs/main/in-cluster/default.yaml  https://raw.githubusercontent.com/replicatedhq/troubleshoot-specs/main/host/default.yaml
+curl [https://krew.sh/support-bundle](https://krew.sh/support-bundle) | bash
+kubectl support-bundle --interactive=true --load-cluster-specs [https://raw.githubusercontent.com/replicatedhq/troubleshoot-specs/main/in-cluster/default.yaml](https://raw.githubusercontent.com/replicatedhq/troubleshoot-specs/main/in-cluster/default.yaml)  [https://raw.githubusercontent.com/replicatedhq/troubleshoot-specs/main/host/default.yaml](https://raw.githubusercontent.com/replicatedhq/troubleshoot-specs/main/host/default.yaml)
 ```
 
 ## Analysis runs are timing out

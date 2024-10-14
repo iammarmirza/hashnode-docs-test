@@ -12,11 +12,11 @@ Unlike [Core analyzers](https://docs.deepsource.com/docs/analyzers), Community a
 
 | Analyzer           | Version | Shortcode      | Repository                                              |
 | :----------------- | :------ | :------------- | :------------------------------------------------------ |
-| AWS CloudFormation | 0.83.0  | `cfn-lint`     | https://github.com/aws-cloudformation/cfn-lint          |
-| Dart Analyze       | 3.2.0   | `dart-analyze` | https://github.com/dart-lang/sdk/tree/main/pkg/linter   |
-| Kube Linter        | 0.6.4   | `kube-linter`  | https://github.com/stackrox/kube-linter                 |
-| Slither            | 0.10.0  | `slither`      | https://github.com/crytic/slither                       |
-| Solhint            | 4.1.1   | `solhint`      | https://github.com/protofire/solhint                    |
+| AWS CloudFormation | 0.83.0  | `cfn-lint`     | [https://github.com/aws-cloudformation/cfn-lint](https://github.com/aws-cloudformation/cfn-lint)        |
+| Dart Analyze       | 3.2.0   | `dart-analyze` | [https://github.com/dart-lang/sdk/tree/main/pkg/linter](https://github.com/dart-lang/sdk/tree/main/pkg/linter) |
+| Kube Linter        | 0.6.4   | `kube-linter`  | [https://github.com/stackrox/kube-linter](https://github.com/stackrox/kube-linter)               |
+| Slither            | 0.10.0  | `slither`      | [https://github.com/crytic/slither](https://github.com/crytic/slither)                     |
+| Solhint            | 4.1.1   | `solhint`      | [https://github.com/protofire/solhint](https://github.com/protofire/solhint)                  |
 
 Issues detected by these analyzers can be found in the [Analyzer Directory](https://app.deepsource.com/directory/) under the respective analyzer. For suggestions regarding additional analyzers you'd like DeepSource to support, please submit your request at [roadmap.deepsource.com](https://roadmap.deepsource.com). We regularly review these submissions and consider them as we update our product roadmap.
 
@@ -50,7 +50,7 @@ Let's go through these steps in detail. Community Analyzers accepts <abbr title=
    2. Go to the `General` tab
    3. Click on Copy button to copy your <abbr title="Data Source Name">DSN</abbr> mentioned under `Data Source Name (DSN)`
 
-   ![Image](https://files.readme.io/bd22ec7-In_1.png,,dsn-screenshot)[/block]
+   ![](https://files.readme.io/bd22ec7-In_1.png)
 
 3. Set up a workflow file to run the analyzer on your CI/CD pipeline. We want to achieve the following in the workflow file:
 
@@ -100,7 +100,7 @@ Let's go through these steps in detail. Community Analyzers accepts <abbr title=
          - name: Upload SARIF report to DeepSource
            run: |
              # Install the CLI
-             curl https://deepsource.io/cli | sh
+             curl [https://deepsource.io/cli](https://deepsource.io/cli) | sh
 
              # Send the report to DeepSource
              ./bin/deepsource report --analyzer dart-analyze --analyzer-type community --value-file ./dart_analyze.sarif
@@ -115,7 +115,7 @@ Let's go through these steps in detail. Community Analyzers accepts <abbr title=
 > - name: Upload SARIF report files to DeepSource
 >        run: |
 >          # Install the CLI
->          curl https://deepsource.io/cli | sh
+>          curl [https://deepsource.io/cli](https://deepsource.io/cli) | sh
 > 
 >          # Send the report to DeepSource
 >         ./bin/deepsource report --analyzer <analyzer-shortcode> --analyzer-type community --value-file <path-to-sarif-report>

@@ -14,12 +14,12 @@ label: 'SAML SSO & SCIM: Azure AD'
 
 For now, an admin (on Azure) needs to create a custom SAML connector for DeepSource Enterprise. The steps for which are as follows:
 
-1. Visit https://portal.azure.com and log in to your Microsoft account.
+1. Visit [https://portal.azure.com/](https://portal.azure.com/) and log in to your Microsoft account.
 2. From your home screen, click the hamburger menu in the top left and then **“Azure Active Directory”** → **"Enterprise applications"**.
 3. Then, click on **"New application"** and then click on **“Create your own application”**.
 4. Fill in the following details and click **“Create”**:
 
-![Image](https://files.readme.io/9826987-small-1_1.png,,)[/block]
+![](https://files.readme.io/9826987-small-1_1.png)
 
 
 | Field                                             | Value                                                                       |
@@ -38,7 +38,7 @@ For now, an admin (on Azure) needs to create a custom SAML connector for DeepSou
 | Sign on URL                                | `https://deepsource.foobar.com/saml2/acs/`      |
 | Logout URL                                 | `https://deepsource.foobar.com/saml2/ls/post/`  |
 
-![Image](https://files.readme.io/b952d98-small-2.png,,)[/block]
+![](https://files.readme.io/b952d98-small-2.png)
 
 
 8. Click on **“Edit”** against the **“Attributes & Claims”** heading.
@@ -51,13 +51,13 @@ For now, an admin (on Azure) needs to create a custom SAML connector for DeepSou
 | first_name                       | Attribute |           | user.givenname (from dropdown)         |
 | last_name                        | Attribute |           | user.surname (from dropdown)           |
 
-![Image](https://files.readme.io/88a92e7-small-3.png,,)[/block]
+![](https://files.readme.io/88a92e7-small-3.png)
 
 
 10. Click on **“Edit”** against the **“SAML Certificates”** heading.
 11. Make sure the **"Signing Option"** is set to **"Sign SAML response and assertion"**.
 
-    ![Image](https://files.readme.io/bf0f76d-image.png,,)[/block]
+    ![](https://files.readme.io/bf0f76d-image.png)
 12. Now we need to select which users can access this application for sign-in into DeepSource. You can either choose to disable assignment to grant access to all users in your AD (follow steps in option **i**) or you can selectively grant access to specific users (follow steps in option **ii**).
     1. Navigate to **“Properties”** using the menu on the left. Turn **“Assignment Required?”** to **“No”** and click **“Save”**.
     2. Navigate to **“Users and Groups”** using the menu on the left then click **“Add user/group”** → **“None Selected”** then select the users from the list on the right and click **“Select”** → **“Assign”**.
@@ -67,7 +67,7 @@ For now, an admin (on Azure) needs to create a custom SAML connector for DeepSou
 > 🚧 For Enterprise Cloud users
 > 
 > - In step 4, name of the app should be changed to `DeepSource Enterprise Cloud`.
-> - In step 7, DeepSource's URL should be changed to https://app.deepsource.com.
+> - In step 7, DeepSource's URL should be changed to [https://app.deepsource.com](https://app.deepsource.com).
 
 ## Configuring SAML SSO on DeepSource
 
@@ -89,7 +89,7 @@ Refer to:
 | Tenant URL   | `https://deepsource.foobar.com/scim/v2/`                    |
 | Secret Token | SCIM Authentication token which you have put in Admin Panel |
 
-![Image](https://files.readme.io/6738285-small-5.png,,)[/block]
+![](https://files.readme.io/6738285-small-5.png)
 
 
 1. Click on **“Test Connection”** to verify the SCIM connection.

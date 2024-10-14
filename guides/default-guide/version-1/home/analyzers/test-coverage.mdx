@@ -31,7 +31,7 @@ To look up the DSN:
 - Go to the **Code Coverage** Section
 - Click on **Copy** button to copy your DSN.
 
-![Image](https://files.readme.io/9736302-test-coverage-image.png,,)[/block]
+![](https://files.readme.io/9736302-test-coverage-image.png)
 
 
 Once you get the DSN, please make sure you store it as an environment variable named `DEEPSOURCE_DSN` in your CI's environment.
@@ -39,7 +39,7 @@ Once you get the DSN, please make sure you store it as an environment variable n
 ### Installing DeepSource CLI in your CI enviroment
 
 ```bash
-curl https://deepsource.io/cli | sh
+curl [https://deepsource.io/cli](https://deepsource.io/cli) | sh
 ```
 
 This command will create a `bin` directory in the command's current working directory(`$PWD`/`$0`).  
@@ -127,7 +127,7 @@ yarn test
 npm test
 
 # Install 'deepsource CLI'
-curl https://deepsource.io/cli | sh
+curl [https://deepsource.io/cli](https://deepsource.io/cli) | sh
 
 # Set DEEPSOURCE_DSN env variable from repository settings page
 export DEEPSOURCE_DSN=https://sampledsn@deepsource.io
@@ -155,7 +155,7 @@ This is how you can generate a coverage profile and report it to the analyzer:
 go test -coverprofile=cover.out
 
 # Install 'deepsource CLI'
-curl https://deepsource.io/cli | sh
+curl [https://deepsource.io/cli](https://deepsource.io/cli) | sh
 
 # Set DEEPSOURCE_DSN env variable from repository settings page
 export DEEPSOURCE_DSN=https://sampledsn@deepsource.io
@@ -184,7 +184,7 @@ go test -coverprofile=cover.out ./someOtherPackage
 cat cover.out >> coverage.out
 
 # Install 'deepsource CLI'
-curl https://deepsource.io/cli | sh
+curl [https://deepsource.io/cli](https://deepsource.io/cli) | sh
 
 # Set DEEPSOURCE_DSN env variable from the repository settings page
 export DEEPSOURCE_DSN=https://sampledsn@deepsource.io
@@ -209,7 +209,7 @@ coverage run tests.py
 coverage xml
 
 # Install 'deepsource CLI'
-curl https://deepsource.io/cli | sh
+curl [https://deepsource.io/cli](https://deepsource.io/cli) | sh
 
 # Set DEEPSOURCE_DSN env variable from repository settings page
 export DEEPSOURCE_DSN=https://sampledsn@deepsource.io
@@ -228,7 +228,7 @@ pip install pytest pytest-cov
 pytest --cov=./ --cov-report xml
 
 # Install deepsource CLI
-curl https://deepsource.io/cli | sh
+curl [https://deepsource.io/cli](https://deepsource.io/cli) | sh
 
 # Set DEEPSOURCE_DSN env variable from repository settings page
 export DEEPSOURCE_DSN=https://sampledsn@deepsource.io
@@ -237,7 +237,7 @@ export DEEPSOURCE_DSN=https://sampledsn@deepsource.io
 ./bin/deepsource report --analyzer test-coverage --key python --value-file ./coverage.xml
 ```
 
-**Reference**: https://pypi.org/project/pytest-cov
+**Reference**: [https://pypi.org/project/pytest-cov/](https://pypi.org/project/pytest-cov/)
 
 #### nose2
 
@@ -249,7 +249,7 @@ pip install nose2[coverage_plugin]>=0.6.5
 nose2 --with-coverage --coverage-report xml
 
 # Install deepsource CLI
-curl https://deepsource.io/cli | sh
+curl [https://deepsource.io/cli](https://deepsource.io/cli) | sh
 
 # Set DEEPSOURCE_DSN env variable from repository settings page
 export DEEPSOURCE_DSN=https://sampledsn@deepsource.io
@@ -258,7 +258,7 @@ export DEEPSOURCE_DSN=https://sampledsn@deepsource.io
 ./bin/deepsource report --analyzer test-coverage --key python --value-file ./coverage.xml
 ```
 
-**Reference**: https://docs.nose2.io/en/latest/plugins/coverage.html
+**Reference**: [https://docs.nose2.io/en/latest/plugins/coverage.html](https://docs.nose2.io/en/latest/plugins/coverage.html)
 
 #### NOTE: Usage with tox
 
@@ -347,7 +347,7 @@ Once you have a coverage report, you can upload it to DeepSource using the follo
 
 ```bash
 # Install deepsource CLI
-curl https://deepsource.io/cli | sh
+curl [https://deepsource.io/cli](https://deepsource.io/cli) | sh
 
 # Set DEEPSOURCE_DSN env variable from repository settings page
 export DEEPSOURCE_DSN=https://sampledsn@deepsource.io
@@ -405,7 +405,7 @@ After you have the XML test report, you can upload it to DeepSource using the cl
 
 ```shell
 # Install deepsource CLI
-curl https://deepsource.io/cli | sh
+curl [https://deepsource.io/cli](https://deepsource.io/cli) | sh
 
 # Set the DEEPSOURCE_DSN env variable from the reporting tab of
 # your repository's DeepSource settings page.
@@ -480,7 +480,7 @@ After you have the XML test report, you can upload it to DeepSource using the cl
 
 ```shell
 # Install deepsource CLI
-curl https://deepsource.io/cli | sh
+curl [https://deepsource.io/cli](https://deepsource.io/cli) | sh
 
 # Set the DEEPSOURCE_DSN env variable from the reporting tab of
 # your repository's DeepSource settings page.
@@ -538,7 +538,7 @@ After you have the XML test report, you can upload it to DeepSource using the cl
 
 ```shell
 # Install deepsource CLI
-curl https://deepsource.io/cli | sh
+curl [https://deepsource.io/cli](https://deepsource.io/cli) | sh
 
 # Set the DEEPSOURCE_DSN env variable from the reporting tab of
 # your repository's DeepSource settings page.
@@ -576,7 +576,7 @@ You can then use the DeepSource CLI to upload this report:
 
 ```shell
 # Install deepsource CLI
-curl https://deepsource.io/cli | sh
+curl [https://deepsource.io/cli](https://deepsource.io/cli) | sh
 
 # Set the DEEPSOURCE_DSN env variable from the reporting tab of
 # your repository's DeepSource settings page.
@@ -605,7 +605,7 @@ Once you have a coverage report, you can upload it to DeepSource using the follo
 
 ```shell
 # Install deepsource CLI
-curl https://deepsource.io/cli | sh
+curl [https://deepsource.io/cli](https://deepsource.io/cli) | sh
 
 # Set the DEEPSOURCE_DSN env variable from the reporting tab of
 # your repository's DeepSource settings page.
@@ -633,7 +633,7 @@ composer require --dev phpunit/phpunit
 vendor/bin/phpunit --coverage-cobertura coverage.xml
 
 # Install 'deepsource CLI'
-curl https://deepsource.io/cli | sh
+curl [https://deepsource.io/cli](https://deepsource.io/cli) | sh
 
 # Set DEEPSOURCE_DSN env variable from repository settings page
 export DEEPSOURCE_DSN=https://sampledsn@deepsource.io
@@ -659,7 +659,7 @@ cargo llvm-cov --lcov --output-path coverage.info
 # cargo llvm-cov report --lcov # generate report without rerunning anything
 
 # Install 'deepsource CLI'
-curl https://deepsource.io/cli | sh
+curl [https://deepsource.io/cli](https://deepsource.io/cli) | sh
 
 # Set DEEPSOURCE_DSN env variable from repository settings page
 export DEEPSOURCE_DSN=https://sampledsn@deepsource.io
@@ -674,7 +674,7 @@ export DEEPSOURCE_DSN=https://sampledsn@deepsource.io
 
 ```bash
 # Install lcov using package manager
-# Or, use https://github.com/linux-test-project/lcov/releases
+# Or, use [https://github.com/linux-test-project/lcov/releases](https://github.com/linux-test-project/lcov/releases)
 
 # Before running your build tool add,
 # -fprofile-arcs -ftest-coverage to the command line flags
@@ -690,7 +690,7 @@ export DEEPSOURCE_DSN=https://sampledsn@deepsource.io
 lcov –c –d . –o coverage.info
 
 # Install 'deepsource CLI'
-curl https://deepsource.io/cli | sh
+curl [https://deepsource.io/cli](https://deepsource.io/cli) | sh
 
 # Set DEEPSOURCE_DSN env variable from repository settings page
 export DEEPSOURCE_DSN=https://sampledsn@deepsource.io
@@ -708,7 +708,7 @@ export DEEPSOURCE_DSN=https://sampledsn@deepsource.io
 dotnet test --collect:"XPlat Code Coverage" --logger:"console;verbosity=detailed" --results-directory /tmp/test-results/
 
 # Install 'deepsource CLI'
-curl https://deepsource.io/cli | sh
+curl [https://deepsource.io/cli](https://deepsource.io/cli) | sh
 
 # Set DEEPSOURCE_DSN env variable from repository settings page
 export DEEPSOURCE_DSN=https://sampledsn@deepsource.io
@@ -735,7 +735,7 @@ swift test --enable-code-coverage
 llvm-cov export -format="lcov" </path/to/YourProjectPackageTests.xctest> -instr-profile </path/to/default.profdata> > info.lcov
 
 # Install 'deepsource CLI'
-curl https://deepsource.io/cli | sh
+curl [https://deepsource.io/cli](https://deepsource.io/cli) | sh
 
 # Set DEEPSOURCE_DSN env variable from repository settings page
 export DEEPSOURCE_DSN=https://sampledsn@deepsource.io
@@ -837,7 +837,7 @@ Please refer to [this section](https://docs.deepsource.com/docs/analyzers-test-c
      # Phase: Tests have finished and a test coverage report is available
 
      # Install the deepsource CLI
-     - curl https://deepsource.io/cli | sh
+     - curl [https://deepsource.io/cli](https://deepsource.io/cli) | sh
 
      # From the root directory, run the report coverage command
      - ./bin/deepsource report --analyzer test-coverage --key python --value-file ./path/to/report
@@ -856,7 +856,7 @@ Please refer to [this section](https://docs.deepsource.com/docs/analyzers-test-c
        # Tests have finished and a test coverage report is available
 
        # Install the deepsource CLI
-       curl https://deepsource.io/cli | sh
+       curl [https://deepsource.io/cli](https://deepsource.io/cli) | sh
 
        # From the root directory, run the report coverage command
        ./bin/deepsource report --analyzer test-coverage --key python --value-file ./path/to/report
@@ -887,7 +887,7 @@ Please refer to [this section](https://docs.deepsource.com/docs/analyzers-test-c
     # Tests have finished and a test coverage report is available
 
     # Install deepsource CLI
-      curl https://deepsource.io/cli | sh
+      curl [https://deepsource.io/cli](https://deepsource.io/cli) | sh
 
     # From the root directory, run the report coverage command
       ./bin/deepsource report --analyzer test-coverage --key python --value-file ./path/to/report
@@ -917,7 +917,7 @@ Please refer to [this section](https://docs.deepsource.com/docs/analyzers-test-c
        # Tests have finished and a test coverage report is available
 
        # Install deepsource CLI
-       - curl https://deepsource.io/cli | sh
+       - curl [https://deepsource.io/cli](https://deepsource.io/cli) | sh
 
        # From the root directory, run the report coverage command
        - ./bin/deepsource report --analyzer test-coverage --key python --value file ./path/to/report
@@ -935,7 +935,7 @@ Please refer to [this section](https://docs.deepsource.com/docs/analyzers-test-c
    # Tests have finished and a test coverage report is available
 
    # Install deepsource CLI
-   - curl https://deepsource.io/cli | sh
+   - curl [https://deepsource.io/cli](https://deepsource.io/cli) | sh
 
    # From the root directory, run the report coverage command for DeepSource to analyze it
    - ./bin/deepsource report --analyzer test-coverage --key python --value-file ./path/to/report
@@ -952,7 +952,7 @@ Please refer to [this section](https://docs.deepsource.com/docs/analyzers-test-c
    # Add this after the script to run tests, which also generates a coverage report
    - script: |
      # Install deepsource CLI
-     curl -sSL https://deepsource.io/cli | sh
+     curl -sSL [https://deepsource.io/cli](https://deepsource.io/cli) | sh
 
      # From the root directory, run the report coverage command for DeepSource to analyze it
      ./bin/deepsource report --analyzer test-coverage --value-file ./path/to/report

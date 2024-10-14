@@ -16,10 +16,10 @@ To integrate with Google, we would create an OAuth App, and register the generat
 2. On the next page, click "Add or remove scopes". On the menu which appears on the right, scroll down and add the following permissions:
 
 ```
-https://www.googleapis.com/auth/userinfo.profile
-https://www.googleapis.com/auth/userinfo.email
-https://www.googleapis.com/auth/cloud-platform
-https://www.googleapis.com/auth/source.read_only
+[https://www.googleapis.com/auth/userinfo.profile](https://www.googleapis.com/auth/userinfo.profile)
+[https://www.googleapis.com/auth/userinfo.email](https://www.googleapis.com/auth/userinfo.email)
+[https://www.googleapis.com/auth/cloud-platform](https://www.googleapis.com/auth/cloud-platform)
+[https://www.googleapis.com/auth/source.read_only](https://www.googleapis.com/auth/source.read_only)
 ```
 
 - Click "Add to table". The scopes should now have been added to the table and selected.
@@ -30,13 +30,13 @@ https://www.googleapis.com/auth/source.read_only
    1. Click "+ Create credentials". Select "OAuth Client ID" from the dropdown.
    2. Select "Web application" as the application type.
    3. Give an appropriate name, e.g., "DeepSource".
-   4. Under the heading "Authorized Redirect URIs", add https://deepsource.company.com/accounts/google/login/callback/bifrost (Replace deepsource.company.com with the URL at which deepsource is deployed).
+   4. Under the heading "Authorized Redirect URIs", add [https://deepsource.company.com/accounts/google/login/callback/bifrost/](https://deepsource.company.com/accounts/google/login/callback/bifrost/) (Replace deepsource.company.com with the URL at which deepsource is deployed).
    5. Click "Create". It shall now display Client ID and Client Secret. Keep both of these values handy: we'll need them later.
 4. DeepSource uses the Cloud Resource Manager API (to list and view projects) and Cloud Source Repositories API (to read source code). If the APIs are not enabled, enable them by vising the following (make sure to select the correct project):
-   - https://console.cloud.google.com/apis/library/cloudresourcemanager.googleapis.com
-   - https://console.cloud.google.com/apis/library/sourcerepo.googleapis.com
-   - https://console.cloud.google.com/apis/library/pubsub.googleapis.com
-   - https://console.cloud.google.com/apis/library/compute.googleapis.com
+   - [https://console.cloud.google.com/apis/library/cloudresourcemanager.googleapis.com](https://console.cloud.google.com/apis/library/cloudresourcemanager.googleapis.com)
+   - [https://console.cloud.google.com/apis/library/sourcerepo.googleapis.com](https://console.cloud.google.com/apis/library/sourcerepo.googleapis.com)
+   - [https://console.cloud.google.com/apis/library/pubsub.googleapis.com](https://console.cloud.google.com/apis/library/pubsub.googleapis.com)
+   - [https://console.cloud.google.com/apis/library/compute.googleapis.com](https://console.cloud.google.com/apis/library/compute.googleapis.com)
 
 # Configuring Google Source Repositories in the Admin Console
 
@@ -100,7 +100,7 @@ gcloud projects add-iam-policy-binding $PROJECT_ID \
 # as soon as a message is received on the 'deepsource' topic.
 gcloud pubsub subscriptions create projects/$PROJECT_ID/subscriptions/deepsource \
     --topic projects/$PROJECT_ID/topics/deepsource \
-    --push-endpoint https://$DEEPSOURCE_HOSTNAME/services/webhooks/gsr \
+    --push-endpoint [https://$DEEPSOURCE_HOSTNAME/services/webhooks/gsr](https://$DEEPSOURCE_HOSTNAME/services/webhooks/gsr) \
     --push-auth-token-audience $WEBHOOK_AUDIENCE \
     --push-auth-service-account ${GSR_SERVICE_ACCOUNT} \
     --min-retry-delay 10 \
@@ -110,6 +110,6 @@ gcloud pubsub subscriptions create projects/$PROJECT_ID/subscriptions/deepsource
 ### Register the SSH Key
 
 1. Copy the SSH key from the screen.
-2. Go to https://source.cloud.google.com/user/ssh_keys?register=true. It might ask you for a password:
+2. Go to [https://source.cloud.google.com/user/ssh_keys?register=true](https://source.cloud.google.com/user/ssh_keys?register=true). It might ask you for a password:
    1. Add a suitable name, e.g., "deepsource"
    2. Paste the public key and click "Register".

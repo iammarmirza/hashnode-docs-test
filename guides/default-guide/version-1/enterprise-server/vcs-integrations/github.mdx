@@ -11,14 +11,14 @@ Integrating DeepSource with your Github account is done using a Github applicati
 To create the app, you can run this quick setup script with a few additional steps. This script will open up a website with the Github app creation page and fill in the required fields automatically.
 
 ```python
-python3 <(curl -s https://raw.githubusercontent.com/DeepSourceCorp/enterprise-assets/master/integrations/create_github_app.py)
+python3 <(curl -s [https://raw.githubusercontent.com/DeepSourceCorp/enterprise-assets/master/integrations/create_github_app.py)](https://raw.githubusercontent.com/DeepSourceCorp/enterprise-assets/master/integrations/create_github_app.py))
 ```
 
 > 📘 If you get a 404 page when the quick setup script is run, ensure that you're logged in and that you have the permission to create apps — Admin access — for the respective organization.
 
 1. When you run the command in the CLI, a few user details will have to be filled in:
-   1. **The URL of your self-hosted Github instance**: For Github Cloud, you can skip this step and leave it blank. This will automatically use the default https://github.com domain.
-   2. **An organization slug**: If your organization is at https://github.com/my-organization, enter my-organization here.
+   1. **The URL of your self-hosted Github instance**: For Github Cloud, you can skip this step and leave it blank. This will automatically use the default [https://github.com](https://github.com) domain.
+   2. **An organization slug**: If your organization is at [https://github.com/my-organization](https://github.com/my-organization), enter my-organization here.
    3. **The URL of your DeepSource installation**: This should be the URL you have configured as the Application Hostname on the Admin Console.
       > 📘 - For a self-hosted Github Enterprise Server installation, this hostname/IP must be reachable by your Github Enterprise Server installation.
       > - If you are using Github cloud, the URL must be reachable from the IP public internet.
