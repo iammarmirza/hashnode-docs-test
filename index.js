@@ -48,5 +48,5 @@ function convertMdxToMarkdown(mdxFilePath) {
 
 // Example usage
 convertMdxToMarkdown(
-  "./guides/default-guide/version-1/integrations/sso/saml-sso-scim-onelogin.mdx"
+  "./guides/default-guide/version-1/dashboard/team-view/settings.mdx"
 );

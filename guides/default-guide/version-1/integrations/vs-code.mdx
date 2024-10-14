@@ -4,7 +4,7 @@ slug: vs-code
 visibility: PUBLIC
 label: VS Code
 ---
-![Image](https://files.readme.io/9d2dda7-header-vs-code.png,,)[/block]
+![Image](https://files.readme.io/9d2dda7-header-vs-code.png)
 
 
 DeepSource's integration with Visual Studio Code lets you to run comprehensive analyses, identify and address potential problems, and synchronize existing as well as new issues with DeepSource — all without the need to create a pull request.
@@ -19,7 +19,7 @@ In addition to issue detection, we have also introduced support for AI-based Aut
 4. Click on the "Install" button next to the "DeepSource Autofix™ AI" extension in the search results.
 5. Wait for the installation to complete. You should see a notification confirming successful installation.
 
-![Image](https://files.readme.io/572e441-marketplace-vscode.png,,)[/block]
+![Image](https://files.readme.io/572e441-marketplace-vscode.png)
 
 
 Alternatively, you can also [download and install the extension from the VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=DeepSourceCorp.deepsource-vscode) directly.
@@ -29,7 +29,7 @@ Alternatively, you can also [download and install the extension from the VS Code
 1. Once the extension is installed, you should see the DeepSource icon in VS Code’s sidebar (usually located on the left-hand side).
 2. Click on the DeepSource icon to open the DeepSource panel.
 
-![Image](https://files.readme.io/e396298-c6116d8-click_on_ds.png,,)[/block]
+![Image](https://files.readme.io/e396298-c6116d8-click_on_ds.png)
 
 
 ### Log-in
@@ -38,12 +38,12 @@ Alternatively, you can also [download and install the extension from the VS Code
 2. For cloud users, click the “Login to DeepSource Cloud” button. This will redirect you to the DeepSource website for authentication.
 3. For enterprise users, click “Login to Enterprise Server”, and you'll be asked to enter the URL for your DeepSource installation in the prompt. After entering the URL, hit "Enter" to proceed.
 
-![Image](https://files.readme.io/667fd2b-enterprise-login.png,,)[/block]
+![Image](https://files.readme.io/667fd2b-enterprise-login.png)
 
 
 4. A browser window will be launched, taking you to the DeepSource login page.
 
-![Image](https://files.readme.io/12e792b-9084979-vs_code_auth.png,,)[/block]
+![Image](https://files.readme.io/12e792b-9084979-vs_code_auth.png)
 
 
 ### Authentication
@@ -74,12 +74,12 @@ The extension automatically switches to the Single Player mode in the following 
 
 You'd be shown an info message when this happens
 
-![Image](https://files.readme.io/4ea878a-single-player-mode.png,,)[/block]
+![Image](https://files.readme.io/4ea878a-single-player-mode.png)
 
 
 Baseline issue diffing isn't available in this mode, and you'll always see all issues in your current file.
 
-![Image](https://files.readme.io/8e48cdf-single-player.png,,)[/block]
+![Image](https://files.readme.io/8e48cdf-single-player.png)
 
 
 > 🚧 If you're working on a project which is not activated on DeepSource, the extension won't pull the baseline issues. You can activate analysis from the DeepSource dashboard to keep cloud and local issues always in sync.
@@ -107,7 +107,7 @@ The sidebar has two relevant panels for analysis results:
 
 In both the panels, you can toggle between existing issues and new issues in your code via the switcher.
 
-![Image](https://files.readme.io/317d411-baseline-new-gif.gif,,)[/block]
+![Image](https://files.readme.io/317d411-baseline-new-gif.gif)
 
 
 - **Baseline issues**: Shows all issues in the currently open file that were already present in your file. If you're on your repository's baseline branch that's set on DeepSource, these issues would be identical to those shown on your DeepSource dashboard. In other cases, the existing issues would be the ones detected till the last commit pushed on that branch.
@@ -131,7 +131,7 @@ You can configure the issue categories for which you want DeepSource to raise is
 1. Click on `Configure issue types...` in the settings panel
 2. Select the issue categories you want to see issues for and click `OK`
 
-![Image](https://files.readme.io/a57d16f-issue-types-config.gif,,)[/block]
+![Image](https://files.readme.io/a57d16f-issue-types-config.gif)
 
 
 <br />
@@ -160,17 +160,17 @@ Follow the following steps to enable IDE extension for your team:
 1. Go to your installation's [Admin Console](https://docs.deepsource.com/docs/enterprise-server-configuration#admin-console)
 2. Click on config → Manage Access to DeepSource → Enable beta features
 
-   ![Image](https://files.readme.io/66c4189-kots-settings.png,,)[/block]
+   ![Image](https://files.readme.io/66c4189-kots-settings.png)
 3. Enable/Disable the beta features and save the configuration.
 
    Once the configuration is saved, you'd need to redeploy with the updated config. Click on "Go to updated version" to find the version with updated config.
 
-![Image](https://files.readme.io/a7023c6-save-config-conformation.png,,)[/block]
+![Image](https://files.readme.io/a7023c6-save-config-conformation.png)
 
 
 4. Deploy the newly available version to apply the new configuration.
 
-   ![Image](https://files.readme.io/f17502c-deploy.png,,)[/block]
+   ![Image](https://files.readme.io/f17502c-deploy.png)
 
 Once the deployment is successful, all your team members would be able to use IDE Extension in beta features are enabled. 
 
@@ -187,14 +187,14 @@ The VS Code extension offers Autofix, a powerful feature that provides automatic
 To fix an issue raised by DeepSource, take your cursor to the span where the issue is raised.  
 Click on `Autofix with DeepSource` code lens, on top of the line.
 
-![Image](https://files.readme.io/368fd3a-autofix-codelens.png,,)[/block]
+![Image](https://files.readme.io/368fd3a-autofix-codelens.png)
 
 
 If there are multiple issues in the span of your cursor, you'll also be asked to select which one to fix first.
 
 <br />
 
-![Image](https://files.readme.io/ea3a9bb-afx-multiple.png,,)[/block]
+![Image](https://files.readme.io/ea3a9bb-afx-multiple.png)
 
 
 <br />
@@ -202,14 +202,14 @@ If there are multiple issues in the span of your cursor, you'll also be asked to
 Once done, DeepSource Autofix AI looks at the issue with surrounding context, and gives you a diff to review the fix.  
 You can accept or discard each suggestion by clicking on the respective buttons in the editor.
 
-![Image](https://files.readme.io/5a6a253-autofix-action-req.png,,)[/block]
+![Image](https://files.readme.io/5a6a253-autofix-action-req.png)
 
 
 While Autofix offers valuable suggestions, it's essential to carefully review the changes before accepting them to ensure they align with the intended functionality of your code.
 
 > 📘 You can also trigger Autofix using VSCode's Quick Fix menu
 > 
-> ![Image](https://files.readme.io/4148aab-quick-fix.png,,)[/block]
+> ![Image](https://files.readme.io/4148aab-quick-fix.png)
 
 > ❗️ Autofix AI is disabled for all Enterprise plans at the moment.
 
