@@ -4,7 +4,7 @@
 export default {
   variant: "GUIDE",
   settings: {
-    name: "Javacsript",
+    name: "Javascript",
     slug: "javascript",
   },
 };
