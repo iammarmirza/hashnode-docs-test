@@ -1,0 +1,33 @@
+---
+title: Yapf
+slug: yapf
+visibility: PUBLIC
+label: Yapf
+---
+Transform all incoming Python code with [yapf](https://github.com/google/yapf/).
+
+# Configuration — `deepsource.toml`
+
+This section covers configuration specific to the `yapf` transformer. Please make sure to read the [general configuration guide](https://deepsource-docs.readme.io/docs/configuration) first.
+
+## name
+
+**Type:** String  
+**Presence:** mandatory  
+**Description:** Shortcode of this transformer.  
+**Example:**
+
+```toml TOML
+name = "yapf"
+```
+
+## enabled
+
+**Type:** Boolean  
+**Presence:** optional  
+**Description:** Toggle whether this transformer should be run.  
+**Example:**
+
+```toml
+enabled = true
+```

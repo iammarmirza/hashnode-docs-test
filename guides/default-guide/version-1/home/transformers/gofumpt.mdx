@@ -1,0 +1,33 @@
+---
+title: Gofumpt
+slug: gofumpt
+visibility: PUBLIC
+label: Gofumpt
+---
+Run [gofumpt](https://github.com/mvdan/gofumpt) to format all incoming Go code.
+
+# Configuration — `deepsource.toml`
+
+This section covers configuration specific to the `gofumpt` transformer. Please make sure to read the [general configuration guide](https://deepsource-docs.readme.io/docs/configuration) first.
+
+## name
+
+**Type:** String  
+**Presence:** mandatory  
+**Description:** Shortcode of this transformer.  
+**Example:**
+
+```toml TOML
+name = "gofumpt"
+```
+
+## enabled
+
+**Type:** Boolean  
+**Presence:** optional  
+**Description:** Toggle whether this transformer should be run.  
+**Example:**
+
+```toml
+enabled = true
+```

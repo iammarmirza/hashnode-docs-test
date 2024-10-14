@@ -1,0 +1,114 @@
+---
+title: "Amazon Machine Images (AMI)"
+slug: "amazon-machine-images-ami"
+label: "Amazon Machine Images (AMI)"
+visibility: "HIDDEN"
+---
+DeepSource provides Amazon Machine Images (AMIs) that can be used to deploy DeepSource Enterprise Server on an EC2 machine using the AMI provided through AWS Marketplace.
+
+> 🚧 Note on High Availability
+> 
+> DeepSource Enterprise Server AMIs provided are created for single node setup with no High Availability (HA), for information on installing DeepSource Enterprise with HA visit <LINK>
+
+## Pre-requisites
+
+1. Create an IAM policy with the following actions:
+   - `aws-marketplace:*` - For managing AMI Subscription from AWS Marketplace.
+   - `ec2:*` - For managing the DeepSource Enterprise instance.
+   - `license-manager:*` - For managing the AMI License.
+   - `cloudwatch:*` - For managing metrics and logs of DeepSource Enterprise instance.
+     > The JSON for the policy will be something like the following:
+   ```json
+   {
+       "Version": "2012-10-17",
+       "Statement": [
+           {
+               "Sid": "MarketplaceFullAccess",
+               "Effect": "Allow",
+               "Action": "aws-marketplace:*",
+               "Resource": "*"
+           },
+           {
+               "Sid": "EC2FullAccess",
+               "Effect": "Allow",
+               "Action": "ec2:*",
+               "Resource": "*"
+           },
+           {
+               "Sid": "LicenseManagerFullAccess",
+               "Effect": "Allow",
+               "Action": "license-manager:*",
+               "Resource": "*"
+           },
+           {
+               "Sid": "CloudWatchFullAccess",
+               "Effect": "Allow",
+               "Action": "cloudwatch:*",
+               "Resource": "*"
+           }
+       ]
+   }
+   ```
+   > 🚧 Note on permissions
+   > 
+   > The policy documented above is permissive. This policy allows for an easy installation of DeepSource Enterprise Server. After setting up DeepSource Enterprise Server, we recommend you to reduce the scope of the policy according to your requirements.
+2. Attach policy to existing IAM User or Create a new IAM user with the policy added to it.
+3. Log in as the user to which the policy is attached.
+4. Make sure you have a valid license file from DeepSource; for more info, contact [sales@deepsource.io](mailto:sales@deepsource.io) (or) [schedule a product demo](https://deepsource.com/schedule-demo).
+
+> For more info on AWS IAM policies and users, visit <https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html>.
+
+## Installation
+
+1. Visit [AWS Marketplace listing for DeepSource Enterprise](https://aws.amazon.com/marketplace/pp/prodview-ddp74jrbj2xws) and subscribe to the product by clicking **Continue to Subscribe** (You won't be charged for subscription at this time).
+
+![](https://files.readme.io/552065c-image.png)
+
+2. Accept the Terms and Conditions and proceed further by clicking on **Accept Terms**.
+
+![](https://files.readme.io/abf4eaa-image.png)
+
+3. Wait for the Subscription process to finish and then click on **Continue to Configuration**.  
+   ![](https://files.readme.io/bb6d01e-image.png)
+4. Set the software version to the latest available version and select the appropriate region from the drop-down menu and proceed by selecting **Continue to Launch**.
+5. ![](https://files.readme.io/8cb3f34-image.png)  
+   Make sure **Launch from Website** is selected in Choose Action.  
+   ![](https://files.readme.io/80d965f-image.png)
+6. By default, AWS will fill the following selection menus with an appropriate config that can be changed per your requirements.
+7. ![](https://files.readme.io/814bcbf-image.png)  
+   Do note in the Security Group section, select **Create New Based On Seller Sections**  
+   ![](https://files.readme.io/398ec3d-image.png)  
+   .. and **Save** the Security Group while making sure it is the one that is selected.  
+   ![](https://files.readme.io/1f9891b-image.png)
+
+> 🚧 Note on AWS Security group
+> 
+> The security group created by default is permissive by design for easy installation.  If you are using a VPN or other internal networks, please make the necessary changes. Do note that the instance should be reachable from your Version Control System (GitHub, GitLab, Bitbucket, Azure DevOps, etc). This security group is specific to a single-node setup. If you are using this AMI for multi-node setup, edit the security group by adding the ports listed in <LINK>
+
+8. Select or create a key pair for accessing the DeepSource Enterprise Instance using SSH.
+
+![](https://files.readme.io/9a5138d-image.png)
+
+9. Select **Launch** and continue.
+
+![](https://files.readme.io/654cfa4-image.png)
+
+10. The following infobox should appear, click on **EC2 Console**, and the EC2 instance page should open in a new tab.
+
+![](https://files.readme.io/fef2902-image.png)
+
+11. Select the DeepSource Enterprise instance created and copy the _Public_ _IPv4_ _Address_.  
+    ![](https://files.readme.io/e6aaf89-image.png)
+12. Wait ~10 minutes for the instance, then visit the admin console on _Public_ _IPv4_ _Address_ on port _8800_  and Click **Continue to Setup**.  
+    ![](https://files.readme.io/2f93b85-image.png)
+
+> 📘 Check Installation progress
+> 
+> If you want to checkout the live installation logs, you can SSH into the ec2 instance using the command `ssh -i <private_key_path> ec2-user@<instance_public_ip>`. Run the command `sudo tail -f /var/log/cloud-init-output.log` after SSHing for viewing the logs in realtime. Do note that the permissions for private key from the key pair should be `400`
+
+13. Add your hostname that points to the _Public_ _IPv4_ _Address_ and _optionally_ upload your own SSL certificate if required, but self-signed will work without any issues, and proceed further to admin console login.
+
+![](https://files.readme.io/78188f8-image.png)
+
+13. The console password is in the form `kotsadm-<Instance Private IP>`, **login** and **upload** the license file on the following page and continue.  
+    ![](https://files.readme.io/3b8d3fe-image.png)

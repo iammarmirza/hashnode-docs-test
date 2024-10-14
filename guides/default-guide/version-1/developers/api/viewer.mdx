@@ -1,0 +1,85 @@
+---
+title: Viewer
+slug: viewer
+visibility: PUBLIC
+label: Viewer
+---
+## viewer
+
+Lookup the details of the authenticated user.
+
+### Example Request
+
+```graphql
+query {
+  viewer {
+    id
+    firstName
+    lastName
+    email
+  }
+}
+```
+
+### Example Response
+
+```graphql
+{
+  "data": {
+    "viewer": {
+      "id": "VXNlcjp6a2dkZXk=",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john.doe@email.com",
+    }
+  }
+}
+```
+
+## Objects
+
+### User
+
+<table>
+  <thead>
+    <tr>
+      <th align="left" width="25%">Field</th>
+      <th align="left" width="25%">Type</th>
+      <th align="left" width="50%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td valign="top"><strong>id</strong></td>
+      <td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#id">ID</a>!</td>
+      <td>The ID of the object.</td>
+    </tr>
+    <tr>
+      <td valign="top"><strong>firstName</strong></td>
+      <td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+      <td>First name of the user.</td>
+    </tr>
+    <tr>
+      <td valign="top"><strong>lastName</strong></td>
+      <td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+      <td>Last name of the user.</td>
+    </tr>
+    <tr>
+      <td valign="top"><strong>email</strong></td>
+      <td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+      <td>Email of the user.</td>
+    </tr><tr>
+  <td><strong>isBetaTester</strong></td>
+  <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#boolean">Boolean</a>!</td>
+  <td>
+    Whether the user is a beta tester.
+  </td>
+</tr>
+    <tr>
+      <td valign="top"><strong>accounts</strong></td>
+      <td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-account#accountconnection">AccountConnection</a></td>
+      <td>All the accounts associated with the user. This includes the team accounts the user is part of and the individual accounts they have added on DeepSource.
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,41 @@
+---
+title: 'Reference: Pagination'
+slug: reference-pagination
+visibility: PUBLIC
+label: 'Reference: Pagination'
+---
+### PageInfo
+
+Information to aid in pagination inside a connection field.
+
+<table>
+<thead>
+<tr>
+<th align="left" width="30%">Field</th>
+<th align="left" width="30%">Type</th>
+<th align="left" width="40%">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>hasNextPage</strong></td>
+<td valign="top"><a href="/docs/apis-reference-scalars#boolean">Boolean</a>!</td>
+<td>When paginating forwards, are there more items?</td>
+</tr>
+<tr>
+<td valign="top"><strong>hasPreviousPage</strong></td>
+<td valign="top"><a href="/docs/apis-reference-scalars#boolean">Boolean</a>!</td>
+<td>When paginating backwards, are there more items?</td>
+</tr>
+<tr>
+<td valign="top"><strong>startCursor</strong></td>
+<td valign="top"><a href="/docs/apis-reference-scalars#string">String</a></td>
+<td>When paginating backwards, the cursor to continue.</td>
+</tr>
+<tr>
+<td valign="top"><strong>endCursor</strong></td>
+<td valign="top"><a href="/docs/apis-reference-scalars#string">String</a></td>
+<td>When paginating forwards, the cursor to continue.</td>
+</tr>
+</tbody>
+</table>

@@ -1,0 +1,72 @@
+---
+title: Shell
+slug: shell
+visibility: PUBLIC
+label: Shell
+---
+This section covers configuration specific to the `Shell` analyzer. Please make sure to read the general [configuration guide](https://deepsource-docs.readme.io/docs/configuration) first.
+
+## Configuration - `.deepsource.toml`
+
+### `name`
+
+- **Type**: [String](https://toml.io/en/v1.0.0#string)
+- **Presence**: mandatory
+- **Description**: Shortcode of the analyzer.
+- **Example**:
+
+```toml
+name = "shell"
+```
+
+### `enabled`
+
+- **Type**: [Boolean](https://toml.io/en/v1.0.0#boolean)
+- **Presence**: optional
+- **Description**: Toggle whether this analyzer should be run.
+- **Example**:
+
+```toml
+enabled = true
+```
+
+### `meta`
+
+- **Type**: [Table](https://toml.io/en/v1.0.0#table)
+- **Presence**: optional
+- **Description**: Analyzer specific metadata to tweak its behavior. These values are used to customize the checkers.
+- **Example**:
+
+```toml
+[analyzers.meta]
+  dialect = "bash"
+```
+
+## Available `meta` field
+
+#### `dialect`
+
+- **Type**: [String](https://toml.io/en/v1.0.0#string)
+- **Presence**: optional
+- **Description**: UNIX shell on which the script is supposed to be run.
+- **Available Value**: `sh`, `bash`, `dash` and `ksh`.
+- **Default Value**: The analyzer detects the shell from the file's shell directive or the shebang line by default.
+- **Example**:
+
+```toml
+[analyzers.meta]
+  dialect = "sh"
+```
+
+## Sample config
+
+```toml
+version = 1
+
+[[analyzers]]
+name = "shell"
+enabled = true
+
+  [analyzers.meta]
+    dialect = "zsh"
+```
