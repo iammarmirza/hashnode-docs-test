@@ -18,7 +18,7 @@ Integrating your Bitbucket application with DeepSource requires a Bitbucket appl
 | Field        | Value                                                                  | Example                                                                  |
 | :----------- | :--------------------------------------------------------------------- | :----------------------------------------------------------------------- |
 | Name         | DeepSource `ORGANIZATION_NAME`                                         | DeepSource Stark International                                           |
-| Callback URL | <https://`HOSTNAME`/accounts/bitbucket_oauth2/login/callback/bifrost/> | `https://deepsource.stark.com/accounts/bitbucket_oauth2/login/callback/` |
+| Callback URL | `https://HOSTNAME/accounts/bitbucket_oauth2/login/callback/bifrost/` | `https://deepsource.stark.com/accounts/bitbucket_oauth2/login/callback/` |
 | Permissions  | Select `Email` & `Read` for `Account`.                                 |                                                                          |
 
 5. Click on **Save**.
@@ -45,7 +45,7 @@ Before proceeding with this step, please make sure that your DeepSource instance
 1. On the top right corner, click on your profile picture. From the drop-down menu, select **All workspaces**.
 2. Click on **Manage** against the workspace you'd like to create the application in.
 3. Select **Develop apps** from the sidebar and click on **Register app**.
-4. You'd be prompted to add a **Descriptor URL**. Add the following URL - "<https://`HOSTNAME`/services/atlassian/connect>" and click **"Register App"**.
+4. You'd be prompted to add a **Descriptor URL**. Add the following URL - `https://HOSTNAME/services/atlassian/connect` and click **"Register App"**.
 5. You will get a **Client ID** and **Secret**. These values will need to be added in the DeepSource Enterprise admin console.
 
 ![](https://files.readme.io/8931e3d-small-bitbucket-app.png)

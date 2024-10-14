@@ -21,7 +21,7 @@ Before proceeding, ensure you have the following prerequisites in place:
 2. Create two namespaces
    1. `deepsource-application` - `kubectl create ns deepsource-application`
    2. `deepsource-analysis` - `kubectl create ns deepsource-analysis`
-3. Create an external database using the following guide: <https://docs.deepsource.com/docs/enterprise-server-configuration#bring-your-own-database>. You can skip this step for pilot installation.
+3. Create an external database using the following guide: [Enterprise Server Configuration](https://docs.deepsource.com/docs/enterprise-server-configuration#bring-your-own-database). You can skip this step for pilot installation.
 4. Obtain a license by reaching out to [sales@deepsource.io](mailto:sales@deepsource.io)
 5. Make sure to use at least helm v3.8.0, prior versions require `HELM_EXPERIMENTAL_OCI=1`environment variable to be set.
 
@@ -353,9 +353,9 @@ Currently we support Sonatype Nexus as an external registry.
 
 ## Generate support-bundle
 
-1. Make sure `yq` is installed on your system. To Install. `yq`  follow the installation guide:  <https://mikefarah.gitbook.io/yq/v/v3.x/>
+1. Make sure `yq` is installed on your system. To install `yq`, follow the installation guide: [yq installation guide](https://mikefarah.gitbook.io/yq/v/v3.x/)
 2. We use kubectl `support-bundle` plugin from [troubleshoot.sh](https://troubleshoot.sh/docs/). To install `support-bundle` follow this guide:
-   1. Install krew for your system from <https://krew.sigs.k8s.io/docs/user-guide/setup/install/>
+   1. Install krew for your system from [https://krew.sigs.k8s.io/docs/user-guide/setup/install/](https://krew.sigs.k8s.io/docs/user-guide/setup/install/)
    2. Once krew is installed and working run the following command
       ```shell
       kubectl krew install support-bundle

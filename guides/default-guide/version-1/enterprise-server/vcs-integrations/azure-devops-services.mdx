@@ -12,64 +12,29 @@ Integrating your Azure DevOps Services (ADS) account with DeepSource requires an
 > 
 > - Azure doesn't allow access or transfership of an application so it's recommended to create this application using a team or service account.
 
-1. With logged into Azure, visit <https://aex.dev.azure.com/> (or the equivalent URL in your Azure DevOps Server instance).
-2. Scroll to the bottom. On the left-hand side, you will find a section titled **"Applications and services"**. Click on the **"Create new application"** under this section. You can also directly visit <https://aex.dev.azure.com/app/register>.
+1. With logged into Azure, visit [https://aex.dev.azure.com/](https://aex.dev.azure.com/) (or the equivalent URL in your Azure DevOps Server instance).
+2. Scroll to the bottom. On the left-hand side, you will find a section titled **"Applications and services"**. Click on the **"Create new application"** under this section. You can also directly visit [https://aex.dev.azure.com/app/register](https://aex.dev.azure.com/app/register).
 3. You'd be prompted to fill out a form to create a new application. Enter the following details:
 
 > 📘 Replace `ORGANIZATION_NAME` with the name of your organization, and `HOSTNAME` with the actual hostname on which you plan to deploy DeepSource to.
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Field",
-    "h-1": "Value",
-    "h-2": "Example",
-    "0-0": "Company name",
-    "0-1": "DeepSource Enterprise Server",
-    "0-2": "DeepSource Enterprise Server",
-    "1-0": "Application name",
-    "1-1": "DeepSource `ORGANIZATION_NAME`",
-    "1-2": "DeepSource Stark International",
-    "2-0": "Application website",
-    "2-1": "https\\://`HOSTNAME`",
-    "2-2": "`https://deepsource.stark.com/`",
-    "3-0": "Authorization callback URL",
-    "3-1": "https\\://`HOSTNAME`/accounts/ads/login/callback/bifrost",
-    "3-2": "`https://deepsource.stark.com/accounts/ads/login/callback/bifrost/`",
-    "4-0": "Authorized scopes",
-    "4-1": "Check the following boxes:  \n- `Code (read and write)`  \n- `Code (status)`  \n- `Project and team (read)`",
-    "4-2": ""
-  },
-  "cols": 3,
-  "rows": 5,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+| Field                        | Value                                                         | Example                                                    |
+|------------------------------|---------------------------------------------------------------|------------------------------------------------------------|
+| Company name                 | DeepSource Enterprise Server                                  | DeepSource Enterprise Server                               |
+| Application name             | DeepSource `ORGANIZATION_NAME`                                | DeepSource Stark International                             |
+| Application website          | https://`HOSTNAME`                                            | `https://deepsource.stark.com/`                            |
+| Authorization callback URL   | https://`HOSTNAME`/accounts/ads/login/callback/bifrost        | `https://deepsource.stark.com/accounts/ads/login/callback/bifrost/` |
+| Authorized scopes            | Check the following boxes:                                    |                                                            |
+|                              | - `Code (read and write)`                                     |                                                            |
+|                              | - `Code (status)`                                             |                                                            |
+|                              | - `Project and team (read)`                                   |                                                            |
+
 
 
 4. Click on **"Save changes"**.
 5. On the next page, You will get the`App ID`, `Client Secret` and `Authorize URL`. Enter these values in the DeepSource Enterprise admin console.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/6164eea-image.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+![](https://files.readme.io/6164eea-image.png)
 
 # Configuring the Azure DevOps application in the Admin Console
 
@@ -79,21 +44,8 @@ After you have created your Azure DevOps application, you need to configure it i
 2. Navigate to **Application** -> **Config**.
 3. Select the checkbox for **Azure DevOps Services**.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/4f439ac-image.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
+![](https://files.readme.io/4f439ac-image.png)
+
 
 
 4. Fill in the values for the following fields as explained in each field's subtext:
@@ -103,21 +55,7 @@ After you have created your Azure DevOps application, you need to configure it i
    4. Azure DevOps Services Application Client Secret
    5. Azure DevOps Services Webhook Secret
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/29e43ef-image.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
+![](https://files.readme.io/29e43ef-image.png)
 
 
 5. Click **"Save config"**.

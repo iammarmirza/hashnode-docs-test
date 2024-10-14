@@ -30,13 +30,13 @@ https://www.googleapis.com/auth/source.read_only
    1. Click "+ Create credentials". Select "OAuth Client ID" from the dropdown.
    2. Select "Web application" as the application type.
    3. Give an appropriate name, e.g., "DeepSource".
-   4. Under the heading "Authorized Redirect URIs", add <https://deepsource.company.com/accounts/google/login/callback/bifrost/> (Replace deepsource.company.com with the URL at which deepsource is deployed).
+   4. Under the heading "Authorized Redirect URIs", add \<https://deepsource.company.com/accounts/google/login/callback/bifrost/\> (Replace deepsource.company.com with the URL at which deepsource is deployed).
    5. Click "Create". It shall now display Client ID and Client Secret. Keep both of these values handy: we'll need them later.
 4. DeepSource uses the Cloud Resource Manager API (to list and view projects) and Cloud Source Repositories API (to read source code). If the APIs are not enabled, enable them by vising the following (make sure to select the correct project):
-   - <https://console.cloud.google.com/apis/library/cloudresourcemanager.googleapis.com>
-   - <https://console.cloud.google.com/apis/library/sourcerepo.googleapis.com>
-   - <https://console.cloud.google.com/apis/library/pubsub.googleapis.com>
-   - <https://console.cloud.google.com/apis/library/compute.googleapis.com>
+   - [https://console.cloud.google.com/apis/library/cloudresourcemanager.googleapis.com](https://console.cloud.google.com/apis/library/cloudresourcemanager.googleapis.com)
+   - [https://console.cloud.google.com/apis/library/sourcerepo.googleapis.com](https://console.cloud.google.com/apis/library/sourcerepo.googleapis.com)
+   - [https://console.cloud.google.com/apis/library/pubsub.googleapis.com](https://console.cloud.google.com/apis/library/pubsub.googleapis.com)
+   - [https://console.cloud.google.com/apis/library/compute.googleapis.com](https://console.cloud.google.com/apis/library/compute.googleapis.com)
 
 # Configuring Google Source Repositories in the Admin Console
 
@@ -110,6 +110,6 @@ gcloud pubsub subscriptions create projects/$PROJECT_ID/subscriptions/deepsource
 ### Register the SSH Key
 
 1. Copy the SSH key from the screen.
-2. Go to <https://source.cloud.google.com/user/ssh_keys?register=true>. It might ask you for a password:
+2. Go to [https://source.cloud.google.com/user/ssh_keys?register=true](https://source.cloud.google.com/user/ssh_keys?register=true). It might ask you for a password:
    1. Add a suitable name, e.g., "deepsource"
    2. Paste the public key and click "Register".

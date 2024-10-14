@@ -21,7 +21,7 @@ Visit the customer-specific download portal with the password provided in the em
 
 ## Install KOTS
 
-> Ref: <https://docs.replicated.com/reference/kots-cli-getting-started#manually-download-and-install>
+> Ref: [https://docs.replicated.com/reference/kots-cli-getting-started#manually-download-and-install](https://docs.replicated.com/reference/kots-cli-getting-started#manually-download-and-install)
 
 ### Download KOTS
 
@@ -85,7 +85,7 @@ kubectl kots --help
 
 ## Upload KOTS Specific Images to the Image Registry
 
-> Ref: <https://docs.replicated.com/enterprise/updating-app-manager#air-gap-environments>
+> Ref: [https://docs.replicated.com/enterprise/updating-app-manager#air-gap-environments](https://docs.replicated.com/enterprise/updating-app-manager#air-gap-environments)
 
 1. Upload the KOTS Airgap Bundle to your image registry; this will upload kotsadm (the admin console) and the components KOTS requires.
 2. Run the command from the directory where you downloaded the bundle:
@@ -100,13 +100,13 @@ push-images ./kotsadm.tar.gz \
 
 For the Harbor image registry, the `<registry-namespace>` will usually be the project name.
 
-To update the App Manager, refer: <https://docs.replicated.com/enterprise/updating-app-manager#air-gap-environments>
+To update the App Manager, refer to [https://docs.replicated.com/enterprise/updating-app-manager#air-gap-environments](https://docs.replicated.com/enterprise/updating-app-manager#air-gap-environments).
 
 ## Install/Upgrade DeepSource
 
 ### Install
 
-> Ref: <https://docs.replicated.com/enterprise/installing-existing-cluster-automation#air-gap-existing-cluster>
+> Ref: [https://docs.replicated.com/enterprise/installing-existing-cluster-automation#air-gap-existing-cluster](https://docs.replicated.com/enterprise/installing-existing-cluster-automation#air-gap-existing-cluster)
 
 To install DeepSource Enterprise Server, run the following command from the directory where you downloaded the airgap bundle:
 
@@ -125,7 +125,7 @@ kubectl kots install deepsource-fowl   \
 
 ### Upgrade
 
-> Ref: <https://docs.replicated.com/enterprise/updating-apps#air-gapped-installations-on-an-existing-cluster>
+> Ref: https://docs.replicated.com/enterprise/updating-apps#air-gapped-installations-on-an-existing-cluster
 
 To upgrade DeepSource Enterprise Server, run the following command from the directory where you downloaded the airgap bundle:
 
@@ -148,4 +148,4 @@ kubectl kots upstream upgrade deepsource-fowl \
 
 ### App Manager Configuration
 
-Visit <https://docs.deepsource.com/docs/enterprise-server-configuration> to configure the app from admin console.
+Visit \<https://docs.deepsource.com/docs/enterprise-server-configuration\> to configure the app from admin console.

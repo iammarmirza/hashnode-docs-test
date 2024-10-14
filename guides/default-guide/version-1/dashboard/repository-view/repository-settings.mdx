@@ -45,20 +45,7 @@ To enable DeepSource to retrieve external private dependencies or submodules in 
 
 1. Navigate to `Settings > General`, look for the `SSH access` section and click on `+ Generate SSH key pair`.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/48c312b-SCR-20230919-pzfs.png",
-        null,
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
+![](https://files.readme.io/48c312b-SCR-20230919-pzfs.png)
 
 
 2. Copy the key and paste it as a deploy key in the dependency/submodule repository.
@@ -77,20 +64,7 @@ Here, you can view, copy, or regenerate the Data Source Name (DSN) for this repo
 
 The analysis configuration for a repository on DeepSource is defined in a `.deepsource.toml` file located in the root of the repository. This file is essential for the analysis to be run. To edit the `.deepsource.toml` file, simply click on the 'Regenerate configuration' button, which will redirect you to the configuration generator.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/91808ad-SCR-20230919-pzqa.png",
-        null,
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
+![](https://files.readme.io/91808ad-SCR-20230919-pzqa.png)
 
 
 ## Code Coverage
@@ -109,20 +83,8 @@ In such a case, DeepSource's [Test Coverage](/docs/analyzers-test-coverage) anal
 To allow such use-cases, DeepSource provides an option to re-use coverage reports from pull requests after a merge.  
 By enabling this option, on merge commits to the default branch, the [Test Coverage](/docs/analyzers-test-coverage) analyzer will re-use the coverage reports from the last analysis on the related pull request.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/5b89bb5-SCR-20230919-qadm.png",
-        null,
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
+
+![](https://files.readme.io/5b89bb5-SCR-20230919-qadm.png)
 
 
 ## Quality gates
@@ -133,179 +95,63 @@ By enabling this option, on merge commits to the default branch, the [Test Cover
 
 DeepSource publishes a commit status (also called a check or build status) for every commit analyzed with an appropriate status indicating whether the analysis passed or not. This can be used to block PR merges. This is the default behavior and cannot be disabled.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/c2f9420-image.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
+
+![](https://files.readme.io/c2f9420-image.png)
 
 
 #### Pull Requests comment
 
 DeepSource adds a comment on pull requests with a summary of the analysis results and metrics. This will make understanding and auditing code health problems in the code review flow easier without navigating away from the pull request. This is the default behavior for new repositories (later than February 2024) and can be disabled.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/a2c6882-image.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
+![](https://files.readme.io/a2c6882-image.png)
 
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/6bca6d5-image.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+![](https://files.readme.io/6bca6d5-image.png)
 
 ### Issue Reporting
 
 Customize the reporting of issues by selecting the categories to include and setting the criteria for failure. Additionally, prioritize reported issues based on their level of importance.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/33c50c6-SCR-20230919-qeuw.png",
-        null,
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
+![](https://files.readme.io/33c50c6-SCR-20230919-qeuw.png)
+
 
 
 ### Metrics Reporting
 
 Customize metrics reporting by selecting the metrics to be included and setting thresholds for failure. Analysis runs will be marked as failed if these thresholds are not met.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/00bbd23-SCR-20230919-qfhn.png",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
+![](https://files.readme.io/00bbd23-SCR-20230919-qfhn.png)
+
 
 
 ## Issue priority
 
 You can assign a priority of High, Medium, or Low to every issue introduced in this repository. Prioritizing issues can help you filter out those that are less meaningful or actionable for you.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/8faa2d2-SCR-20230919-qfov.png",
-        null,
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
+![](https://files.readme.io/8faa2d2-SCR-20230919-qfov.png)
+
 
 
 ## Badges
 
 You can add embeddable badges with data on the number of active issues, resolved issues and code coverage in this repository to your project's README, wiki, or website. These badges can be formatted in Markdown, AsciiDoc, HTML, or reStructuredText.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/795163c-SCR-20230919-qfqy.png",
-        null,
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
+![](https://files.readme.io/795163c-SCR-20230919-qfqy.png)
 
 
 ## Ignored rules
 
 In this section, you'll find all the ignore rules that you have added. To remove an Ignore rule, click on the bin icon next to it. Read more about [ignoring issues](https://docs.deepsource.com/docs/issues-ignore-rules).
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/88a6c56-SCR-20230919-qgla.png",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
+![](https://files.readme.io/88a6c56-SCR-20230919-qgla.png)
+
 
 
 ## Audit log
 
 The audit log provides a comprehensive record of all events and actions related to the analysis and configuration of your repository on DeepSource. This includes events such as activating or deactivating analysis, creating or deleting ignore rules, adding or removing team members, as well as any other changes made to the configuration or settings of DeepSource within the repository. By reviewing the audit log, you can easily track and monitor the history of all activities and changes made within your repository on DeepSource.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/e2c86e0-SCR-20230919-qgum.png",
-        null,
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
+![](https://files.readme.io/e2c86e0-SCR-20230919-qgum.png)
 
 
 ## Collaborators
@@ -314,17 +160,5 @@ In this section, you can view a list of all members who have access to the repos
 
 > 📘 New collaborators must first be invited to join the team before they can be added as repository members.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/958edee-SCR-20230919-pnyp.png",
-        null,
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
+![](https://files.readme.io/958edee-SCR-20230919-pnyp.png)
+
