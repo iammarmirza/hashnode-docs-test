@@ -25,29 +25,29 @@ export default {
                     // Page can only have two attributes: type and path
                     type: "page",
                     // Relative to the version folder
-                    path: "./getting-started/introduction-to-javascript.mdx",
+                    path: "./getting-started/introduction.mdx",
                     pages: [
                         {
                             type: "page",
-                            path: "./getting-started/introduction-to-javascript/what-is-javascript.mdx",
+                            path: "./getting-started/introduction/what-is-javascript.mdx",
                             pages: [],
                         },
                         {
                             type: "page",
-                            path: "./getting-started/introduction-to-javascript/history-of-javascript.mdx",
+                            path: "./getting-started/introduction/history.mdx",
                             pages: [],
                         },
                         {
                             type: "page",
-                            path: "./getting-started/introduction-to-javascript/setting-up-your-environment.mdx",
+                            path: "./getting-started/introduction/setting-up-your-environment.mdx",
                             pages: [
                                 {
                                     type: "page",
-                                    path: "./getting-started/introduction-to-javascript/setting-up-your-environment/installing-nodejs.mdx",
+                                    path: "./getting-started/introduction/setting-up-your-environment/installing-nodejs.mdx",
                                 },
                                 {
                                     type: "page",
-                                    path: "./getting-started/introduction-to-javascript/setting-up-your-environment/choosing-code-editor.mdx",
+                                    path: "./getting-started/introduction/setting-up-your-environment/choosing-code-editor.mdx",
                                 }
                             ],
                         },
@@ -55,45 +55,45 @@ export default {
                 },
                 {
                     type: "page",
-                    path: "./getting-started/javascript-basics.mdx",
+                    path: "./getting-started/basics.mdx",
                     pages: [
                         {
                             type: "page",
-                            path: "./getting-started/javascript-basics/variables-and-data-types.mdx",
+                            path: "./getting-started/basics/variables-and-data-types.mdx",
                         },
                         {
                             type: "page",
-                            path: "./getting-started/javascript-basics/operators.mdx",
+                            path: "./getting-started/basics/operators.mdx",
                             pages: [
                                 {
                                     type: "page",
-                                    path: "./getting-started/javascript-basics/operators/arithmetic.mdx",
+                                    path: "./getting-started/basics/operators/arithmetic.mdx",
                                 },
                                 {
                                     type: "page",
-                                    path: "./getting-started/javascript-basics/operators/assignment.mdx",
+                                    path: "./getting-started/basics/operators/assignment.mdx",
                                 },
                                 {
                                     type: "page",
-                                    path: "./getting-started/javascript-basics/operators/comparison.mdx",
+                                    path: "./getting-started/basics/operators/comparison.mdx",
                                 },
                                 {
                                     type: "page",
-                                    path: "./getting-started/javascript-basics/operators/logical.mdx",
+                                    path: "./getting-started/basics/operators/logical.mdx",
                                 },
                             ],
                         },
                         {
                             type: "page",
-                            path: "./getting-started/javascript-basics/control-flow.mdx",
+                            path: "./getting-started/basics/control-flow.mdx",
                             pages: [
                                 {
                                     type: "page",
-                                    path: "./getting-started/javascript-basics/control-flow/conditional-statements.mdx",
+                                    path: "./getting-started/basics/control-flow/conditional-statements.mdx",
                                 },
                                 {
                                     type: "page",
-                                    path: "./getting-started/javascript-basics/control-flow/switch-case.mdx",
+                                    path: "./getting-started/basics/control-flow/switch-case.mdx",
                                 }
                             ]
                         }
