@@ -1,5 +1,8 @@
 // This is the config for the a version
 // We currently only support a single version
+
+import path from "path";
+
 // isDefault has to be set to true for the version which will be deployed. Meaning, there can be multiple version folders, but only one can be deployed
 export default {
     // These settings are ignored on DB level for now 
@@ -126,5 +129,46 @@ export default {
                 }
             ],
         },
+        {
+            type: "section",
+            label: "Advanced Concepts",
+            visibility: "PUBLIC",
+            pages: [
+                {
+                    type: "page",
+                    path: "./advanced-concepts/objects-and-arrays.mdx",
+                    pages: [
+                        {
+                            type: "page",
+                            path: "./advanced-concepts/objects-and-arrays/objects.mdx",
+                            pages: [
+                                {
+                                    type: "page",
+                                    path: "./advanced-concepts/objects-and-arrays/objects/methods.mdx",
+                                },
+                                {
+                                    type: "page",
+                                    path: "./advanced-concepts/objects-and-arrays/objects/destructuring.mdx",
+                                }
+                            ]
+                        },
+                        {
+                            type: "page",
+                            path: "./advanced-concepts/objects-and-arrays/arrays.mdx",
+                            pages: [
+                                {
+                                    type: "page",
+                                    path: "./advanced-concepts/objects-and-arrays/arrays/methods.mdx",
+                                },
+                                {
+                                    type: "page",
+                                    path: "./advanced-concepts/objects-and-arrays/arrays/destructuring.mdx",
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
     ],
 };

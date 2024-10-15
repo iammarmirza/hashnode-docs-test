@@ -1,0 +1,38 @@
+---
+title: "Methods"
+label: "Methods"
+slug: "methods"
+visibility: PUBLIC
+---
+
+Object methods are functions that are stored as properties inside objects. They can be used to perform actions using the object's data. The this keyword inside an object method refers to the object itself.
+
+**Example**:
+
+```js
+const car = {
+    make: "Toyota",
+    model: "Corolla",
+    year: 2020,
+    start: function() {
+        console.log(this.make + " " + this.model + " is starting...");
+    }
+};
+
+car.start(); // Output: Toyota Corolla is starting...
+```
+In this example, the start method prints a message using the make and model properties of the `car` object.
+
+### Common Object Methods:
+
+- **`Object.keys()`**: Returns an array of the object's property names.
+- **`Object.values()`**: Returns an array of the object's values.
+- **`Object.entries()`**: Returns an array of key-value pairs.
+
+**Example**:
+```js
+const person = { name: "Alice", age: 25 };
+console.log(Object.keys(person)); // Output: ["name", "age"]
+console.log(Object.values(person)); // Output: ["Alice", 25]
+console.log(Object.entries(person)); // Output: [["name", "Alice"], ["age", 25]]
+```

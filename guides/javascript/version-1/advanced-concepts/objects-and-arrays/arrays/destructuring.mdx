@@ -1,0 +1,35 @@
+---
+title: "Array Destructuring"
+label: "Array Destructuring"
+slug: "destructuring"
+visibility: PUBLIC
+---
+
+Array destructuring is a syntax that allows you to extract values from an array and assign them to variables.
+
+**Example**:
+```js
+const colors = ["red", "green", "blue"];
+const [firstColor, secondColor] = colors;
+console.log(firstColor); // Output: red
+console.log(secondColor); // Output: green
+```
+
+In this example, we extracted the first two elements from the `colors` array and assigned them to variables `firstColor` and `secondColor`.
+
+**You can also skip elements when destructuring**:
+```js
+const numbers = [1, 2, 3, 4];
+const [ , , thirdNumber] = numbers;
+console.log(thirdNumber); // Output: 3
+```
+
+**Additionally, destructuring can be used with rest syntax to capture remaining elements in an array**:
+```js
+const fruits = ["apple", "banana", "orange", "grape"];
+const [first, ...others] = fruits;
+console.log(first); // Output: apple
+console.log(others); // Output: ["banana", "orange", "grape"]
+```
+Array destructuring makes it easier to work with arrays by allowing you to extract multiple values at once, improving readability and reducing the need for repetitive code.
+
