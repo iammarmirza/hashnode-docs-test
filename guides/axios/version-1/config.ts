@@ -98,6 +98,20 @@ export default {
                 {
                     type: "page",
                     path: "./axios-api/url-encoding-bodies.mdx",
+                    pages: [
+                        {
+                            type: "page",
+                            path: "./axios-api/url-encoding-bodies/browser.mdx",
+                        },
+                        {
+                            type: "page",
+                            path: "./axios-api/url-encoding-bodies/nodejs.mdx",
+                        },
+                        {
+                            type: "page",
+                            path: "./axios-api/url-encoding-bodies/automatic-serialization.mdx",
+                        }
+                    ]
                 },
                 {
                     type: "page",

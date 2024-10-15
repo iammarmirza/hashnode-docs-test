@@ -1,0 +1,26 @@
+---
+title: Node.js
+slug: nodejs
+visibility: PUBLIC
+label: Node.js
+---
+
+**Query string**
+In node.js, you can use the `querystring` module as follows:
+
+```js
+const querystring = require('querystring');
+axios.post('http://something.com/', querystring.stringify({ foo: 'bar' }));
+```
+
+or 'URLSearchParams' from 'url module' as follows:
+
+```js
+const url = require('url');
+const params = new url.URLSearchParams({ foo: 'bar' });
+axios.post('http://something.com/', params.toString());
+```
+
+You can also use the `qs` library.
+
+> Note: The `qs` library is preferable if you need to stringify nested objects, as the `querystring` method has known issues with that use case https://github.com/nodejs/node-v0.x-archive/issues/1665.
