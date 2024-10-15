@@ -131,6 +131,33 @@ const paths = [
   "help/permissions.mdx",
 ];
 
+const lodashPaths = [
+  "4.17.15#chunk.mdx",
+  "4.17.15#compact.mdx",
+  "4.17.15#difference.mdx",
+  "4.17.15#drop.mdx",
+  "4.17.15#dropRight.mdx",
+  "4.17.15#dropRightWhile.mdx",
+  "4.17.15#dropWhile.mdx",
+  "4.17.15#fill.mdx",
+  "4.17.15#findIndex.mdx",
+  "4.17.15#findLastIndex.mdx",
+  "4.17.15#first.mdx",
+  "4.17.15#flatten.mdx",
+  "4.17.15#flattenDeep.mdx",
+  "4.17.15#flattenDepth.mdx",
+  "4.17.15#filter.mdx",
+  "4.17.15#find.mdx",
+  "4.17.15#findLast.mdx",
+  "4.17.15#flatMap.mdx",
+  "4.17.15#flatMapDeep.mdx",
+  "4.17.15#flatMapDepth.mdx",
+  "4.17.15#groupBy.mdx",
+  "4.17.15#initial.mdx",
+  "4.17.15#now.mdx",
+  "4.17.15#size.mdx",
+];
+
 function convertMdxToMarkdown(mdxFilePath) {
   // Check if the file exists
   if (!fs.existsSync(mdxFilePath)) {
@@ -231,6 +258,6 @@ function convertMdxToMarkdown(mdxFilePath) {
 //   "./guides/default-guide/version-1/home/quickstart/activate-new-repositories.mdx"
 // );
 
-paths.forEach((path) => {
+lodashPaths.forEach((path) => {
   convertMdxToMarkdown(`./guides/default-guide/version-1/${path}`);
 });
