@@ -161,6 +161,32 @@ export default {
                             path: "./advanced-concepts/arrays/destructuring.mdx",
                         }
                     ]
+                },
+                {
+                    type: "page",
+                    path: "./advanced-concepts/loops.mdx",
+                    pages: [
+                        {
+                            type: "page",
+                            path: "./advanced-concepts/loops/for.mdx",
+                        },
+                        {
+                            type: "page",
+                            path: "./advanced-concepts/loops/for-of.mdx",
+                        },
+                        {
+                            type: "page",
+                            path: "./advanced-concepts/loops/for-in.mdx",
+                        },
+                        {
+                            type: "page",
+                            path: "./advanced-concepts/loops/while.mdx",
+                        },
+                        {
+                            type: "page",
+                            path: "./advanced-concepts/loops/do-while.mdx",
+                        }
+                    ]
                 }
             ]
         }

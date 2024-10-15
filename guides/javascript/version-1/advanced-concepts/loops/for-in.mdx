@@ -1,0 +1,34 @@
+---
+title: For...in Loop
+label: For...in Loop
+slug: for-in
+visibility: PUBLIC
+---
+
+The `for...in` loop is used to iterate over the properties of an object. It is important to note that it is not recommended to use `for...in` with arrays, as it iterates over all enumerable properties, including those inherited from the prototype chain.
+
+**Syntax**:
+```js
+for (const key in object) {
+    // code to be executed
+}
+```
+
+**Example**:
+```js
+const person = {
+    name: "John",
+    age: 30,
+    city: "New York"
+};
+
+for (const key in person) {
+    console.log(`${key}: ${person[key]}`);
+}
+// Output:
+// name: John
+// age: 30
+// city: New York
+```
+In this example, the loop iterates over the keys of `the person` object, logging both the key and its corresponding value.
+
