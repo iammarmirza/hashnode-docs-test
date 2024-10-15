@@ -8,7 +8,7 @@ visibility: PUBLIC
 ## Function Declaration:
 A function declaration defines a named function and is hoisted to the top of its scope, meaning it can be called before it is defined.
 
-Example:
+**Example**:
 ```js
 function sayHello() {
     console.log("Hello, world!");
@@ -16,12 +16,12 @@ function sayHello() {
 
 sayHello(); // Output: Hello, world!
 ```
-In this example, the sayHello function is defined using a function declaration. Because of hoisting, it can be called even before the line where it is defined.
+In this example, the `sayHello` function is defined using a function declaration. Because of hoisting, it can be called even before the line where it is defined.
 
 ## Function Expression:
 A function expression is a function assigned to a variable. Unlike function declarations, function expressions are not hoisted, meaning they cannot be called before they are defined.
 
-Example:
+**Example**:
 ```js
 const greet = function() {
     console.log("Greetings!");
@@ -29,7 +29,7 @@ const greet = function() {
 
 greet(); // Output: Greetings!
 ```
-Here, the function is stored in a variable greet and can be called using that variable.
+Here, the function is stored in a variable `greet` and can be called using that variable.
 
 ### Key Differences:
 - **Hoisting**: Function declarations are hoisted, while function expressions are not.
