@@ -136,35 +136,29 @@ export default {
             pages: [
                 {
                     type: "page",
-                    path: "./advanced-concepts/objects-and-arrays.mdx",
+                    path: "./advanced-concepts/objects.mdx",
                     pages: [
                         {
                             type: "page",
-                            path: "./advanced-concepts/objects-and-arrays/objects.mdx",
-                            pages: [
-                                {
-                                    type: "page",
-                                    path: "./advanced-concepts/objects-and-arrays/objects/methods.mdx",
-                                },
-                                {
-                                    type: "page",
-                                    path: "./advanced-concepts/objects-and-arrays/objects/destructuring.mdx",
-                                }
-                            ]
+                            path: "./advanced-concepts/objects/methods.mdx",
                         },
                         {
                             type: "page",
-                            path: "./advanced-concepts/objects-and-arrays/arrays.mdx",
-                            pages: [
-                                {
-                                    type: "page",
-                                    path: "./advanced-concepts/objects-and-arrays/arrays/methods.mdx",
-                                },
-                                {
-                                    type: "page",
-                                    path: "./advanced-concepts/objects-and-arrays/arrays/destructuring.mdx",
-                                }
-                            ]
+                            path: "./advanced-concepts/objects/destructuring.mdx",
+                        }
+                    ]
+                },
+                {
+                    type: "page",
+                    path: "./advanced-concepts/arrays.mdx",
+                    pages: [
+                        {
+                            type: "page",
+                            path: "./advanced-concepts/arrays/methods.mdx",
+                        },
+                        {
+                            type: "page",
+                            path: "./advanced-concepts/arrays/destructuring.mdx",
                         }
                     ]
                 }
