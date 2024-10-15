@@ -1,0 +1,303 @@
+---
+title: Check
+slug: check
+visibility: PUBLIC
+label: Check
+---
+## Objects
+
+### Check
+
+A single analyzer check as part of an analysis run.
+
+<table>
+<thead>
+<tr>
+<th align="left" width="30%">Field</th>
+<th align="left" width="30%">Type</th>
+<th align="left" width="60%">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>id</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#id">ID</a>!</td>
+<td>The ID of the object.</td>
+</tr>
+<tr>
+<td valign="top"><strong>sequence</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a>!</td>
+<td>Sequence number of the check in the analysis run it belongs to.</td>
+</tr>
+<tr>
+<td valign="top"><strong>status</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-enums#checkstatus">CheckStatus</a>!</td>
+<td>The current status of the check.</td>
+</tr>
+<tr>
+<td valign="top"><strong>analyzer</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-analyzer#analyzer">Analyzer</a>!</td>
+<td>The analyzer related to the check.</td>
+</tr>
+<tr>
+<td valign="top"><strong>createdAt</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#datetime">DateTime</a>!</td>
+<td>Time when the check was created.</td>
+</tr>
+<tr>
+<td valign="top"><strong>updatedAt</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#datetime">DateTime</a>!</td>
+<td>Time when the check was last modified.</td>
+</tr>
+<tr>
+<td valign="top"><strong>finishedAt</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#datetime">DateTime</a></td>
+<td>Time when the check finished.</td>
+</tr>
+<tr>
+<td valign="top"><strong>summary</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-check#checksummary">CheckSummary</a>!</td>
+<td>Summary of the check.</td>
+</tr>
+<tr>
+<td valign="top"><strong>occurrences</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-check#occurrenceconnection">OccurrenceConnection</a>!</td>
+<td>Issue occurrences found in the check.</td>
+</tr>
+<tr>
+<td align="right" valign="top">offset</td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+<td></td>
+</tr>
+<tr>
+<td align="right" valign="top">before</td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td align="right" valign="top">after</td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td align="right" valign="top">first</td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+<td></td>
+</tr>
+<tr>
+<td align="right" valign="top">last</td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+<td></td>
+</tr>
+<tr>
+<td valign="top"><strong>metrics</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-metric#repositorymetric">RepositoryMetric</a>!</td>
+<td>List of DeepSource metrics captured in the check.</td>
+</tr>
+</tbody>
+</table>
+
+### CheckSummary
+
+Summary of a check.
+
+<table>
+<thead>
+<tr>
+<th align="left" width="30%">Field</th>
+<th align="left" width="30%">Type</th>
+<th align="left" width="60%">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>occurrencesIntroduced</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+<td>Number of issues introduced in the check.</td>
+</tr>
+<tr>
+<td valign="top"><strong>occurrencesResolved</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+<td>Number of issues resolved in the check.</td>
+</tr>
+<tr>
+<td valign="top"><strong>occurrencesSuppressed</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+<td>Number of issues marked as suppressed in the check.</td>
+</tr>
+<tr>
+<td valign="top"><strong>occurrenceDistributionByCategory</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-analysis-run#occurrencedistributionbycategory">OccurrenceDistributionByCategory</a></td>
+<td>The issue category distribution for the check.</td>
+</tr>
+</tbody>
+</table>
+
+### Occurrence
+
+<table>
+<thead>
+<tr>
+<th align="left" width="30%">Field</th>
+<th align="left" width="30%">Type</th>
+<th align="left" width="60%">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>id</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#id">ID</a>!</td>
+<td>The ID of the object.</td>
+</tr>
+<tr>
+<td valign="top"><strong>path</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td valign="top"><strong>beginLine</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td valign="top"><strong>beginColumn</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td valign="top"><strong>endLine</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td valign="top"><strong>endColumn</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td valign="top"><strong>issue</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-issue#issue">Issue</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td valign="top"><strong>issue</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-issue#issue">Issue</a>!</td>
+<td>The definition of the issue which has been raised.</td>
+</tr>
+<tr>
+<td valign="top"><strong>title</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+<td>Title describing the issue which has been raised here.</td>
+</tr>
+</tbody>
+</table>
+
+### CheckConnection
+
+<table>
+<thead>
+<tr>
+<th align="left" width="30%">Field</th>
+<th align="left" width="30%">Type</th>
+<th align="left" width="40%">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>pageInfo</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-pagination#pageinfo">PageInfo</a>!</td>
+<td>Pagination data for this connection.</td>
+</tr>
+<tr>
+<td valign="top"><strong>edges</strong></td>
+<td valign="top">[<a href="https://deepsource-docs.readme.io/docs/apis-check#checkedge">CheckEdge</a>]!</td>
+<td>Contains the nodes in this connection.</td>
+</tr>
+<tr>
+<td valign="top"><strong>totalCount</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### CheckEdge
+
+A Relay edge containing a `Check` and its cursor.
+
+<table>
+<thead>
+<tr>
+<th align="left" width="30%">Field</th>
+<th align="left" width="30%">Type</th>
+<th align="left" width="40%">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>node</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-check#check">Check</a></td>
+<td>The item at the end of the edge.</td>
+</tr>
+<tr>
+<td valign="top"><strong>cursor</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+<td>A cursor for use in pagination.</td>
+</tr>
+</tbody>
+</table>
+
+### OccurrenceConnection
+
+<table>
+<thead>
+<tr>
+<th align="left" width="30%">Field</th>
+<th align="left" width="30%">Type</th>
+<th align="left" width="40%">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>pageInfo</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-pagination#pageinfo">PageInfo</a>!</td>
+<td>Pagination data for this connection.</td>
+</tr>
+<tr>
+<td valign="top"><strong>edges</strong></td>
+<td valign="top">[<a href="https://deepsource-docs.readme.io/docs/apis-check#occurrenceedge">OccurrenceEdge</a>]!</td>
+<td>Contains the nodes in this connection.</td>
+</tr>
+<tr>
+<td valign="top"><strong>totalCount</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### OccurrenceEdge
+
+A Relay edge containing a `Occurrence` and its cursor.
+
+<table>
+<thead>
+<tr>
+<th align="left" width="30%">Field</th>
+<th align="left" width="30%">Type</th>
+<th align="left" width="40%">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>node</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-check#occurrence">Occurrence</a></td>
+<td>The item at the end of the edge.</td>
+</tr>
+<tr>
+<td valign="top"><strong>cursor</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+<td>A cursor for use in pagination.</td>
+</tr>
+</tbody>
+</table>

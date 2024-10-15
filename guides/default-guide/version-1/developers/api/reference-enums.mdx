@@ -1,0 +1,490 @@
+---
+title: 'Reference: Enums'
+slug: reference-enums
+visibility: PUBLIC
+label: 'Reference: Enums'
+---
+## AccountType
+
+<table>
+<thead>
+<th align="left">Value</th>
+<th align="left">Description</th>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>INDIVIDUAL</strong></td>
+<td>A individual account.</td>
+</tr>
+<tr>
+<td valign="top"><strong>TEAM</strong></td>
+<td>A team account.</td>
+</tr>
+</tbody>
+</table>
+
+## AccountSubscriptionPlan
+
+Represents DeepSource's subscription plans.
+
+<table>
+  <thead>
+    <th align="left">Value</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td valign="top"><strong>FREE</strong></td>
+    </tr>
+    <tr>
+      <td valign="top"><strong>STARTER</strong></td>
+    </tr>
+    <tr>
+      <td valign="top"><strong>BUSINESS</strong></td>
+    </tr>
+    <tr>
+      <td valign="top"><strong>ENTERPRISE</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+## AnalysisRunStatus
+
+An enumeration.
+
+<table>
+<thead>
+<th align="left">Value</th>
+<th align="left">Description</th>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>PENDING</strong></td>
+<td>The Analysis run is still pending and results are awaited.</td>
+</tr>
+<tr>
+<td valign="top"><strong>SUCCESS</strong></td>
+<td>The Analysis has completed successfully and no issues were found.</td>
+</tr>
+<tr>
+<td valign="top"><strong>FAILURE</strong></td>
+<td>The Analysis has completed succesfully and some issues were detected by DeepSource.</td>
+</tr>
+<tr>
+<td valign="top"><strong>TIMEOUT</strong></td>
+<td>The Analysis could not complete within an acceptable time range.</td>
+</tr>
+<tr>
+<td valign="top"><strong>CANCEL</strong></td>
+<td>Another analysis was started for the same commitID.</td>
+</tr>
+<tr>
+<td valign="top"><strong>READY</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+## CheckStatus
+
+An enumeration.
+
+<table>
+<thead>
+<th align="left">Value</th>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>WAITING</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>PENDING</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>SUCCESS</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>FAILURE</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>TIMEOUT</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>CANCEL</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>READY</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>NEUTRAL</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>ARTIFACT_TIMEOUT</strong></td>
+</tr>
+</tbody>
+</table>
+
+## CodeCoverageReportRepositorySortKey
+
+Sort key to use to specify the sorting when fetching repositories in the Code Coverage report.
+
+<table>
+<thead>
+<th align="left" width="30%">Value</th>
+<th align="left" width="70%">Description</th>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>LCV_ASCENDING</strong></td>
+<td>Sort repositories in the Code Coverage report using the LCV metric value in ascending order.</td>
+</tr>
+<tr>
+<td valign="top"><strong>LCV_DESCENDING</strong></td>
+<td>Sort repositories in the Code Coverage report using the LCV metric value in descending order.</td>
+</tr>
+<tr>
+<td valign="top"><strong>BCV_ASCENDING</strong></td>
+<td>Sort repositories in the Code Coverage report using the BCV metric value in ascending order.</td>
+</tr>
+<tr>
+<td valign="top"><strong>BCV_DESCENDING</strong></td>
+<td>Sort repositories in the Code Coverage report using the BCV metric value in descending order.</td>
+</tr>
+</tbody>
+</table>
+
+## IssueCategory
+
+An enumeration.
+
+<table>
+<thead>
+<th align="left" width="30%">Value</th>
+<th align="left" width="70%">Description</th>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>ANTI_PATTERN</strong></td>
+<td>Anti-patterns are certain ways of writing code that result in poor design. While anti-patterns are correct code, they are not recommended as they often affect maintainability, readability, performance, and security.</td>
+</tr>
+<tr>
+<td valign="top"><strong>BUG_RISK</strong></td>
+<td>Bug risks are issues in code that can cause errors in code and breakages in production. A bug is a flaw in the code that produces undesired or incorrect results.</td>
+</tr>
+<tr>
+<td valign="top"><strong>PERFORMANCE</strong></td>
+<td>Performance issues are issues that impact the performance of code being executed by slowing it down. </td>
+</tr>
+<tr>
+<td valign="top"><strong>SECURITY</strong></td>
+<td>A bug in code which could potentially be used to compromise security is a security vulnerability issue.</td>
+</tr>
+<tr>
+<td valign="top"><strong>COVERAGE</strong></td>
+<td>Coverage issues are raised against code that is not covered in tests.</td>
+</tr>
+<tr>
+<td valign="top"><strong>TYPECHECK</strong></td>
+<td>Typecheck issues are raised for type-annotated code in dynamically typed languages (Python, for example) if the annotations are not correct.</td>
+<td valign="top"><strong>SECRETS</strong></td>
+<td>Hardcoded credentials detected in source code.</td>
+</tr>
+<tr>
+<td valign="top"><strong>STYLE</strong></td>
+<td>Style issues are violations in the code format according to a style guide. </td>
+</tr>
+<tr>
+<td valign="top"><strong>DOCUMENTATION</strong></td>
+<td>Documentation issues are raised for undocumented classes, functions, modules etc.</td>
+</tr>
+</tbody>
+</table>
+
+## IssueSeverity
+
+An enumeration.
+
+<table>
+<thead>
+<th align="left" >Value</th>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>CRITICAL</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>MAJOR</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>MINOR</strong></td>
+</tr>
+</tbody>
+</table>
+
+## ReportKey
+
+Represents the various kinds of reports that exist.
+
+<table>
+<thead>
+<th align="left">Value</th>
+<th align="left">Description</th>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>OWASP_TOP_10</strong></td>
+<td>The OWASP Top 10 report.</td>
+</tr>
+<tr>
+<td valign="top"><strong>SANS_TOP_25</strong></td>
+<td>The SANS Top 25 report.</td>
+</tr>
+<tr>
+<td valign="top"><strong>ISSUE_DISTRIBUTION</strong></td>
+<td>The Issue Distribution report.</td>
+</tr>
+</tbody>
+</table>
+
+## ReportStatus
+
+Represents the various statuses that a report can have.
+
+<table>
+<thead>
+<th align="left">Value</th>
+<th align="left">Description</th>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>PASSING</strong></td>
+<td>The report's status is passing.</td>
+</tr>
+<tr>
+<td valign="top"><strong>FAILING</strong></td>
+<td>The report's status is failing.</td>
+</tr>
+<tr>
+<td valign="top"><strong>NOOP</strong></td>
+<td>The report doesn't have a status.</td>
+</tr>
+</tbody>
+</table>
+
+## VCSProvider
+
+An enumeration.
+
+<table>
+<thead>
+<th align="left">Value</th>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>GITHUB</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>GITLAB</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>BITBUCKET</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>GITHUB_ENTERPRISE</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>GSR</strong></td>
+</tr>
+</tbody>
+</table>
+
+## MetricShortcode
+
+Represents the various metric types.
+
+<table>
+<thead>
+<th align="left">Value</th>
+<th align="left">Description</th>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>BCV</strong></td>
+<td>Branch Coverage</td>
+</tr>
+<tr>
+<td valign="top"><strong>CCV</strong></td>
+<td>Condition Coverage</td>
+</tr>
+<tr>
+<td valign="top"><strong>DCV</strong></td>
+<td>Documentation Coverage</td>
+</tr>
+<tr>
+<td valign="top"><strong>DDP</strong></td>
+<td>External Dependencies</td>
+</tr>
+<tr>
+<td valign="top"><strong>LCV</strong></td>
+<td>Line Coverage</td>
+</tr>
+<tr>
+<td valign="top"><strong>CPCV</strong></td>
+<td>Composite Coverage</td>
+</tr>
+<tr>
+<td valign="top"><strong>NLCV</strong></td>
+<td>New Line Coverage</td>
+</tr>
+<tr>
+<td valign="top"><strong>NBCV</strong></td>
+<td>New Branch Coverage</td>
+</tr>
+<tr>
+<td valign="top"><strong>NCCV</strong></td>
+<td>New Condition Coverage</td>
+</tr>
+<tr>
+<td valign="top"><strong>NCPCV</strong></td>
+<td>New Composite Coverage</td>
+</tr>
+</tbody>
+</table>
+
+## MetricKey
+
+Represents the key for which the metric is recorded in a repository.
+
+<table>
+<thead>
+<th align="left">Value</th>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>AGGREGATE</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>C_AND_CPP</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>CSHARP</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>GO</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>JAVA</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>JAVASCRIPT</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>PHP</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>PYTHON</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>RUBY</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>RUST</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>SCALA</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>KOTLIN</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>SWIFT</strong></td>
+</tr>
+</tbody>
+</table>
+
+## MetricThresholdStatus
+
+Represents the status of the threshold condition for a particular metric value.
+
+<table>
+<thead>
+<th align="left">Value</th>
+<th align="left">Description</th>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>PASSING</strong></td>
+<td>Metric value meets the threshold.</td>
+</tr>
+<tr>
+<td valign="top"><strong>FAILING</strong></td>
+<td>Metric value doesn't meet the threshold.</td>
+</tr>
+</tbody>
+</table>
+
+## TeamMemberRole
+
+Represents the role of a user in a team.
+
+<table>
+<thead>
+<th align="left">Value</th>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>ADMIN</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>MEMBER</strong></td>
+</tr>
+<tr>
+<td valign="top"><strong>CONTRIBUTOR</strong></td>
+</tr>
+</tbody>
+</table>
+
+## IgnoreRuleLevel
+
+ Represents the level of an `IgnoreRule`.
+
+<table>
+  <thead>
+    <th align="left">Value</th>
+    <th align="left">Description</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td valign="top"><strong>REPOSITORY</strong></td>
+      <td>Suppress the issue for all files in the repository.</td>
+    </tr>
+    <tr>
+      <td valign="top"><strong>FILE</strong></td>
+      <td>Suppress the issue for the given file path in the repository.</td>
+    </tr>
+  </tbody>
+</table>
+
+## IgnoreRuleType
+
+ Represents the type of an `IgnoreRule`.
+
+<table>
+  <thead>
+    <th align="left">Value</th>
+    <th align="left">Description</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td valign="top"><strong>FOREVER</strong></td>
+      <td>Suppress the issue in the repository always.</td>
+    </tr>
+    <tr>
+      <td valign="top"><strong>PATTERN</strong></td>
+      <td>Suppress the issue occurrences matching the given glob pattern in the repository.</td>
+    </tr>
+      <tr>
+      <td valign="top"><strong>TEST_PATTERN</strong></td>
+      <td>Suppress the issue occurrences matching the repository's specified test patterns in the repository.</td>
+    </tr>
+  </tbody>
+</table>

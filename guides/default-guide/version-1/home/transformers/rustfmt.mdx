@@ -1,0 +1,33 @@
+---
+title: Rustfmt
+slug: rustfmt
+visibility: PUBLIC
+label: Rustfmt
+---
+Transform all incoming Rust code with [rustfmt](https://github.com/rust-lang/rustfmt).
+
+# Configuration — `deepsource.toml`
+
+This section covers configuration specific to the `rustfmt` transformer. Please make sure to read the [general configuration guide](https://deepsource-docs.readme.io/docs/configuration) first.
+
+## name
+
+**Type:** String  
+**Presence:** mandatory  
+**Description:** Shortcode of this transformer.  
+**Example:**
+
+```toml TOML
+name = "rustfmt"
+```
+
+## enabled
+
+**Type:** Boolean  
+**Presence:** optional  
+**Description:** Toggle whether this transformer should be run.  
+**Example:**
+
+```toml
+enabled = true
+```

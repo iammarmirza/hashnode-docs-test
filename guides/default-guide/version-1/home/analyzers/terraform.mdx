@@ -1,0 +1,41 @@
+---
+title: Terraform
+slug: terraform
+visibility: PUBLIC
+label: Terraform
+---
+This section covers configuration specific to the `terraform` analyzer. Please make sure to read the general [configuration guide](https://deepsource-docs.readme.io/docs/configuration) first.
+
+## Configuration - `.deepsource.toml`
+
+### `name`
+
+- **Type**: [String](https://toml.io/en/v1.0.0#string)
+- **Presence**: mandatory
+- **Description**: Shortcode of the analyzer.
+- **Example**:
+
+```toml
+name = "terraform"
+```
+
+### `enabled`
+
+- **Type**: [Boolean](https://toml.io/en/v1.0.0#boolean)
+- **Presence**: optional
+- **Description**: Toggle whether this analyzer should be run.
+- **Example**:
+
+```toml
+enabled = true
+```
+
+## Sample config
+
+```toml
+version = 1
+
+[[analyzers]]
+name = "terraform"
+enabled = true
+```

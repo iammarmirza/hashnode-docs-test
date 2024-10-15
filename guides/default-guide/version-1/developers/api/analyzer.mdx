@@ -1,0 +1,376 @@
+---
+title: Analyzer
+slug: analyzer
+visibility: PUBLIC
+label: Analyzer
+---
+## analyzer
+
+`Query: analyzer` Fetch details of a single analyzer using the shortcode.
+
+### Arguments
+
+<table>
+  <thead>
+    <tr>
+      <th width="25%">Field</th>
+      <th width="25%">Type</th>
+      <th width="50%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+<td align="left" valign="top">shortcode</td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+<td>Shortcode of the analyzer you'd like to get.</td>
+</tr>
+</tbody>
+</table>
+
+### Sample Request
+
+```graphql
+query {
+  analyzer(shortcode:"python") {
+    id
+    shortcode
+    name
+  }
+}
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "analyzer": {
+      "id": "QW5hbHl6Zdd6bGtiZXZ6",
+      "shortcode": "python",
+      "name": "Python"
+    }
+  }
+}
+```
+
+## analyzers
+
+`Query: analyzers` Fetch all available analyzers on DeepSource.
+
+### Arguments
+
+<table>
+  <thead>
+    <tr>
+      <th align="left" width="30%">Field</th>
+      <th align="left" width="30%">Type</th>
+      <th align="left" width="40%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+<td align="right" valign="top">offset</td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+</tr>
+<tr>
+<td align="right" valign="top">before</td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td align="right" valign="top">after</td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td align="right" valign="top">first</td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+<td></td>
+</tr>
+<tr>
+<td align="right" valign="top">last</td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### Sample Request
+
+```graphql
+query {
+  analyzers{
+   	edges {
+      node {
+        id
+        name
+        shortcode
+      }
+    }
+  }
+}
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "analyzers": {
+      "edges": [
+        {
+          "node": {
+            "id": "QW5hbHl6ZXI6bGtiZXZ6",
+            "name": "Python",
+            "shortcode": "python"
+          }
+        },
+        {
+          "node": {
+            "id": "QW5hbHl6ZXI6cmx6b2xi",
+            "name": "Go",
+            "shortcode": "go"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+***
+
+## Objects
+
+### Analyzer
+
+<table> 
+<thead>
+<tr>
+<th align="left" width="30%">Field</th>
+<th align="left" width="30%">Type</th>
+<th align="left" width="40%">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>id</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#id">ID</a>!</td>
+<td>The ID of the object.</td>
+<td>
+<tr>
+<td valign="top"><strong>shortcode</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+<td>Unique identifier for this analyzer globally.</td>
+</tr>
+<tr>
+<td valign="top"><strong>name</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+<td>Human-friendly name for this analyzer.</td>
+</tr>
+<tr>
+<td valign="top"><strong>issues</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-analyzer#issueconnection">IssueConnection</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td align="right" valign="top">offset</td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+<td></td>
+</tr>
+<tr>
+<td align="right" valign="top">before</td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td align="right" valign="top">after</td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td align="right" valign="top">first</td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+<td></td>
+</tr>
+<tr>
+<td align="right" valign="top">last</td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+<td></td>
+</tr>
+</td>
+</tr>
+</tbody>
+</table>
+
+### AnalyzerConnection
+
+<table>
+<thead>
+<tr>
+<th align="left" width="30%">Field</th>
+<th align="left" width="30%">Type</th>
+<th align="left" width="40%">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>pageInfo</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-pagination#pageinfo">PageInfo</a>!</td>
+<td>
+
+Pagination data for this connection.
+
+</td>
+</tr>
+<tr>
+<td valign="top"><strong>edges</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-analyzer#analyzeredge">AnalyzerEdge</a>!</td>
+<td>
+
+Contains the nodes in this connection.
+
+</td>
+</tr>
+<tr>
+<td valign="top"><strong>totalCount</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### AnalyzerEdge
+
+A Relay edge containing a `Analyzer` and its cursor.
+
+<table>
+<thead>
+<tr>
+<th align="left" width="30%">Field</th>
+<th align="left" width="30%">Type</th>
+<th align="left" width="40%">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>node</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-analyzer#analyzer">Analyzer</a></td>
+<td>The item at the end of the edge.</td>
+</tr>
+<tr>
+<td valign="top"><strong>cursor</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+<td>A cursor for use in pagination.</td>
+</tr>
+</tbody>
+</table>
+
+### Issue
+
+<table>
+<thead>
+<tr>
+<th align="left" width="30%">Field</th>
+<th align="left" width="30%">Type</th>
+<th align="left" width="40%">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>shortcode</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td valign="top"><strong>title</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td valign="top"><strong>analyzer</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-analyzer#analyzer">Analyzer</a>!</td>
+<td></td>
+</tr>
+<tr>
+<td valign="top"><strong>autofixAvailable</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#boolean">Boolean</a>!</td>
+<td>Whether this issue is autofixable</td>
+</tr>
+<tr>
+<td valign="top"><strong>isRecommended</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#boolean">Boolean</a>!</td>
+<td>Whether this is a recommended issue. Recommended issues show up at the top of the results.</td>
+</tr>
+<tr>
+<td valign="top"><strong>id</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#id">ID</a>!</td>
+<td>The ID of the object.</td>
+</tr>
+<tr>
+<td valign="top"><strong>category</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-enums#issuecategory">IssueCategory</a>!</td>
+<td>Category of the issue.</td>
+</tr>
+<tr>
+<td valign="top"><strong>shortDescription</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+<td>A short description of the issue.</td>
+</tr>
+</tbody>
+</table>
+
+### IssueConnection
+
+<table>
+<thead>
+<tr>
+<th align="left" width="30%">Field</th>
+<th align="left" width="30%">Type</th>
+<th align="left" width="40%">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>pageInfo</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-pagination#pageinfo">PageInfo</a>!</td>
+<td>Pagination data for this connection.</td>
+</tr>
+<tr>
+<td valign="top"><strong>edges</strong></td>
+<td valign="top">[<a href="https://deepsource-docs.readme.io/docs/apis-analyzer#issueedge">IssueEdge</a>]!</td>
+<td>Contains the nodes in this connection.</td>
+</tr>
+<tr>
+<td valign="top"><strong>totalCount</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### IssueEdge
+
+A Relay edge containing a `Issue` and its cursor.
+
+<table>
+<thead>
+<tr>
+<th align="left" width="30%">Field</th>
+<th align="left" width="30%">Type</th>
+<th align="left" width="40%">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>node</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-analyzer#issue">Issue</a></td>
+<td>The item at the end of the edge.</td>
+</tr>
+<tr>
+<td valign="top"><strong>cursor</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+<td>A cursor for use in pagination.</td>
+</tr>
+</tbody>
+</table>

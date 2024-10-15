@@ -1,0 +1,406 @@
+---
+title: Metric
+slug: metric
+visibility: PUBLIC
+label: Metric
+---
+## setRepositoryMetricThreshold
+
+`Mutation:setRepositoryMetricThreshold` Update the threshold for a metric in a repository.
+
+### Arguments
+
+<table>
+<thead>
+<tr>
+<th align="left" width="30%">Field</th>
+<th align="left" width="30%">Type</th>
+<th align="left" width="40%">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>input</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/metric#setrepositorymetricthresholdinput">SetRepositoryMetricThresholdInput</a>!</td>
+<td>Input for <code>SetRepositoryMetricThreshold</code> mutation.</td>
+</tr>
+</tbody>
+</table>
+
+### Sample Request
+
+```graphql
+mutation ($input: SetRepositoryMetricThresholdInput!) {
+  setRepositoryMetricThreshold(input: $input) {
+    ok
+  }
+}
+```
+
+```javascript
+variables = {
+  "input": {
+    "repositoryId": "VHJhbnNmb3JtZXI6bGp6a3d6",
+    "metricShortcode": "LCV",
+    "metricKey": "PYTHON",
+    "thresholdValue": 90
+  }
+}
+```
+
+### Sample Response
+
+```json
+{
+  "setRepositoryMetricThreshold": {
+    "ok": true
+  }
+}
+```
+
+## Objects
+
+### Metric
+
+A metric tracked by an analyzer.
+
+<table>
+<thead>
+<tr>
+<th align="left" width="30%">Field</th>
+<th align="left" width="30%">Type</th>
+<th align="left" width="40%">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>id</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#id">ID</a>!</td>
+<td>The ID of the object.</td>
+</tr>
+<tr>
+<td valign="top"><strong>name</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#string">String</a>!</td>
+<td>The metric's name.</td>
+</tr>
+<tr>
+<td valign="top"><strong>shortcode</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-enums#metricshortcode">MetricShortcode</a>!</td>
+<td>The metric's unique identifier.</td>
+</tr>
+<tr>
+<td valign="top"><strong>description</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#string">String</a>!</td>
+<td>The metric's description in markdown format.</td>
+</tr>
+<tr>
+<td valign="top"><strong>positiveDirection</strong></td>
+<td valign="top"><a href="/api/enums#direction">Direction</a>!</td>
+<td>Direction which can be considered positive for the metric.</td>
+</tr>
+<tr>
+<td valign="top"><strong>unit</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#string">String</a></td>
+<td>Unit suffix to apply to the metric value.</td>
+</tr>
+<tr>
+<td valign="top"><strong>minValueAllowed</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#int">Int</a></td>
+<td>Lower bound for the metric value.</td>
+</tr>
+<tr>
+<td valign="top"><strong>maxValueAllowed</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#int">Int</a></td>
+<td>Upper bound for the metric value.</td>
+</tr>
+</tbody>
+</table>
+
+### RepositoryMetric
+
+A Metric's manifestation specific to a repository.
+
+<table>
+<thead>
+<tr>
+<th align="left" width="30%">Field</th>
+<th align="left" width="30%">Type</th>
+<th align="left" width="40%">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>name</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#string">String</a>!</td>
+<td>The metric's name.</td>
+</tr>
+<tr>
+<td valign="top"><strong>shortcode</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-enums#metricshortcode">MetricShortcode</a>!</td>
+<td>The metric's unique identifier.</td>
+</tr>
+<tr>
+<td valign="top"><strong>description</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#string">String</a>!</td>
+<td>The metric's description in markdown format.</td>
+</tr>
+<tr>
+<td valign="top"><strong>positiveDirection</strong></td>
+<td valign="top"><a href="/api/enums#direction">Direction</a>!</td>
+<td>Direction which can be considered positive for the metric.</td>
+</tr>
+<tr>
+<td valign="top"><strong>unit</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#string">String</a></td>
+<td>Unit suffix to apply to the metric value.</td>
+</tr>
+<tr>
+<td valign="top"><strong>minValueAllowed</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#int">Int</a></td>
+<td>Lower bound for the metric value.</td>
+</tr>
+<tr>
+<td valign="top"><strong>maxValueAllowed</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#int">Int</a></td>
+<td>Upper bound for the metric value.</td>
+</tr>
+<tr>
+<td valign="top"><strong>isReported</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#boolean">Boolean</a>!</td>
+<td>Whether this metric is enabled for reporting in the repository.</td>
+</tr>
+<tr>
+<td valign="top"><strong>isThresholdEnforced</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#boolean">Boolean</a>!</td>
+<td>Whether to fail checks when thresholds are not met for the metric in the repository.</td>
+</tr>
+<tr>
+<td valign="top"><strong>items</strong></td>
+<td valign="top">[<a href="https://deepsource-docs.readme.io/docs/api/metric#repositorymetricitem">RepositoryMetricItem</a>!]</td>
+<td>Items in the repository metric.</td>
+</tr>
+</tbody>
+</table>
+
+### RepositoryMetricItem
+
+An item in the `RepositoryMetric`.
+
+<table>
+<thead>
+<tr>
+<th align="left" width="30%">Field</th>
+<th align="left" width="30%">Type</th>
+<th align="left" width="40%">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>id</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#id">ID</a>!</td>
+<td>The ID of the object.</td>
+</tr>
+<tr>
+<td valign="top"><strong>key</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-enums#metrickey">MetricKey</a>!</td>
+<td>Distinct key representing the metric in the repository.</td>
+</tr>
+<tr>
+<td valign="top"><strong>threshold</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#int">Int</a></td>
+<td>Threshold value for the metric, customizable by the user. Null if no threshold is set.</td>
+</tr>
+<tr>
+<td valign="top"><strong>latestValue</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#float">Float</a></td>
+<td>Latest value captured for this metric on the repository's default branch.</td>
+</tr>
+<tr>
+<td valign="top"><strong>latestValueDisplay</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#string">String</a></td>
+<td>Latest value captured for this metric on the repository's default branch. Suffixed with the unit and returned as a human-readable string.</td>
+</tr>
+<tr>
+<td valign="top"><strong>thresholdStatus</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-enums#metricthresholdstatus">MetricThresholdStatus</a></td>
+<td>The status of the threshold condition for the latest metric value on the repository's default branch.</td>
+</tr>
+<tr>
+<td valign="top"><strong>values</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/metric#metricvalueconnection">MetricValueConnection</a></td>
+<td>All values captured for this metric in the repository or check.</td>
+</tr>
+<tr>
+<td align="right" valign="top">commitOidIn</td>
+<td valign="top">[<a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#string">String</a>]</td>
+<td>Commit OIDs to filter the metric values on. Applicable only for fetching metrics inside a repository but not check.</td>
+</tr>
+<tr>
+<td align="right" valign="top">offset</td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#int">Int</a></td>
+<td></td>
+</tr>
+<tr>
+<td align="right" valign="top">before</td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td align="right" valign="top">after</td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td align="right" valign="top">first</td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#int">Int</a></td>
+<td></td>
+</tr>
+<tr>
+<td align="right" valign="top">last</td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#int">Int</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### MetricValue
+
+An individual value captured for a `RepositoryMetricItem`.
+
+<table>
+<thead>
+<tr>
+<th align="left" width="30%">Field</th>
+<th align="left" width="30%">Type</th>
+<th align="left" width="40%">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>id</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#id">ID</a>!</td>
+<td>The ID of the object.</td>
+</tr>
+<tr>
+<td valign="top"><strong>value</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#float">Float</a>!</td>
+<td>Metric value reported by the analyzer.</td>
+</tr>
+<tr>
+<td valign="top"><strong>valueDisplay</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#string">String</a>!</td>
+<td>Value suffixed with the unit of the metric.</td>
+</tr>
+<tr>
+<td valign="top"><strong>threshold</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#int">Int</a></td>
+<td>Threshold value for the metric when this value was reported. Null if no threshold was set.</td>
+</tr>
+<tr>
+<td valign="top"><strong>thresholdStatus</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-enums#metricthresholdstatus">MetricThresholdStatus</a></td>
+<td>The status of the threshold condition for the metric value.</td>
+</tr>
+<tr>
+<td valign="top"><strong>commitOid</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#string">String</a></td>
+<td>Commit SHA for which this value was recorded on the repository.</td>
+</tr>
+<tr>
+<td valign="top"><strong>createdAt</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#datetime">DateTime</a>!</td>
+<td>The time at which the value was captured.</td>
+</tr>
+</tbody>
+</table>
+
+### MetricValueConnection
+
+<table>
+<thead>
+<tr>
+<th align="left" width="30%">Field</th>
+<th align="left" width="30%">Type</th>
+<th align="left" width="40%">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>pageInfo</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-pagination#pageinfo">PageInfo</a>!</td>
+<td>Pagination data for this connection.</td>
+</tr>
+<tr>
+<td valign="top"><strong>edges</strong></td>
+<td valign="top">[<a href="https://deepsource-docs.readme.io/docs/api/metric#metricvalueedge">MetricValueEdge</a>]!</td>
+<td>Contains the nodes in this connection.</td>
+</tr>
+<tr>
+<td valign="top"><strong>totalCount</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#int">Int</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### MetricValueEdge
+
+A Relay edge containing a `MetricValue` and its cursor.
+
+<table>
+<thead>
+<tr>
+<th align="left" width="30%">Field</th>
+<th align="left" width="30%">Type</th>
+<th align="left" width="40%">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>node</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/metric#metricvalue">MetricValue</a></td>
+<td>The item at the end of the edge.</td>
+</tr>
+<tr>
+<td valign="top"><strong>cursor</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#string">String</a>!</td>
+<td>A cursor for use in pagination.</td>
+</tr>
+</tbody>
+</table>
+
+### SetRepositoryMetricThresholdInput
+
+Input for the <a href="#setRepositoryMetricThreshold"><code>setRepositoryMetricThreshold</code></a> mutation.
+
+<table>
+<thead>
+<tr>
+<th align="left" width="30%">Field</th>
+<th align="left" width="30%">Type</th>
+<th align="left" width="40%">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>repositoryId</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#id">ID</a>!</td>
+<td>GraphQL node ID of the repository.</td>
+</tr>
+<tr>
+<td valign="top"><strong>metricShortcode</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-enums#metricshortcode">MetricShortcode</a>!</td>
+<td>Metric shortcode to update the threshold for.</td>
+</tr>
+<tr>
+<td valign="top"><strong>metricKey</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-enums#metrickey">MetricKey</a>!</td>
+<td>The key of the metric you want to update the threshold for.</td>
+</tr>
+<tr>
+<td valign="top"><strong>thresholdValue</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/api/reference-scalars#int">Int</a></td>
+<td>Threshold value to set. Setting to <code>null</code> removes the threshold.</td>
+</tr>
+</tbody>
+</table>

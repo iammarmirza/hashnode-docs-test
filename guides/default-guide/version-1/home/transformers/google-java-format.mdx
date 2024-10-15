@@ -1,0 +1,33 @@
+---
+title: Google Java Format
+slug: google-java-format
+visibility: PUBLIC
+label: Google Java Format
+---
+Run [google-java-format](https://github.com/google/google-java-format) on all incoming Java code.
+
+# Configuration — `deepsource.toml`
+
+This section covers configuration specific to the `google-java-format` transformer. Please make sure to read the [general configuration guide](https://deepsource-docs.readme.io/docs/configuration) first.
+
+## name
+
+**Type:** String  
+**Presence:** mandatory  
+**Description:** Shortcode of this transformer.  
+**Example:**
+
+```toml TOML
+name = "google-java-format"
+```
+
+## enabled
+
+**Type:** Boolean  
+**Presence:** optional  
+**Description:** Toggle whether this transformer should be run.  
+**Example:**
+
+```toml
+enabled = true
+```

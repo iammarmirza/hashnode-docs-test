@@ -1,0 +1,2006 @@
+---
+title: Reports
+slug: reports
+visibility: PUBLIC
+label: Reports
+---
+You can query for a report associated with an `Account` or a `Repository`. You can do so by querying for the `reports` field in the `Account` or `Repository` objects. `Account.reports` contains all the reports available for an `Account`. `Repository.reports` contains all the reports available for a `Repository`.
+
+### Fetching the OWASP Top 10 report for a repository
+
+`Query:repository:report:owaspTop10` Query for fetching the OWASP Top 10 report associated with a Repository.
+
+#### Sample Request
+
+```graphql
+query (
+	$name: String!
+	$login: String!
+	$vcsProvider: VCSProvider!
+	$startDate: Date!
+	$endDate: Date!
+) {
+	repository(name: $name, login: $login, vcsProvider: $vcsProvider) {
+		reports {
+			owaspTop10 {
+				key
+				title
+				currentValue
+				status
+				values(startDate: $startDate, endDate: $endDate) {
+					date
+					values {
+						key
+						value
+					}
+				}
+				trends {
+					label
+					value
+					changePercentage
+				}
+				securityIssueStats {
+					key
+					title
+					occurrence {
+						critical
+						major
+						minor
+						total
+					}
+				}
+			}
+		}
+	}
+}
+```
+
+#### Sample Response
+
+```json
+{
+	"data": {
+		"repository": {
+			"reports": {
+				"owaspTop10": {
+					"key": "OWASP_TOP_10",
+					"title": "OWASP Top 10",
+					"currentValue": 12,
+					"status": "FAILING",
+					"values": [
+						{
+							"date": "2022-12-09",
+							"values": [
+								{
+									"key": "count",
+									"value": 12
+								}
+							]
+						},
+						{
+							"date": "2022-12-10",
+							"values": [
+								{
+									"key": "count",
+									"value": 12
+								}
+							]
+						},
+						{
+							"date": "2022-12-11",
+							"values": [
+								{
+									"key": "count",
+									"value": 12
+								}
+							]
+						},
+						{
+							"date": "2022-12-12",
+							"values": [
+								{
+									"key": "count",
+									"value": 12
+								}
+							]
+						}
+					],
+					"trends": [
+						{
+							"label": "1 Month Ago",
+							"value": 13,
+							"changePercentage": -7.0
+						},
+						{
+							"label": "3 Months Ago",
+							"value": 14,
+							"changePercentage": -14.0
+						},
+						{
+							"label": "6 Months Ago",
+							"value": 14,
+							"changePercentage": -14.0
+						},
+						{
+							"label": "12 Months Ago",
+							"value": null,
+							"changePercentage": null
+						}
+					],
+					"securityIssueStats": [
+						{
+							"key": "A01",
+							"title": "Broken Access Control",
+							"occurrence": {
+								"critical": 0,
+								"major": 0,
+								"minor": 0,
+								"total": 0
+							}
+						},
+						{
+							"key": "A02",
+							"title": "Cryptographic Failures",
+							"occurrence": {
+								"critical": 0,
+								"major": 0,
+								"minor": 3,
+								"total": 3
+							}
+						},
+						{
+							"key": "A03",
+							"title": "Injection",
+							"occurrence": {
+								"critical": 0,
+								"major": 2,
+								"minor": 0,
+								"total": 2
+							}
+						},
+						{
+							"key": "A04",
+							"title": "Insecure Design",
+							"occurrence": {
+								"critical": 0,
+								"major": 6,
+								"minor": 0,
+								"total": 6
+							}
+						},
+						{
+							"key": "A05",
+							"title": "Security Misconfiguration",
+							"occurrence": {
+								"critical": 0,
+								"major": 0,
+								"minor": 3,
+								"total": 3
+							}
+						},
+						{
+							"key": "A06",
+							"title": "Vulnerable and Outdate components",
+							"occurrence": {
+								"critical": 0,
+								"major": 3,
+								"minor": 0,
+								"total": 3
+							}
+						},
+						{
+							"key": "A07",
+							"title": "Identification and Authentication Failures",
+							"occurrence": {
+								"critical": 0,
+								"major": 1,
+								"minor": 0,
+								"total": 1
+							}
+						},
+						{
+							"key": "A08",
+							"title": "Software and Data Integrity Failures",
+							"occurrence": {
+								"critical": 0,
+								"major": 0,
+								"minor": 0,
+								"total": 0
+							}
+						},
+						{
+							"key": "A09",
+							"title": "Security Logging and Monitoring Failures",
+							"occurrence": {
+								"critical": 0,
+								"major": 0,
+								"minor": 0,
+								"total": 0
+							}
+						},
+						{
+							"key": "A10",
+							"title": "Server-Side Request Forgery (SSRF)",
+							"occurrence": {
+								"critical": 0,
+								"major": 0,
+								"minor": 0,
+								"total": 0
+							}
+						}
+					]
+				}
+			}
+		}
+	}
+}
+```
+
+***
+
+### Fetching the OWASP Top 10 report for an account
+
+`Query:repository:report:owaspTop10` Query for fetching the OWASP Top 10 report associated with an Account.
+
+#### Sample Request
+
+```graphql
+query (
+	$login: String!
+	$vcsProvider: VCSProvider!
+	$startDate: Date!
+	$endDate: Date!
+) {
+	account(login: $login, vcsProvider: $vcsProvider) {
+		reports {
+			owaspTop10 {
+				key
+				title
+				currentValue
+				status
+				values(startDate: $startDate, endDate: $endDate) {
+					date
+					values {
+						key
+						value
+					}
+				}
+				trends {
+					label
+					value
+					changePercentage
+				}
+				securityIssueStats {
+					key
+					title
+					occurrence {
+						critical
+						major
+						minor
+						total
+					}
+				}
+			}
+		}
+	}
+}
+```
+
+#### Sample Response
+
+```json
+{
+	"data": {
+		"account": {
+			"reports": {
+				"owaspTop10": {
+					"key": "OWASP_TOP_10",
+					"title": "OWASP Top 10",
+					"currentValue": 144,
+					"status": "FAILING",
+					"values": [
+						{
+							"date": "2022-12-09",
+							"values": [
+								{
+									"key": "count",
+									"value": 144
+								}
+							]
+						},
+						{
+							"date": "2022-12-10",
+							"values": [
+								{
+									"key": "count",
+									"value": 144
+								}
+							]
+						},
+						{
+							"date": "2022-12-11",
+							"values": [
+								{
+									"key": "count",
+									"value": 144
+								}
+							]
+						},
+						{
+							"date": "2022-12-12",
+							"values": [
+								{
+									"key": "count",
+									"value": 144
+								}
+							]
+						}
+					],
+					"trends": [
+						{
+							"label": "1 Month Ago",
+							"value": 35,
+							"changePercentage": 311.0
+						},
+						{
+							"label": "3 Months Ago",
+							"value": 35,
+							"changePercentage": 311.0
+						},
+						{
+							"label": "6 Months Ago",
+							"value": 22,
+							"changePercentage": 554.0
+						},
+						{
+							"label": "12 Months Ago",
+							"value": null,
+							"changePercentage": null
+						}
+					],
+					"securityIssueStats": [
+						{
+							"key": "A01",
+							"title": "Broken Access Control",
+							"occurrence": {
+								"critical": 2,
+								"major": 28,
+								"minor": 2,
+								"total": 32
+							}
+						},
+						{
+							"key": "A02",
+							"title": "Cryptographic Failures",
+							"occurrence": {
+								"critical": 3,
+								"major": 8,
+								"minor": 8,
+								"total": 19
+							}
+						},
+						{
+							"key": "A03",
+							"title": "Injection",
+							"occurrence": {
+								"critical": 1,
+								"major": 37,
+								"minor": 1,
+								"total": 39
+							}
+						},
+						{
+							"key": "A04",
+							"title": "Insecure Design",
+							"occurrence": {
+								"critical": 0,
+								"major": 9,
+								"minor": 0,
+								"total": 9
+							}
+						},
+						{
+							"key": "A05",
+							"title": "Security Misconfiguration",
+							"occurrence": {
+								"critical": 1,
+								"major": 11,
+								"minor": 8,
+								"total": 20
+							}
+						},
+						{
+							"key": "A06",
+							"title": "Vulnerable and Outdate components",
+							"occurrence": {
+								"critical": 0,
+								"major": 6,
+								"minor": 0,
+								"total": 6
+							}
+						},
+						{
+							"key": "A07",
+							"title": "Identification and Authentication Failures",
+							"occurrence": {
+								"critical": 0,
+								"major": 2,
+								"minor": 0,
+								"total": 2
+							}
+						},
+						{
+							"key": "A08",
+							"title": "Software and Data Integrity Failures",
+							"occurrence": {
+								"critical": 0,
+								"major": 0,
+								"minor": 0,
+								"total": 0
+							}
+						},
+						{
+							"key": "A09",
+							"title": "Security Logging and Monitoring Failures",
+							"occurrence": {
+								"critical": 63,
+								"major": 0,
+								"minor": 0,
+								"total": 63
+							}
+						},
+						{
+							"key": "A10",
+							"title": "Server-Side Request Forgery (SSRF)",
+							"occurrence": {
+								"critical": 0,
+								"major": 0,
+								"minor": 0,
+								"total": 0
+							}
+						}
+					]
+				}
+			}
+		}
+	}
+}
+```
+
+### Fetching a report for a repository [Deprecated]
+
+> 🚧 `Query:repository:report` field is **deprecated** in favor of `Query:repository:reports` field.
+
+`Query:repository:report` Query for fetching a report associated with a Repository.
+
+#### Sample Request
+
+```graphql
+query($name: String!, $login: String!, $vcsProvider: VCSProvider!, $reportKey: ReportKey!, $startDate: Date!, $endDate: Date!) {
+    repository(name: $name, login: $login, vcsProvider: $vcsProvider) {
+        report(key: $reportKey) {
+            key
+            title
+            currentValue
+            status
+            historicalValues(startDate:$startDate, endDate:$endDate) {
+                date
+                values {
+                    key
+                    value
+                }
+            }
+            trends {
+                label
+                value
+                rate
+            }
+
+            ... on ComplianceReport {
+                complianceIssueStats {
+                    key
+                    title
+                    occurrence {
+                        critical
+                        major
+                        minor
+                        total
+                    }
+                }
+            }
+
+            ... on IssueDistributionReport {
+                issueDistributionByAnalyzer {
+                    key
+                    value
+                }
+                issueDistributionByCategory {
+                    key
+                    value
+                }
+            }
+        }
+    }
+}
+```
+
+#### Sample Response
+
+```json
+{
+  "data": {
+    "repository": {
+      "report": {
+        "key": "OWASP_TOP_10",
+        "title": "OWASP Top 10",
+        "currentValue": 15,
+        "status": "FAILING",
+        "historicalValues": [
+          {
+            "date": "2022-07-01",
+            "values": [
+              {
+                "key": "count",
+                "value": 15
+              }
+            ]
+          }
+        ],
+        "trends": [
+          {
+            "label": "1 Month Ago",
+            "value": null,
+            "rate": null
+          },
+          {
+            "label": "3 Months Ago",
+            "value": null,
+            "rate": null
+          },
+          {
+            "label": "6 Months Ago",
+            "value": null,
+            "rate": null
+          },
+          {
+            "label": "12 Months Ago",
+            "value": null,
+            "rate": null
+          }
+        ],
+        "complianceIssueStats": [
+          {
+            "key": "A01",
+            "title": "Broken Access Control",
+            "occurrence": {
+              "critical": 0,
+              "major": 0,
+              "minor": 0,
+              "total": 0
+            }
+          },
+          {
+            "key": "A02",
+            "title": "Cryptographic Failures",
+            "occurrence": {
+              "critical": 0,
+              "major": 0,
+              "minor": 3,
+              "total": 3
+            }
+          },
+          {
+            "key": "A03",
+            "title": "Injection",
+            "occurrence": {
+              "critical": 0,
+              "major": 3,
+              "minor": 0,
+              "total": 3
+            }
+          },
+          {
+            "key": "A04",
+            "title": "Insecure Design",
+            "occurrence": {
+              "critical": 0,
+              "major": 8,
+              "minor": 0,
+              "total": 8
+            }
+          },
+          {
+            "key": "A05",
+            "title": "Security Misconfiguration",
+            "occurrence": {
+              "critical": 0,
+              "major": 0,
+              "minor": 3,
+              "total": 3
+            }
+          },
+          {
+            "key": "A06",
+            "title": "Vulnerable and Outdate components",
+            "occurrence": {
+              "critical": 0,
+              "major": 3,
+              "minor": 0,
+              "total": 3
+            }
+          },
+          {
+            "key": "A07",
+            "title": "Identification and Authentication Failures",
+            "occurrence": {
+              "critical": 0,
+              "major": 1,
+              "minor": 0,
+              "total": 1
+            }
+          },
+          {
+            "key": "A08",
+            "title": "Software and Data Integrity Failures",
+            "occurrence": {
+              "critical": 0,
+              "major": 0,
+              "minor": 0,
+              "total": 0
+            }
+          },
+          {
+            "key": "A09",
+            "title": "Security Logging and Monitoring Failures",
+            "occurrence": {
+              "critical": 0,
+              "major": 0,
+              "minor": 0,
+              "total": 0
+            }
+          },
+          {
+            "key": "A10",
+            "title": "Server-Side Request Forgery (SSRF)",
+            "occurrence": {
+              "critical": 0,
+              "major": 0,
+              "minor": 0,
+              "total": 0
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+***
+
+### Fetching a report for an account [Deprecated]
+
+> 🚧 `Query:account:report` field is **deprecated** in favor of `Query:account:reports` field.
+
+`Query:account:report` Query for fetching a report associated with an Account.
+
+#### Sample Request
+
+```graphql
+query( $login: String!, $vcsProvider: VCSProvider!, $reportKey: ReportKey!, $startDate: Date!, $endDate: Date!) {
+    account( login: $login, vcsProvider: $vcsProvider) {
+        report(key: $reportKey) {
+            key
+            title
+            currentValue
+            status
+            historicalValues(startDate:$startDate, endDate:$endDate) {
+                date
+                values {
+                    key
+                    value
+                }
+            }
+            trends {
+                label
+                value
+                rate
+            }
+
+            ... on ComplianceReport {
+                complianceIssueStats {
+                    key
+                    title
+                    occurrence {
+                        critical
+                        major
+                        minor
+                        total
+                    }
+                }
+            }
+
+            ... on IssueDistributionReport {
+                issueDistributionByAnalyzer {
+                    key
+                    value
+                }
+                issueDistributionByCategory {
+                    key
+                    value
+                }
+            }
+        }
+    }
+}
+```
+
+#### Sample Response
+
+```json
+{
+  "data": {
+    "account": {
+      "report": {
+        "key": "OWASP_TOP_10",
+        "title": "OWASP Top 10",
+        "currentValue": 138,
+        "status": "FAILING",
+        "historicalValues": [
+          {
+            "date": "2022-07-01",
+            "values": [
+              {
+                "key": "count",
+                "value": 138
+              }
+            ]
+          }
+        ],
+        "trends": [
+          {
+            "label": "1 Month Ago",
+            "value": null,
+            "rate": null
+          },
+          {
+            "label": "3 Months Ago",
+            "value": null,
+            "rate": null
+          },
+          {
+            "label": "6 Months Ago",
+            "value": null,
+            "rate": null
+          },
+          {
+            "label": "12 Months Ago",
+            "value": null,
+            "rate": null
+          }
+        ],
+        "complianceIssueStats": [
+          {
+            "key": "A01",
+            "title": "Broken Access Control",
+            "occurrence": {
+              "critical": 1,
+              "major": 16,
+              "minor": 2,
+              "total": 19
+            }
+          },
+          {
+            "key": "A02",
+            "title": "Cryptographic Failures",
+            "occurrence": {
+              "critical": 2,
+              "major": 7,
+              "minor": 8,
+              "total": 17
+            }
+          },
+          {
+            "key": "A03",
+            "title": "Injection",
+            "occurrence": {
+              "critical": 2,
+              "major": 25,
+              "minor": 2,
+              "total": 29
+            }
+          },
+          {
+            "key": "A04",
+            "title": "Insecure Design",
+            "occurrence": {
+              "critical": 0,
+              "major": 13,
+              "minor": 0,
+              "total": 13
+            }
+          },
+          {
+            "key": "A05",
+            "title": "Security Misconfiguration",
+            "occurrence": {
+              "critical": 2,
+              "major": 11,
+              "minor": 8,
+              "total": 21
+            }
+          },
+          {
+            "key": "A06",
+            "title": "Vulnerable and Outdate components",
+            "occurrence": {
+              "critical": 0,
+              "major": 6,
+              "minor": 0,
+              "total": 6
+            }
+          },
+          {
+            "key": "A07",
+            "title": "Identification and Authentication Failures",
+            "occurrence": {
+              "critical": 0,
+              "major": 2,
+              "minor": 0,
+              "total": 2
+            }
+          },
+          {
+            "key": "A08",
+            "title": "Software and Data Integrity Failures",
+            "occurrence": {
+              "critical": 0,
+              "major": 0,
+              "minor": 0,
+              "total": 0
+            }
+          },
+          {
+            "key": "A09",
+            "title": "Security Logging and Monitoring Failures",
+            "occurrence": {
+              "critical": 63,
+              "major": 0,
+              "minor": 0,
+              "total": 63
+            }
+          },
+          {
+            "key": "A10",
+            "title": "Server-Side Request Forgery (SSRF)",
+            "occurrence": {
+              "critical": 0,
+              "major": 0,
+              "minor": 0,
+              "total": 0
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+***
+
+## Objects
+
+### AccountReportsNamespace
+
+A namespace containing all the reports available in an `Account`.
+
+<table>
+  <thead>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="30%">Type</th>
+      <th width="40%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>owaspTop10</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reports#owasptop10report">OwaspTop10Report</a>!</td>
+      <td>
+        The OWASP Top 10 report for a account.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>sansTop25</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reports#sanstop25report">SansTop25Report</a>!</td>
+      <td>
+        The SANS Top 25 report for a account.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>codeHealthTrend</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reports#codehealthtrendreport">CodeHealthTrendReport</a>!</td>
+      <td>
+        The Code Health Trend report for a account.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>issueDistribution</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reports#issuedistributionreport">IssueDistributionReport</a>!</td>
+      <td>
+        The Issue Distribution report for a account.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>issuesPrevented</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reports#issuespreventedreport">IssuesPreventedReport</a>!</td>
+      <td>
+        The Issues Prevented report for a account.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>issuesAutofixed</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reports#issuesautofixedreport">IssuesAutofixedReport</a>!</td>
+      <td>
+        The Issues Autofixed report for a account.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### RepositoryReportsNamespace
+
+A namespace containing all the reports available in a `Repository`.
+
+<table>
+  <thead>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="30%">Type</th>
+      <th width="40%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>owaspTop10</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reports#owasptop10report">OwaspTop10Report</a>!</td>
+      <td>
+        The OWASP Top 10 report for a repository.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>sansTop25</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reports#sanstop25report">SansTop25Report</a>!</td>
+      <td>
+        The SANS Top 25 report for a repository.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>codeHealthTrend</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reports#codehealthtrendreport">CodeHealthTrendReport</a>!</td>
+      <td>
+        The Code Health Trend report for a repository.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>issueDistribution</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reports#issuedistributionreport">IssueDistributionReport</a>!</td>
+      <td>
+        The Issue Distribution report for a repository.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>issuesPrevented</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reports#issuespreventedreport">IssuesPreventedReport</a>!</td>
+      <td>
+        The Issues Prevented report for a repository.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>issuesAutofixed</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reports#issuesautofixedreport">IssuesAutofixedReport</a>!</td>
+      <td>
+        The Issues Autofixed report for a repository.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### OwaspTop10Report
+
+Represents the OWASP Top 10 report.
+
+<table>
+  <thead>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="30%">Type</th>
+      <th width="40%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>key</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-enums#reportkey">ReportKey</a>!</td>
+      <td>An enum that uniquely identifies a report.</td>
+    </tr>
+    <tr>
+      <td><strong>title</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+      <td>The title of the report.</td>
+    </tr>
+    <tr>
+      <td><strong>currentValue</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+      <td>The current value of the reported statistic.</td>
+    </tr>
+    <tr>
+      <td><strong>values</strong></td>
+      <td>[<a href="https://deepsource-docs.readme.io/docs/apis-reports#reportvalueitem">ReportValueItem</a>]!</td>
+      <td>The values of the report between the given start and end dates.</td>
+    </tr>
+    <tr>
+      <td align="right">startDate</td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#datetime">Date</a>!</td>
+      <td>The start date for the values.</td>
+    </tr>
+    <tr>
+      <td align="right">endDate</td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#datetime">Date</a>!</td>
+      <td>The end date for the values.</td>
+    </tr>
+    <tr>
+      <td><strong>trends</strong></td>
+      <td>[<a href="https://deepsource-docs.readme.io/docs/apis-reports#trend">Trend</a>]!</td>
+      <td>The trends across 1 month, 3 month, 6 month and 12 months.</td>
+    </tr>
+    <tr>
+      <td><strong>status</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-enums#reportstatus">ReportStatus</a>!</td>
+      <td>The status of the report.</td>
+    </tr>
+    <tr>
+      <td><strong>securityIssueStats</strong></td>
+      <td>[<a href="https://deepsource-docs.readme.io/docs/apis-reports#securityissuestat">SecurityIssueStat</a>]!</td>
+      <td>
+        This contains all data regarding the occurrences of the compliance issues.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### SansTop25Report
+
+Represents the SANS Top 25 report.
+
+<table>
+  <thead>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="30%">Type</th>
+      <th width="40%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>key</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-enums#reportkey">ReportKey</a>!</td>
+      <td>An enum that uniquely identifies a report.</td>
+    </tr>
+    <tr>
+      <td><strong>title</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+      <td>The title of the report.</td>
+    </tr>
+    <tr>
+      <td><strong>currentValue</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+      <td>The current value of the reported statistic.</td>
+    </tr>
+    <tr>
+      <td><strong>values</strong></td>
+      <td>[<a href="https://deepsource-docs.readme.io/docs/apis-reports#reportvalueitem">ReportValueItem</a>]!</td>
+      <td>The values of the report between the given start and end dates.</td>
+    </tr>
+    <tr>
+      <td align="right">startDate</td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#datetime">Date</a>!</td>
+      <td>The start date for the values.</td>
+    </tr>
+    <tr>
+      <td align="right">endDate</td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#datetime">Date</a>!</td>
+      <td>The end date for the values.</td>
+    </tr>
+    <tr>
+      <td><strong>trends</strong></td>
+      <td>[<a href="https://deepsource-docs.readme.io/docs/apis-reports#trend">Trend</a>]!</td>
+      <td>The trends across 1 month, 3 month, 6 month and 12 months.</td>
+    </tr>
+    <tr>
+      <td><strong>status</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-enums#reportstatus">ReportStatus</a>!</td>
+      <td>The status of the report.</td>
+    </tr>
+    <tr>
+      <td><strong>securityIssueStats</strong></td>
+      <td>[<a href="https://deepsource-docs.readme.io/docs/apis-reports#securityissuestat">SecurityIssueStat</a>]!</td>
+      <td>
+        This contains all data regarding the occurrences of the compliance issues.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### CodeCoverageReport
+
+Represents the Code Coverage report.
+
+<table>
+  <thead>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="30%">Type</th>
+      <th width="40%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>key</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-enums#reportkey">ReportKey</a>!</td>
+      <td>An enum that uniquely identifies a report.</td>
+    </tr>
+    <tr>
+      <td><strong>title</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+      <td>The title of the report.</td>
+    </tr>
+    <tr>
+      <td><strong>repositories</strong></td>
+      <td><a href="#CodeCoverageReportRepositoryConnection">CodeCoverageReportRepositoryConnection</a></td>
+      <td>The list of repositories along with their code coverage metric values.</td>
+    </tr>
+    <tr>
+      <td align="right">q</td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a></td>
+      <td>The query param to search the repositories by name.</td>
+    </tr>
+    <tr>
+      <td align="right">sortKey</td>
+      <td><a href="api/enum#CodeCoverageReportRepositorySortKey">CodeCoverageReportRepositorySortKey</a></td>
+      <td>An enum to sort the list of repositories by.</td>
+    </tr>
+    <tr>
+      <td align="right">offset</td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+      <td>The count of repositories to skip.</td>
+    </tr>
+    <tr>
+      <td align="right">before</td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a></td>
+      <td>A cursor to be used with last for backward pagination.</td>
+    </tr>
+    <tr>
+      <td align="right">after</td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a></td>
+      <td>The number of items to forward paginate.</td>
+    </tr>
+    <tr>
+      <td align="right">last</td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+      <td>The number of items to backward paginate.</td>
+    </tr>
+  </tbody>
+</table>
+
+### CodeHealthTrendReport
+
+Represents the Code Health Trend report.
+
+<table>
+  <thead>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="30%">Type</th>
+      <th width="40%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>key</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-enums#reportkey">ReportKey</a>!</td>
+      <td>An enum that uniquely identifies a report.</td>
+    </tr>
+    <tr>
+      <td><strong>title</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+      <td>The title of the report.</td>
+    </tr>
+    <tr>
+      <td><strong>currentValue</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+      <td>The current value of the reported statistic.</td>
+    </tr>
+    <tr>
+      <td><strong>values</strong></td>
+      <td>[<a href="https://deepsource-docs.readme.io/docs/apis-reports#reportvalueitem">ReportValueItem</a>]!</td>
+      <td>The values of the report between the given start and end dates.</td>
+    </tr>
+    <tr>
+      <td align="right">startDate</td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#datetime">Date</a>!</td>
+      <td>The start date for the values.</td>
+    </tr>
+    <tr>
+      <td align="right">endDate</td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#datetime">Date</a>!</td>
+      <td>The end date for the values.</td>
+    </tr>
+    <tr>
+      <td><strong>trends</strong></td>
+      <td>[<a href="https://deepsource-docs.readme.io/docs/apis-reports#trend">Trend</a>]!</td>
+      <td>The trends across 1 month, 3 month, 6 month and 12 months.</td>
+    </tr>
+  </tbody>
+</table>
+
+### IssueDistributionReport
+
+Represents the Issue Distribution report.
+
+<table>
+  <thead>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="30%">Type</th>
+      <th width="40%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>key</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-enums#reportkey">ReportKey</a>!</td>
+      <td>An enum that uniquely identifies a report.</td>
+    </tr>
+    <tr>
+      <td><strong>title</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+      <td>The title of the report.</td>
+    </tr>
+    <tr>
+      <td><strong>currentValue</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+      <td>The current value of the reported statistic.</td>
+    </tr>
+    <tr>
+      <td><strong>values</strong></td>
+      <td>[<a href="https://deepsource-docs.readme.io/docs/apis-reports#reportvalueitem">ReportValueItem</a>]!</td>
+      <td>The values of the report between the given start and end dates.</td>
+    </tr>
+    <tr>
+      <td align="right">startDate</td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#datetime">Date</a>!</td>
+      <td>The start date for the values.</td>
+    </tr>
+    <tr>
+      <td align="right">endDate</td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#datetime">Date</a>!</td>
+      <td>The end date for the values.</td>
+    </tr>
+    <tr>
+      <td><strong>trends</strong></td>
+      <td>[<a href="https://deepsource-docs.readme.io/docs/apis-reports#trend">Trend</a>]!</td>
+      <td>The trends across 1 month, 3 month, 6 month and 12 months.</td>
+    </tr>
+    <tr>
+      <td><strong>issueDistributionByAnalyzer</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reports#issuedistribution">IssueDistribution</a>!</td>
+      <td>
+        Distribution of issues by analyzer.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>issueDistributionByCategory</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reports#issuedistribution">IssueDistribution</a>!</td>
+      <td>
+        Distribution of issues by category.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### IssuesPreventedReport
+
+Represents the Issues Prevented report.
+
+<table>
+  <thead>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="30%">Type</th>
+      <th width="40%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>key</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-enums#reportkey">ReportKey</a>!</td>
+      <td>An enum that uniquely identifies a report.</td>
+    </tr>
+    <tr>
+      <td><strong>title</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+      <td>The title of the report.</td>
+    </tr>
+    <tr>
+      <td><strong>currentValue</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+      <td>The current value of the reported statistic.</td>
+    </tr>
+    <tr>
+      <td><strong>values</strong></td>
+      <td>[<a href="https://deepsource-docs.readme.io/docs/apis-reports#reportvalueitem">ReportValueItem</a>]!</td>
+      <td>The values of the report between the given start and end dates.</td>
+    </tr>
+    <tr>
+      <td align="right">startDate</td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#datetime">Date</a>!</td>
+      <td>The start date for the values.</td>
+    </tr>
+    <tr>
+      <td align="right">endDate</td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#datetime">Date</a>!</td>
+      <td>The end date for the values.</td>
+    </tr>
+    <tr>
+      <td><strong>trends</strong></td>
+      <td>[<a href="https://deepsource-docs.readme.io/docs/apis-reports#trend">Trend</a>]!</td>
+      <td>The trends across 1 month, 3 month, 6 month and 12 months.</td>
+    </tr>
+    <tr>
+      <td><strong>issueDistributionByAnalyzer</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reports#issuedistribution">IssueDistribution</a>!</td>
+      <td>
+        Distribution of issues by analyzer.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>issueDistributionByCategory</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reports#issuedistribution">IssueDistribution</a>!</td>
+      <td>
+        Distribution of issues by category.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### IssuesAutofixedReport
+
+Represents the Issues Autofixed report.
+
+<table>
+  <thead>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="30%">Type</th>
+      <th width="40%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>key</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-enums#reportkey">ReportKey</a>!</td>
+      <td>An enum that uniquely identifies a report.</td>
+    </tr>
+    <tr>
+      <td><strong>title</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+      <td>The title of the report.</td>
+    </tr>
+    <tr>
+      <td><strong>currentValue</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+      <td>The current value of the reported statistic.</td>
+    </tr>
+    <tr>
+      <td><strong>values</strong></td>
+      <td>[<a href="https://deepsource-docs.readme.io/docs/apis-reports#reportvalueitem">ReportValueItem</a>]!</td>
+      <td>The values of the report between the given start and end dates.</td>
+    </tr>
+    <tr>
+      <td align="right">startDate</td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#datetime">Date</a>!</td>
+      <td>The start date for the values.</td>
+    </tr>
+    <tr>
+      <td align="right">endDate</td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#datetime">Date</a>!</td>
+      <td>The end date for the values.</td>
+    </tr>
+    <tr>
+      <td><strong>trends</strong></td>
+      <td>[<a href="https://deepsource-docs.readme.io/docs/apis-reports#trend">Trend</a>]!</td>
+      <td>The trends across 1 month, 3 month, 6 month and 12 months.</td>
+    </tr>
+  </tbody>
+</table>
+
+### ReportValueItem
+
+Represents the list of values recorded for a report on a specific date.
+
+<table>
+  <thead>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="30%">Type</th>
+      <th width="40%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>date</strong></td>
+      <td><a href="/https://deepsource-docs.readme.io/docs/apis-reference-scalars#datetime">Date</a>!</td>
+      <td>
+        The date the values were recorded on.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>values</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reports#reportvalue">ReportValue</a></td>
+      <td>
+        The list of values recorded.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### ReportValue
+
+Represents a recorded value in a report.
+
+<table>
+  <thead>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="30%">Type</th>
+      <th width="40%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>key</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+      <td>
+        The key to identify the recorded value
+      </td>
+    </tr>
+    <tr>
+      <td><strong>value</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+      <td>
+        The recorded value.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### IssueDistribution
+
+<table>
+  <thead>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="30%">Type</th>
+      <th width="40%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>key</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+      <td>
+        Key representing the category/type of issue.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>value</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a>!</td>
+      <td>
+        Number of issues in the category/type of issue.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### SecurityIssueStat
+
+<table>
+  <thead>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="30%">Type</th>
+      <th width="40%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>key</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+      <td>
+        The key of the security issue.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>title</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+      <td>
+        Title of the security issue.
+      </td>
+      <tr>
+      <td><strong>occurrence</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reports#severitydistribution">SeverityDistribution</a>!</td>
+      <td>
+        Denotes the count of occurrences of various security issues.
+      </td>
+    </tr>
+    </tr>
+  </tbody>
+</table>
+
+### SeverityDistribution
+
+<table>
+  <thead>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="30%">Type</th>
+      <th width="40%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>critical</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+      <td>
+        Number of security issues categorized as critical.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>major</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+      <td>
+        Number of security issues categorized as major.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>minor</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+      <td>
+        Number of security issues categorized as minor.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>major</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a>!</td>
+      <td>
+        Total number of security issues.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### CodeCoverageReportRepositoryConnection
+
+<table>
+  <thead>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="30%">Type</th>
+      <th width="40%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>pageInfo</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-pagination#pageinfo">PageInfo</a>!</td>
+      <td>
+        Pagination data for this connection.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>edges</strong></td>
+      <td>[<a href="https://deepsource-docs.readme.io/docs/apis-reports#codecoveragereportrepositoryedge">CodeCoverageReportRepositoryEdge</a>]!</td>
+      <td>
+        Contains the nodes in this connection.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>totalCount</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+      <td>
+        The total count of the nodes.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### CodeCoverageReportRepositoryEdge
+
+<table>
+  <thead>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="30%">Type</th>
+      <th width="40%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>node</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reports#codecoveragereportrepository">CodeCoverageReportRepository</a></td>
+      <td>
+        The <code>CodeCoverageReportRepository</code> object.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>cursor</strong></td>
+      <td>[<a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>]!</td>
+      <td>
+        The cursor to be used for pagination.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### CodeCoverageReportRepository
+
+<table>
+  <thead>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="30%">Type</th>
+      <th width="40%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>name</strong></td>
+      <td>[<a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>]!</td>
+      <td>
+        The name of the repository.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>id</strong></td>
+      <td>[<a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#id">ID</a>]!</td>
+      <td>
+        The ID of the repository.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>lcvMetricValue</strong></td>
+      <td>[<a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#float">Float</a>]</td>
+      <td>
+        The LCV metric value for the repository.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>bcvMetricValue</strong></td>
+      <td>[<a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#float">Float</a>]</td>
+      <td>
+        The BCV metric value for the repository.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>isLcvPassing</strong></td>
+      <td>[<a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#boolean">Boolean</a>]</td>
+      <td>
+        Whether the LCV value is passing the threshold set for the metric.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>isBcvPassing</strong></td>
+      <td>[<a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#boolean">Boolean</a>]</td>
+      <td>
+        Whether the BCV value is passing the threshold set for the metric.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Trend
+
+Compares the report value across different time periods.
+
+<table>
+  <thead>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="30%">Type</th>
+      <th width="40%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>label</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+      <td>
+        A label for the trend.  For example: "1 Month Ago"
+      </td>
+    </tr>
+    <tr>
+      <td><strong>value</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a>!</td>
+      <td>
+        The value of the trend.
+      </td>
+      <tr>
+      <td><strong>changePercentage</strong></td>
+      <td><a href="/api/scalars#float">Float</a>!</td>
+      <td>
+        The rate of change compared to the current value.
+      </td>
+    </tr>
+    </tr>
+  </tbody>
+</table>
+
+***
+
+## Deprecated
+
+> 🚧 The following GraphQL interfaces & objects have been deprecated and will be removed soon.
+
+### Interfaces
+
+#### Report
+
+Represents the report associated with an Account or Repository.
+
+<table>
+  <thead>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="30%">Type</th>
+      <th width="40%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>key</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-enums#reportkey">ReportKey</a>!</td>
+      <td>
+        This is an enum that is used to uniquely identify a report.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>title</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+      <td>Title of the report.</td>
+    </tr>
+    <tr>
+      <td><strong>currentValue</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a>!</td>
+      <td>The current value of the reported statistic.</td>
+    </tr>
+    <tr>
+      <td><strong>historicalValues</strong></td>
+      <td>[<a href="#historicalvalueitem">HistoricalValueItem</a>]!</td>
+      <td>The historical data of the report.</td>
+    </tr>
+    <tr>
+      <td align="right">startDate</td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#datetime">Date</a>!</td>
+      <td>The start date for the historical values.</td>
+    </tr>
+    <tr>
+      <td align="right">endDate</td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#datetime">Date</a>!</td>
+      <td>The end date for the historical values.</td>
+    </tr>
+    <tr>
+      <td><strong>trends</strong></td>
+      <td>[<a href="https://deepsource-docs.readme.io/docs/apis-reports#trend">Trend</a>]!</td>
+      <td>The trends across 1 month, 3 month, 6 month and 12 months.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Objects
+
+#### ComplianceReport
+
+Represents a compliance report. Currently there are two compliance reports - `OWASP_TOP_10` and `SANS_TOP_25`.
+
+Implements the [`Report`](/api/reports#report) interface.
+
+<table>
+  <thead>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="30%">Type</th>
+      <th width="40%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>key</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-enums#reportkey">ReportKey</a>!</td>
+      <td>
+        This is an enum that is used to uniquely identify a report.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>title</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+      <td>Title of the report.</td>
+    </tr>
+    <tr>
+      <td><strong>currentValue</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a>!</td>
+      <td>The current value of the reported statistic.</td>
+    </tr>
+    <tr>
+      <td><strong>historicalValues</strong></td>
+      <td>[<a href="#historicalvalueitem">HistoricalValueItem</a>]!</td>
+      <td>The historical data of the report.</td>
+    </tr>
+    <tr>
+      <td align="right">startDate</td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#datetime">Date</a>!</td>
+      <td>The start date for the historical values.</td>
+    </tr>
+    <tr>
+      <td align="right">endDate</td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#datetime">Date</a>!</td>
+      <td>The end date for the historical values.</td>
+    </tr>
+    <tr>
+      <td><strong>trends</strong></td>
+      <td>[<a href="https://deepsource-docs.readme.io/docs/apis-reports#trend">Trend</a>]!</td>
+      <td>The trends across 1 month, 3 month, 6 month and 12 months.</td>
+    </tr>
+    <tr>
+      <td><strong>complianceIssueStats</strong></td>
+      <td>[<a href="#complianceIssueStats">ComplianceIssueStat</a>]!</td>
+      <td>
+        This contains all data regarding the occurrences of the compliance issues.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+#### ComplianceIssueStat
+
+<table>
+  <thead>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="30%">Type</th>
+      <th width="40%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>key</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+      <td>
+        The key of the compliance issue.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>title</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+      <td>
+        Title of the compliance issue.
+      </td>
+      <tr>
+      <td><strong>occurrence</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reports#objects-1">ComplianceIssueOccurrenceCount</a>!</td>
+      <td>
+        Denotes the count of occurences of various compliance issues.
+      </td>
+    </tr>
+    </tr>
+  </tbody>
+</table>
+
+#### ComplianceIssueOccurrenceCount
+
+<table>
+  <thead>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="30%">Type</th>
+      <th width="40%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>critical</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+      <td>
+        Number of compliance issues categorized as critical.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>major</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+      <td>
+        Number of compliance issues categorized as major.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>minor</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+      <td>
+        Number of compliance issues categorized as minor.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>major</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a>!</td>
+      <td>
+        Total number of compliance issues.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+#### HistoricalValue
+
+<table>
+  <thead>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="30%">Type</th>
+      <th width="40%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>key</strong></td>
+      <td><a href="#https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+      <td>
+        The key to uniquely identify the recorded value.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>value</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a>!</td>
+      <td>
+        The value of the recorded value.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+#### HistoricalValueItem
+
+<table>
+  <thead>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="30%">Type</th>
+      <th width="40%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>date</strong></td>
+      <td><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#date">Date</a>!</td>
+      <td>
+        Date of the recorded value.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>values</strong></td>
+      <td>[<a href="https://deepsource-docs.readme.io/docs/apis-repor#objects-1">HistoricalValue</a>]!</td>
+      <td>
+        A list of values recorded on the associated date.
+      </td>
+    </tr>
+  </tbody>
+</table>

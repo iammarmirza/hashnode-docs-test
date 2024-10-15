@@ -1,0 +1,33 @@
+---
+title: Ruff Formatter
+slug: ruff-formatter
+visibility: PUBLIC
+label: Ruff Formatter
+---
+Transform all incoming Python code with [Ruff Formatter](https://docs.astral.sh/ruff/formatter/).
+
+# Configuration — `.deepsource.toml`
+
+This section covers configuration specific to the `ruff` transformer. Please make sure to read the [general configuration guide](https://deepsource-docs.readme.io/docs/configuration) first.
+
+## name
+
+**Type:** [String](https://toml.io/en/v1.0.0#string)  
+**Presence:** mandatory  
+**Description:** Shortcode of this transformer.  
+**Example:**
+
+```toml TOML
+name = "ruff"
+```
+
+## enabled
+
+**Type:** [Boolean](https://toml.io/en/v1.0.0#boolean)  
+**Presence:** optional  
+**Description:** Toggle whether this transformer should be run.  
+**Example:**
+
+```Text TOML
+enabled = true
+```

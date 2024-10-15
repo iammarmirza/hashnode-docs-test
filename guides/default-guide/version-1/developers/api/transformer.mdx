@@ -1,0 +1,227 @@
+---
+title: Transformer
+slug: transformer
+visibility: PUBLIC
+label: Transformer
+---
+## transformer
+
+`Query: transformer` Fetch details of a transformer using the transformer shortcode.
+
+### Arguments
+
+<table>
+  <thead>
+    <tr>
+      <th width="25%">Field</th>
+      <th width="25%">Type</th>
+      <th width="50%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+<td align="left" valign="top">shortcode</td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+<td>Shortcode of the transformer.</td>
+</tr>
+</tbody>
+</table>
+
+### Sample Request
+
+```graphql
+query {
+  transformer(shortcode:"gofmt"){
+   	id
+    name
+    shortcode
+  }
+}
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "transformer": {
+      "id": "VHJhbnNmb3JtZXI6bGp6a3d6",
+      "name": "Go fmt",
+      "shortcode": "gofmt"
+    }
+  }
+}
+```
+
+## transformers
+
+`Query: transformer` Fetch details of all available transformers on DeepSource.
+
+### Arguments
+
+<table>
+  <thead>
+    <tr>
+      <th align="left" width="30%">Field</th>
+      <th align="left" width="30%">Type</th>
+      <th align="left" width="40%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+<td align="right" valign="top">offset</td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+</tr>
+<tr>
+<td align="right" valign="top">before</td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td align="right" valign="top">after</td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a></td>
+<td></td>
+</tr>
+<tr>
+<td align="right" valign="top">first</td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+<td></td>
+</tr>
+<tr>
+<td align="right" valign="top">last</td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### Sample Request
+
+```graphql
+query {
+  transformers{
+   	edges {
+      node {
+        id
+        name
+        shortcode
+      }
+    }
+  }
+}
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "transformers": {
+      "edges": [
+        {
+          "node": {
+            "id": "VHJhbnNmb3JtZXI6ZXJ6amFi",
+            "name": "dotnet-format",
+            "shortcode": "dotnet-format"
+          }
+        },
+        {
+          "node": {
+            "id": "VHJhbnNmb3JtZXI6bGp6a3d6",
+            "name": "Go fmt",
+            "shortcode": "gofmt"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+## Objects
+
+### Transformer
+
+A transformer on DeepSource.
+
+<table>
+<thead>
+<tr>
+<th align="left" width="30%">Field</th>
+<th align="left" width="30%">Type</th>
+<th align="left" width="40%">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>name</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+<td>Name of the transformer.</td>
+</tr>
+<tr>
+<td valign="top"><strong>shortcode</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+<td>Unique identifier for this transformer globally.</td>
+</tr>
+<tr>
+<td valign="top"><strong>id</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#id">ID</a>!</td>
+<td>The unique identifier for the transformer.</td>
+</tr>
+</tbody>
+</table>
+
+### TransformerConnection
+
+<table>
+<thead>
+<tr>
+<th align="left" width="30%">Field</th>
+<th align="left" width="30%">Type</th>
+<th align="left" width="40%">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>pageInfo</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-pagination#pageinfo">PageInfo</a>!</td>
+<td>Pagination data for this connection.</td>
+</tr>
+<tr>
+<td valign="top"><strong>edges</strong></td>
+<td valign="top">[<a href="https://deepsource-docs.readme.io/docs/apis-transformer#transformeredge">TransformerEdge</a>]!</td>
+<td>Contains the nodes in this connection.</td>
+</tr>
+<tr>
+<td valign="top"><strong>totalCount</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#int">Int</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+### TransformerEdge
+
+A Relay edge containing a `Transformer` and its cursor.
+
+<table>
+<thead>
+<tr>
+<th align="left" width="30%">Field</th>
+<th align="left" width="30%">Type</th>
+<th align="left" width="40%">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><strong>node</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-transformer#transformer-1">Transformer</a></td>
+<td>The item at the end of the edge.</td>
+</tr>
+<tr>
+<td valign="top"><strong>cursor</strong></td>
+<td valign="top"><a href="https://deepsource-docs.readme.io/docs/apis-reference-scalars#string">String</a>!</td>
+<td>A cursor for use in pagination.</td>
+</tr>
+</tbody>
+</table>
