@@ -1,0 +1,27 @@
+---
+title: "Understanding Callbacks"
+label: "Understanding Callbacks"
+slug: "understanding"
+visibility: PUBLIC
+---
+Callbacks are essential for handling asynchronous operations in JavaScript. Instead of waiting for a task to complete, the program can continue executing, and the callback is invoked once the task is finished.
+
+A common use case of callbacks is handling API requests. JavaScript can make a request to a server, and when the data is returned (which may take some time), a callback function processes the data.
+
+Example:
+```js
+function getData(callback) {
+    setTimeout(() => {
+        const data = "Some fetched data";
+        callback(data);
+    }, 3000);
+}
+
+getData(function(result) {
+    console.log("Received data: " + result);
+});
+```
+Here, `getData` fetches data after a 3-second delay and then calls the callback function to handle the received data.
+
+Callbacks are also used in event-driven programming. For example, when a button is clicked, a callback function can handle what happens next.
+

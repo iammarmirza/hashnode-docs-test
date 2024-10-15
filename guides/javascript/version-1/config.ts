@@ -15,7 +15,7 @@ export default {
     sidebar: [
         {
             type: "section",
-            label: "Getting started with JavaScript",
+            label: "Getting Started",
             visibility: "PUBLIC",
             pages: [
                 {
@@ -91,6 +91,34 @@ export default {
                                 {
                                     type: "page",
                                     path: "./getting-started/javascript-basics/control-flow/switch-case.mdx",
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    type: "page",
+                    path: "./getting-started/functions.mdx",
+                    pages: [
+                        {
+                            type: "page",
+                            path: "./getting-started/functions/declaration.mdx",
+                        },
+                        {
+                            type: "page",
+                            path: "./getting-started/functions/arrow-functions.mdx",
+                        },
+                        {
+                            type: "page",
+                            path: "./getting-started/functions/callback-functions.mdx",
+                            pages: [
+                                {
+                                    type: "page",
+                                    path: "./getting-started/functions/callback-functions/understanding.mdx",
+                                },
+                                {
+                                    type: "page",
+                                    path: "./getting-started/functions/callback-functions/examples.mdx",
                                 }
                             ]
                         }
