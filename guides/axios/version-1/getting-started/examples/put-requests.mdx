@@ -1,0 +1,52 @@
+---
+title: PUT Requests
+label: PUT Requests
+slug: put-requests
+visibility: PUBLIC
+---
+
+The **PUT** request method is used to update an existing resource or to create a resource if it does not exist on the server. In the context of RESTful APIs, **PUT** requests are typically used for updating entire resources.
+
+## Basic `PUT` Request
+
+In Axios, a `PUT` request can be made using the `axios.put()` method. The method requires the URL of the resource to be updated and the data to be sent to the server.
+
+```javascript
+import axios from 'axios';
+
+const updateUser = async () => {
+  try {
+    const response = await axios.put('https://api.example.com/users/123', {
+      name: 'John Doe',
+      email: 'john.doe@example.com'
+    });
+    console.log('User updated:', response.data);
+  } catch (error) {
+    console.error('Error updating user:', error);
+  }
+};
+
+updateUser();
+```
+In this example, a `PUT` request is made to update user data. The response.data contains the updated resource returned by the server.
+
+## `PUT` Request with Headers
+Sometimes, additional headers, such as authentication tokens, need to be included in the PUT request. This can be done using the headers option.
+
+```js
+axios.put('https://api.example.com/users/123', {
+  name: 'John Doe',
+  email: 'john.doe@example.com'
+}, {
+  headers: {
+    Authorization: 'Bearer your_token_here'
+  }
+})
+.then(response => {
+  console.log('User updated:', response.data);
+})
+.catch(error => {
+  console.error('Error updating user:', error);
+});
+```
+In this case, a Bearer token is passed in the request headers to authenticate the update operation.

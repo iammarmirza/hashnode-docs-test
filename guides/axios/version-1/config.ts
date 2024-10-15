@@ -30,14 +30,22 @@ export default {
                 },
                 {
                     type: "page",
-                    path: "./getting-started/example.mdx",
-                    pages: []
+                    path: "./getting-started/examples.mdx",
+                    pages: [
+                        {
+                            type: "page",
+                            path: "./getting-started/examples/get-requests.mdx",
+                        },
+                        {
+                            type: "page",
+                            path: "./getting-started/examples/post-requests.mdx",
+                        },
+                        {
+                            type: "page",
+                            path: "./getting-started/examples/put-requests.mdx",
+                        }
+                    ]
                 },
-                {
-                    type: "page",
-                    path: "./getting-started/post-requests.mdx",
-                    pages: []
-                }
             ],
         },
         {
@@ -76,6 +84,16 @@ export default {
                 {
                     type: "page",
                     path: "./axios-api/cancellation.mdx",
+                    pages: [
+                        {
+                            type: "page",
+                            path: "./axios-api/cancellation/cancelling-requests.mdx",
+                        },
+                        {
+                            type: "page",
+                            path: "./axios-api/cancellation/cancel-token.mdx",
+                        }
+                    ]
                 },
                 {
                     type: "page",
