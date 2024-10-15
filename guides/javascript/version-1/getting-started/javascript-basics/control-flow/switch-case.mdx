@@ -1,0 +1,107 @@
+---
+title: "Switch Case"
+label: "Switch Case"
+slug: "switch-case"
+visibility: PUBLIC
+---
+The **`switch`** statement in JavaScript is used to execute one of many code blocks based on the value of an expression. It’s a cleaner alternative to using multiple `if...else if` statements when checking a single variable against different values.
+
+## Syntax
+
+The basic syntax of a `switch` statement is as follows:
+
+```js
+switch (expression) {
+  case value1:
+    // Code to execute if expression === value1
+    break;
+  case value2:
+    // Code to execute if expression === value2
+    break;
+  default:
+    // Code to execute if none of the cases match
+}
+```
+* `expression`: The value or variable to be compared against each case.
+* `case`: Specifies the value to compare with the expression.
+* `break`: Stops the execution of more cases. Without it, the next case will run, even if it doesn’t match.
+* `default`: Runs if no matching case is found. It’s optional but recommended.
+
+### Example: Days of the Week
+Let’s use a switch statement to map a number to a day of the week.
+
+```js
+let day = 3;
+
+switch (day) {
+  case 1:
+    console.log("Monday");
+    break;
+  case 2:
+    console.log("Tuesday");
+    break;
+  case 3:
+    console.log("Wednesday");
+    break;
+  case 4:
+    console.log("Thursday");
+    break;
+  case 5:
+    console.log("Friday");
+    break;
+  case 6:
+    console.log("Saturday");
+    break;
+  case 7:
+    console.log("Sunday");
+    break;
+  default:
+    console.log("Invalid day");
+}
+```
+
+In this example, if day equals 3, the output will be "Wednesday". The default case will handle any invalid values.
+
+### Multiple Cases for the Same Block
+You can combine multiple case values if you want the same block of code to run for different conditions.
+
+```js
+let fruit = 'apple';
+
+switch (fruit) {
+  case 'apple':
+  case 'pear':
+    console.log("This is a pome fruit.");
+    break;
+  case 'orange':
+  case 'lemon':
+    console.log("This is a citrus fruit.");
+    break;
+  default:
+    console.log("Unknown fruit.");
+}
+```
+
+Here, both apple and pear will trigger the same message because they are grouped together.
+
+### Using default
+The default case is executed if no other case matches. It’s similar to the else statement in an if...else block.
+
+```js
+let grade = 'C';
+
+switch (grade) {
+  case 'A':
+    console.log("Excellent");
+    break;
+  case 'B':
+    console.log("Good");
+    break;
+  case 'C':
+    console.log("Fair");
+    break;
+  default:
+    console.log("Invalid grade");
+}
+```
+If grade is something other than A, B, or C, the default case will run.

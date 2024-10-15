@@ -79,6 +79,20 @@ export default {
                                     path: "./getting-started/javascript-basics/operators/logical.mdx",
                                 },
                             ],
+                        },
+                        {
+                            type: "page",
+                            path: "./getting-started/javascript-basics/control-flow.mdx",
+                            pages: [
+                                {
+                                    type: "page",
+                                    path: "./getting-started/javascript-basics/control-flow/conditional-statements.mdx",
+                                },
+                                {
+                                    type: "page",
+                                    path: "./getting-started/javascript-basics/control-flow/switch-case.mdx",
+                                }
+                            ]
                         }
                     ]
                 }
