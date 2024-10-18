@@ -1,0 +1,478 @@
+---
+title : "Customize Behavior"
+slug : "customize-behavior"
+label : "Customize Behavior"
+visibility: PUBLIC
+---
+
+
+## 1. Get Notifications Data
+- Get the notifications data for the current user.
+- Returns [`Notification[]`](/api-reference/models/Notification)
+
+<Tabs>
+
+<Tab title="React / Next.js with Hooks">
+```jsx
+const notificationData = useNotificationsData();
+```
+</Tab>
+
+<Tab title="React / Next.js">
+```jsx
+const notificationElement = client.getNotificationElement();
+
+let subscription = notificationElement.getNotificationsData().subscribe((notifications) => {
+    console.log("Notifications: ", notifications)
+});
+```
+To unsubscribe from the subscription:
+```jsx
+subscription?.unsubscribe()
+```
+</Tab>
+
+<Tab title="HTML / Other Frameworks">
+```jsx
+const notificationElement = Velt.getNotificationElement();
+
+let subscription = notificationElement.getNotificationsData().subscribe((notifications) => {
+    console.log("Notifications: ", notifications)
+});
+```
+To unsubscribe from the subscription:
+```jsx
+subscription?.unsubscribe()
+```
+</Tab>
+
+</Tabs>
+
+
+
+## 2. Take action when a Notification is clicked
+- The `onNotificationClick` event fires when a notification is clicked in the Notifications Panel.
+- It returns a [`Notification`](/api-reference/models/Notification) object with details about the clicked notification.
+- Listen to this event via either the Notification Tool or the Notification Panel, but not both.
+- Use this event to implement custom actions in response to notification clicks, such as navigating to a specific part of the app.
+
+<Tabs>
+<Tab title="React / Next.js">
+```jsx
+<VeltNotificationsTool onNotificationClick={(notification) => onNotificationClickEvent(notification)} />
+
+<VeltNotificationsPanel onNotificationClick={(notification) => onNotificationClickEvent(notification)} />
+
+const onNotificationClickEvent = (notification) => {
+	console.log('onNotificationClick: ', notification);
+}
+```
+</Tab>
+
+<Tab title="HTML / Other Frameworks">
+```jsx
+  const notificationsTool = document.querySelector('velt-notifications-tool');
+	notificationsTool?.addEventListener('onNotificationClick', (event) => {
+	  console.log('onNotificationClick from Tool: ', event.detail);
+  });
+
+  const notificationsPanel = document.querySelector('velt-notifications-panel');
+	notificationsPanel?.addEventListener('onNotificationClick', (event) => {
+	  console.log('onNotificationClick from Panel: ', event.detail);
+  });
+```
+
+</Tab>
+</Tabs>
+
+## 3. Configure Custom Tabs
+- Using this config, you can customize the name of the tabs or disable them altogether.
+- By default, all the three tabs are enabled.
+
+<Tabs>
+<Tab title="React / Next.js with Hooks">
+You can set it on Notifications Tool:
+```jsx
+<VeltNotificationsTool tabConfig={{
+    "forYou": {
+        name: 'Custom For You',
+        enable: true,
+    },
+    "documents": {
+        name: 'Custom Document',
+        enable: false,
+    },
+    "all": {
+        name: 'Custom All',
+        enable: true,
+    },
+}
+} />
+```
+
+You can alternatively set it on Notifications Panel if you have directly embedded it:
+```jsx
+<VeltNotificationsPanel tabConfig={{
+    "forYou": {
+        name: 'Custom For You',
+        enable: true,
+    },
+    "documents": {
+        name: 'Custom Document',
+        enable: false,
+    },
+    "all": {
+        name: 'Custom All',
+        enable: true,
+    },
+}
+} />
+```
+
+**Using APIs:**
+```jsx
+const notificationElement = useNotificationUtils();
+
+​​const tabConfig = {
+	"forYou": {
+		name: 'Custom For You',
+		enable: true,
+	},
+	"documents": {
+		name: 'Custom Document',
+		enable: false,
+	},
+	"all": {
+		name: 'Custom All',
+		enable: true,
+	},
+};
+
+notificationElement.setTabConfig(tabConfig);
+```
+</Tab>
+
+<Tab title="React / Next.js">
+You can set it on Notifications Tool:
+```jsx
+<VeltNotificationsTool tabConfig={{
+    "forYou": {
+        name: 'Custom For You',
+        enable: true,
+    },
+    "documents": {
+        name: 'Custom Document',
+        enable: false,
+    },
+    "all": {
+        name: 'Custom All',
+        enable: true,
+    },
+}
+} />
+```
+
+You can alternatively set it on Notifications Panel if you have directly embedded it:
+```jsx
+<VeltNotificationsPanel tabConfig={{
+    "forYou": {
+        name: 'Custom For You',
+        enable: true,
+    },
+    "documents": {
+        name: 'Custom Document',
+        enable: false,
+    },
+    "all": {
+        name: 'Custom All',
+        enable: true,
+    },
+}
+} />
+```
+
+**Using APIs:**
+```jsx
+const notificationElement = client.getNotificationElement();
+
+​​const tabConfig = {
+	"forYou": {
+		name: 'Custom For You',
+		enable: true,
+	},
+	"documents": {
+		name: 'Custom Document',
+		enable: false,
+	},
+	"all": {
+		name: 'Custom All',
+		enable: true,
+	},
+};
+
+notificationElement.setTabConfig(tabConfig);
+```
+</Tab>
+
+<Tab title="HTML / Other Frameworks">
+```js
+const tabConfig = {
+	"forYou": {
+		name: 'Custom For You',
+		enable: true,
+	},
+	"documents": {
+		name: 'Custom Document',
+		enable: false,
+	},
+	"all": {
+		name: 'Custom All',
+		enable: true,
+	},
+};
+
+// Set it using Notifications Tool
+const notificationsTool = document.querySelector('velt-notifications-tool');
+notificationsTool?.setAttribute("tab-config", JSON.stringify(tabConfig));
+
+// Or, set it using Notifications Panel
+const notificationsPanel = document.querySelector('velt-notifications-panel');
+notificationsPanel?.setAttribute("tab-config", JSON.stringify(tabConfig));
+```
+
+**Using APIs:**
+```jsx
+const notificationElement = Velt.getNotificationElement();
+
+​​const tabConfig = {
+	"forYou": {
+		name: 'Custom For You',
+		enable: true,
+	},
+	"documents": {
+		name: 'Custom Document',
+		enable: false,
+	},
+	"all": {
+		name: 'Custom All',
+		enable: true,
+	},
+};
+
+notificationElement.setTabConfig(tabConfig);
+```
+</Tab>
+</Tabs>
+
+## 4. Set maximum days for which Notifications should be displayed
+
+Notifications older than the specified number of days will not be displayed.
+
+Default: 30 days. 
+
+<Tabs>
+<Tab title="React / Next.js with Hooks">
+```jsx
+<VeltNotificationsTool maxDays={15} />
+```
+**Using API:**
+```jsx
+const notificationElement = useNotificationUtils();
+notificationElement.setMaxDays(15);
+```
+</Tab>
+
+<Tab title="React / Next.js">
+```jsx
+<VeltNotificationsTool maxDays={15} />
+```
+**Using API:**
+```jsx
+const notificationElement = client.getNotificationElement();
+notificationElement.setMaxDays(15);
+```
+</Tab>
+
+<Tab title="HTML / Other Frameworks">
+```jsx
+<velt-notifications-tool max-days="15"></velt-notifications-tool>
+```
+**Using APIs:**
+```jsx
+const notificationElement = Velt.getNotificationElement();
+notificationElement.setMaxDays(15);
+```
+</Tab>
+</Tabs>
+
+## 5. Change how the Notifications Panel is opened
+
+Notificaitons Panel opens in one of the following ways:
+- `popover`: It opens as a popover on the Notification Tool.
+- `sidebar`: It opens as a sidebar from the right edge of the screen.
+
+Default: `popover`. 
+
+<Tabs>
+<Tab title="React / Next.js with Hooks">
+```jsx
+<VeltNotificationsTool panelOpenMode={'sidebar'} />
+```
+</Tab>
+
+<Tab title="React / Next.js">
+```jsx
+<VeltNotificationsTool panelOpenMode={'sidebar'} />
+```
+</Tab>
+
+<Tab title="HTML / Other Frameworks">
+```jsx
+<velt-notifications-tool panel-open-mode="sidebar"></velt-notifications-tool>
+```
+</Tab>
+</Tabs>
+
+## 6. Configure visibility of read notifications in the "For You" tab
+
+- You can control whether read notifications are displayed in the "For You" tab. By default, read notifications are removed from this tab.
+- This feature allows you to customize the visibility of read notifications in the "For You" tab, providing more flexibility in how notifications are displayed to users.
+
+Default: `false`.
+
+<Tabs>
+<Tab title="React / Next.js with Hooks">
+Using Props:
+```jsx
+<VeltNotificationsTool readNotificationsOnForYouTab={true} />
+<VeltNotificationsPanel readNotificationsOnForYouTab={true} />
+```
+
+Using APIs:
+```jsx
+const notificationElement = useNotificationUtils();
+// Enable to keep read notifications in the for you tab
+notificationElement.enableReadNotificationsOnForYouTab();
+// Disable to hide read notifications in the for you tab
+notificationElement.disableReadNotificationsOnForYouTab();
+```
+</Tab>
+
+<Tab title="React / Next.js">
+Using Props:
+```jsx
+<VeltNotificationsTool readNotificationsOnForYouTab={true} />
+<VeltNotificationsPanel readNotificationsOnForYouTab={true} />
+```
+Using APIs:
+```jsx
+const notificationElement = client.getNotificationElement();
+// Enable to keep read notifications in the for you tab
+notificationElement.enableReadNotificationsOnForYouTab();
+// Disable to hide read notifications in the for you tab
+notificationElement.disableReadNotificationsOnForYouTab();
+```
+</Tab>
+
+<Tab title="HTML / Other Frameworks">
+Using Props:
+```html
+<velt-notifications-tool read-notifications-on-for-you-tab="true">
+</velt-notifications-tool>
+<velt-notifications-panel read-notifications-on-for-you-tab="true">
+</velt-notifications-panel>
+```
+Using API:
+```html
+<script>
+  // Using APIs
+  const notificationElement = Velt.getNotificationElement();
+  // Enable to keep read notifications in the for you tab
+  notificationElement.enableReadNotificationsOnForYouTab();
+  // Disable to hide read notifications in the for you tab
+  notificationElement.disableReadNotificationsOnForYouTab();
+</script>
+```
+</Tab>
+</Tabs>
+
+## 7. Mark All Notifications as Read
+
+- Mark all notifications as read, either globally or for a specific tab.
+- Using 'all' or 'document' as the `tabId` marks all notifications as read across all tabs (equivalent to calling `setAllNotificationsAsRead()` without arguments).
+- Using 'for-you' as the `tabId` only marks notifications in the 'for-you' tab as read.
+
+<Tabs>
+  <Tab title="React / Next.js">
+    ```javascript
+    const notificationElement = client.getNotificationElement();
+    
+    // Mark all notifications as read
+    notificationElement.setAllNotificationsAsRead();
+    
+    // Mark all notifications as read for a specific tab
+    notificationElement.setAllNotificationsAsRead({ tabId: 'for-you' });
+    notificationElement.setAllNotificationsAsRead({ tabId: 'all' });
+    notificationElement.setAllNotificationsAsRead({ tabId: 'document' });
+    ```
+  </Tab>
+  
+  <Tab title="HTML / Other Frameworks">
+    ```javascript
+    const notificationElement = Velt.getNotificationElement();
+    
+    // Mark all notifications as read
+    notificationElement.setAllNotificationsAsRead();
+    
+    // Mark all notifications as read for a specific tab
+    notificationElement.setAllNotificationsAsRead({ tabId: 'for-you' });
+    notificationElement.setAllNotificationsAsRead({ tabId: 'all' });
+    notificationElement.setAllNotificationsAsRead({ tabId: 'document' });
+    ```
+  </Tab>
+</Tabs>
+
+
+## 8. Get Unread Notifications Count
+
+- Retrieve the count of unread notifications, which includes a breakdown for different tabs.
+- The 'Document' tab is not included in the response because it contains all the notifications present in the 'All' tab.
+
+**Sample response:**
+```javascript
+{ 
+  forYou: 4, // # of unread notifications in the "For You" tab
+  all: 5     // # of unread notifications in the "All" or "Document" tab
+}
+```
+
+
+<Tabs>
+  <Tab title="React / Next.js">
+    Using Hooks:
+    ```jsx
+    const unreadCount = useUnreadNotificationsCount();
+
+    useEffect(() => {
+      console.log('Unread Count', unreadCount);
+    }, [unreadCount]);
+    ```
+
+    Using API:
+    ```javascript
+    const notificationElement = client.getNotificationElement();
+    notificationElement.getUnreadNotificationsCount().subscribe((data) => {
+      console.log('Unread notifications count:', data);
+    });
+    ```
+  </Tab>
+  
+  <Tab title="HTML / Other Frameworks">
+    ```javascript
+    const notificationElement = Velt.getNotificationElement();
+    notificationElement.getUnreadNotificationsCount().subscribe((data) => {
+      console.log('Unread notifications count:', data);
+    });
+    ```
+  </Tab>
+</Tabs>
