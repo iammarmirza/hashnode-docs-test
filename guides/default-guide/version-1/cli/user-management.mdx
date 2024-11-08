@@ -1,0 +1,92 @@
+---
+title: User Management
+description: User Management with pb - Easily manage users, roles, and permissions on Parseable server with PB. Streamline user administration effortlessly.    
+slug: pb-user-management
+visibility: PUBLIC
+label: User Management
+---
+
+<head>
+<title>User Management with PB | Parseable</title>
+<meta charSet="utf-8" />
+<meta name="twitter:card" content="summary" />
+</head>
+
+`pb` allows managing users, their roles and permissions on a Parseable server.
+
+## Roles
+
+Roles are the pre-requisite to assign permissions to users. A role can be created with a name, permissions and optionally resources where these permissions are applicable. Once a role is created, it can be assigned to users. For details on how RBAC works on Parseable, read the [Users & Access Control Section](https://www.parseable.com/docs/rbac).
+
+Role command supports the following sub-commands:
+
+### add
+
+Create a new role with the given name, permissions and resources.
+
+```bash
+pb role add <role-name>
+```
+
+This opens up an interactive interface to enter the permissions and relevant resources to that role.
+
+### list
+
+List all the roles on the server.
+
+```bash
+pb role list
+```
+
+### remove
+
+Remove a role from the server.
+
+```bash
+pb role remove <role-name>
+```
+
+## Users
+
+Users are human or machine entities that can be assigned a role. `pb` allows creating, listing, setting roles and removing users from the server.
+
+User command supports the following sub-commands:
+
+### add
+
+Create a new user with the given name. The add user command returns the password for the user. Please note that this password is not stored anywhere on the server and is only returned once. If you lose the password, you will have to reset it.
+
+You can assign roles to the user with `--role` flag. If no role is specified, the user is created with no roles.
+
+```bash
+pb user add bob // creates a user with no roles
+pb user add alice --role admin // creates a user with admin role. admin role must exist on the server (see role command)
+```
+
+Note that you can pass multiple roles to the `--role` flag in a comma separated list, to assign multiple roles to a user.
+
+### list
+
+List all the users on the server.
+
+```bash
+pb user list
+```
+
+### set-role
+
+Set a role for a user. This command can be used to add or remove roles from a user.
+
+```bash
+pb user set-role bob admin // adds admin role to bob
+```
+
+Note that you can pass multiple roles in a comma separated list, to assign multiple roles to a user.
+
+### remove
+
+Remove a user from the server.
+
+```bash
+pb user remove bob
+```

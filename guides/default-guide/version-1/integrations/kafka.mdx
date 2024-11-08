@@ -1,0 +1,101 @@
+---
+title: Kafka Connector
+description: Learn to seamlessly integrate Kafka and Parseable with Confluent HTTP Sink Connector. Use Docker images for Kafka distribution. Simplify setup now!
+slug: setup-kafka-and-parseable-kafka-connector
+visibility: PUBLIC
+label: Kafka Connector
+---
+
+<head>
+<title>How to Set up Kafka and Parseable? | Parseable</title>
+<meta charSet="utf-8" />
+<meta name="twitter:card" content="summary" />
+</head>
+
+This document explains how to set up Kafka and Parseable, so logs in a Kafka topic are sent to Parseable automatically. We'll use [Confluent HTTP Sink Connector](https://docs.confluent.io/kafka-connectors/http/current/overview.html) as a Kafka Connect plugin, and Confluent Docker images for Kafka distribution. We assume here that you'll setup the log agent to send logs to relevant Kafka topic.
+
+### Introduction
+
+While Kafka and Parseable can be deployed in any environment, we're using Docker Compose to document the deployment steps here. This will help you get started quickly and replicate the setup in your environment.
+
+We'll use Confluent Docker images for Kafka distribution. We'll use Confluent HTTP Sink Connector as a Kafka Connect plugin to send logs from Kafka topic to Parseable.
+
+<p align="center">
+  <img src="/img/kafka.png" alt="Parseable Kafka Integration" />
+</p>
+
+### Docker Compose
+
+Please ensure Docker Compose [installed on your machine](https://docs.docker.com/compose/install/).
+
+Then run the following commands to start the Docker Compose. It will deploy Kafka, [Kafka Connect](https://docs.confluent.io/platform/current/connect/index.html), [Zookeeper](https://zookeeper.apache.org/), [Schema-Registry](https://docs.confluent.io/platform/current/schema-registry/index.html) and Parseable.
+
+```bash
+mkdir parseable && cd parseable
+wget https://www.parseable.com/kafka/docker-compose.yaml
+docker-compose up -d
+```
+
+### Kafka Connect
+
+Kafka Connect is a framework for connecting Kafka with external systems such as databases, key-value stores, search indexes, and file systems. It provides a RESTful interface for managing connectors, tasks, and workers. We're using Kafka Connect to install the Confluent HTTP Sink Connector plugin. This plugin will send logs from Kafka topic to Parseable.
+
+Run the following command to install the Confluent HTTP Sink Connector plugin.
+
+```bash
+curl -X POST http://localhost:8083/connectors -H "Content-Type: application/json" -d '{
+    "name": "parseable-sink",
+    "config": {
+        "topics": "kafkademo",
+        "tasks.max": "1",
+        "connector.class": "io.confluent.connect.http.HttpSinkConnector",
+        "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+        "key.converter.schemas.enable": "false",
+        "value.converter": "org.apache.kafka.connect.storage.StringConverter",
+        "value.converter.schemas.enable": "false",
+        "reporter.bootstrap.servers": "broker:29092",
+        "reporter.result.topic.name": "success-responses",
+        "reporter.result.topic.replication.factor": "1",
+        "reporter.error.topic.name": "error-responses",
+        "reporter.error.topic.replication.factor": "1",
+        "confluent.topic.bootstrap.servers": "broker:29092",
+        "confluent.topic.replication.factor": "1",
+        "http.api.url": "http://parseable:8000/api/v1/ingest",
+        "request.method": "POST",
+        "headers":"X-P-Stream:kafkademo",
+        "auth.type": "BASIC",
+        "connection.user": "admin",
+        "connection.password": "admin"
+    }
+}'
+```
+
+### Sending data to Kafka topic
+
+In a production scenario, you'll have a log agent sending logs to the Kafka topic. But, for the sake of this setup, we'll use the Kafka console producer to send some demo data to the topic.
+
+Exec into the Kafka container and list the topics. You should see all the topics.
+
+```bash
+docker exec -it broker /bin/bash
+kafka-topics --list --bootstrap-server localhost:9092
+```
+
+Then use the Kafka console producer to send some demo data to the topic `kafkademo`. From within the Kafka container, run the following command.
+
+```bash
+kafka-console-producer --bootstrap-server localhost:9092 --topic kafkademo
+```
+
+You should see a prompt `>` to enter the data. Enter the following JSON objects one by one.
+
+```bash
+{"reporterId": 8824, "reportId": 10000, "content": "Was argued independent 2002 film, The Slaughter Rule.", "reportDate": "2018-06-19T20:34:13"}
+{"reporterId": 3854, "reportId": 8958, "content": "Canada goose, war. Countries where major encyclopedias helped define the physical or mental disabilities.", "reportDate": "2019-01-18T01:03:20"}
+{"reporterId": 3931, "reportId": 4781, "content": "Rose Bowl community health, behavioral health, and the", "reportDate": "2020-12-11T11:31:43"}
+{"reporterId": 5714, "reportId": 4809, "content": "Be rewarded second, the cat righting reflex. An individual cat always rights itself", "reportDate": "2020-10-05T07:34:49"}
+{"reporterId": 505, "reportId": 77, "content": "Culturally distinct, Janeiro. In spite of the crust is subducted", "reportDate": "2018-01-19T01:53:09"}
+{"reporterId": 4790, "reportId": 7790, "content": "The Tottenham road spending has", "reportDate": "2018-04-22T23:30:14"}
+```
+
+Now, to check if Parseable received the data, login to the Parseable UI on [http://localhost:8000](http://localhost:8000). Then select the `kafkademo` stream from the dropdown. You should see the data in the UI.

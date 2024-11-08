@@ -1,0 +1,18 @@
+output:
+  http_client:
+    url: http://parseable:8000/api/v1/ingest
+    verb: POST
+    headers:
+      X-P-Stream: "redpandatest"
+      Content-Type: "application/json"
+      Authorization: "Basic YWRtaW46YWRtaW4="
+
+input:
+  label: ""
+  kafka:
+    addresses: ["0.0.0.0:9092"]
+    topics: ["redpandatest"]
+    target_version: 2.1.0 # No default (optional)
+    consumer_group: "test"
+    checkpoint_limit: 1024
+    auto_replay_nacks: true

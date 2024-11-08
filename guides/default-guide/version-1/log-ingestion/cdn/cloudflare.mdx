@@ -1,0 +1,100 @@
+---
+title: Cloudflare
+description: A detailed guide on setting up Cloudflare Log push to send logs to Parseable via HTTP destinations, using both dashboard and API methods.
+slug: cloudflare-logs-to-parseable
+visibility: PUBLIC
+label: Cloudflare
+---
+
+<head>
+<title>Ingest Cloudflare logs to Parseable | Parseable</title>
+<meta charSet="utf-8" />
+<meta name="twitter:card" content="summary" />
+</head>
+
+Cloudflare is one of most popular CDN platforms. Since Cloudflare serves as the first point of contact between an end user and content, it is a great source of useful log data. Developers use Parseable with Cloudflare, so they can centralize logs from all of their applications, infrastructure, CDN and more at a single location. 
+
+To send logs to Parseable, we'll use [Cloudflare's Logpush](https://developers.cloudflare.com/logs/get-started/). It allows the sending of logs to configurable HTTP endpoints, making it possible to stream logs directly to a Parseable instance.
+
+We will cover two methods to set up Cloudflare Logpush to send logs to Parseable. The first method is via the Cloudflare dashboard, and the second method is using the Cloudflare API.
+
+We also suggest checking out the [Cloudflare Logpush HTTPS target documentation](https://developers.cloudflare.com/logs/get-started/enable-destinations/http/).
+
+### Prerequisites
+
+Before setting up Cloudflare Logpush to send logs to Parseable, ensure you have the following:
+
+- A Cloudflare account with access to Logpush.
+- An active Parseable instance to receive logs. Refer the [installation docs here](https://www.parseable.com/docs/installation).
+- Credentials for the Parseable instance, so you can send requests for ingestion.
+- Ensure a stream is created in Parseable where these logs will be sent. Replace the `$LOG_STREAM` placeholder with the actual stream name below.
+
+### Configure Logpush via the Cloudflare Dashboard
+
+- Log in to Cloudflare: Access the [Cloudflare dashboard](https://dash.cloudflare.com) and log in with your credentials.
+
+- Select Account/Domain: 
+   - Choose the Enterprise account or specific domain (zone) you want to configure with Logpush.
+   - Depending on your selection, you can access either account-scoped datasets or zone-scoped datasets.
+
+- Navigate to Logpush: Go to Analytics & Logs > Logpush.
+
+- Create a Logpush Job: Click on Create a Logpush job.
+
+- Select the HTTP Destination:
+   - In the Select a destination section, choose HTTP destination.
+   - Enter the Parseable HTTP endpoint where logs will be sent, such as `https://demo.parseable.com/api/v1/logstream/$LOG_STREAM`, and click Continue.
+
+- Configure the Logpush Job:
+   - Job name: Enter a name for your Logpush job, such as `Parseable-Logpush`.
+   - Event Filters: Under If logs match, you can specify which events to include or exclude from your logs. Not all datasets support this feature.
+   - Fields to Send: In Send the following fields, choose whether to push all logs or selectively choose specific fields to include.
+   - Advanced Options:
+     - Timestamp format: Choose between `RFC3339` (default), `Unix`, or `UnixNano` for the timestamp format.
+     - Sampling rate: Select a sampling rate to push a percentage of logs randomly.
+     - Redaction: Enable redaction for CVE-2021-44228 by replacing every occurrence of `${` with `x{`.
+   
+- Submit and Activate:
+   - After configuring the job, click Submit to create the Logpush job.
+   - The logs will start streaming to the specified Parseable endpoint upon activation.
+
+### Configuring Logpush via Cloudflare API
+
+Alternatively, if you prefer, you can use Cloudflare API to create and manage Logpush jobs programmatically.
+
+To create a Logpush job using the Cloudflare API, you can use a `POST` request to the Logpush job creation endpoint. Below is an example of how to set up a job that streams logs to a Parseable instance.
+
+- Prepare the API Request
+   - Ensure you have your Cloudflare Zone ID (`$ZONE_TAG`), email, and API key ready.
+   - Also ensure you replace the `header_Authorization` value with Parseable's authorization header.
+   - Use the following `curl` command as a template.
+
+   ```bash
+   curl -s https://api.cloudflare.com/client/v4/zones/$ZONE_TAG/logpush/jobs -X POST -d '
+   {
+     "name": "parseable-https",
+     "output_options": {
+         "field_names": ["EdgeStartTimestamp", "RayID"],
+         "timestamp_format": "rfc3339"
+     },
+     "destination_conf": "https://demo.parseable.com/api/v1/logstream/$LOG_STREAM?header_Authorization=Basic%20REDACTED",
+     "max_upload_bytes": 5000000,
+     "max_upload_records": 1000,
+     "dataset": "http_requests",
+     "enabled": true
+   }' \
+   --header "X-Auth-Email: <EMAIL>" \
+   --header "X-Auth-Key: <API_KEY>" \
+   --header "Content-Type: application/json"
+   ```
+
+- Parameters:
+   - dataset (required): Specify the dataset, e.g., `http_requests`.
+   - name (optional): Name your job, e.g., `parseable-https`.
+   - output_options (optional): Configure fields, sample rate, and timestamp format.
+   - destination_conf: Define the endpoint URL and HTTP headers.
+   - max_upload_bytes (optional): Set the maximum uncompressed file size of a batch of logs (minimum 5 MB).
+   - max_upload_records (optional): Set the maximum number of log lines per batch (minimum 1000 lines).
+   - enabled: Set to `true` to activate the job.
+
+Once you've configured the payload, execute the `curl` command to create the Logpush job. The logs will start streaming to the specified Parseable endpoint.

@@ -1,0 +1,168 @@
+---
+title: OpenTelemetry Logging
+description: Discover Parseable's key concepts for ingesting log data in OpenTelemetry format. Explore the best practices for efficient log data management with Parseable and OpenTelemetry.
+slug: opentelemetry
+visibility: PUBLIC
+label: OpenTelemetry
+---
+
+<head>
+<title>Parseable OpenTelemetry Integration | Parseable</title>
+<meta charSet="utf-8" />
+<meta name="twitter:card" content="summary" />
+</head>
+
+OpenTelemetry is an open-source observability framework that provides a standard way to collect, process, and export telemetry data. It simplifies the instrumentation of applications and services for monitoring and troubleshooting. Parseable supports OpenTelemetry logging, enabling you to ingest log data in the OpenTelemetry format. 
+
+This guide explains overall concepts for efficient log data management with Parseable and OpenTelemetry. If you're looking to configure OTEL Exporter with Parseable, jump to the [OpenTelemetry Collector](/log-ingestion/agents/otel-collector) page.
+
+### Benefits of using Parseable for OpenTelemetry logs
+
+- **Easy Integration**: Easily ingests OpenTelemetry logs for efficient monitoring.
+- **Scalability**: Handles large volumes of log data effectively.
+- **Real-time Monitoring**: Provides real-time insights into application performance.
+- **Vendor Agnostic**: Works with various OpenTelemetry Collectors.
+
+### Instrumentation approaches
+
+The OTEL Collector is a vendor-agnostic implementation of how to receive, process and export telemetry data. It removes the need to run, operate, and maintain multiple agents/collectors.
+
+[OTEL Collector](https://github.com/open-telemetry/opentelemetry-collector) with the [OTEL HTTP Exporter](https://github.com/open-telemetry/opentelemetry-collector/tree/main/exporter/otlphttpexporter) is the recommended approach to collect, process and forward logs to Parseable. 
+
+There are other approaches like using the [OpenTelemetry SDK](https://opentelemetry.io/docs/languages/). This requires importing the relevant library/SDK into your application code and adding necessary instrumentation code to generate telemetry data. But this is recommended only for testing or non production environments.
+
+### Data flattening
+
+The OpenTelemetry logs that are in the form of a nested JSON. When the flag `X-P-Log-Source` is set to `otel`, Parseable will flatten the nested JSON to a flat JSON object. This is done to make the data more queryable and filterable. Here's a quick comparison of the nested JSON and the flattened JSON:
+
+OTEL JSON format sample:
+
+```json
+{"resourceLogs": [
+      {
+        "resource": {
+          "attributes": [
+            {
+              "key": "service.name",
+              "value": {
+                "stringValue": "my.service"
+              }
+            }
+          ]
+        },
+        "scopeLogs": [
+          {
+            "scope": {
+              "name": "my.library",
+              "version": "1.0.0",
+              "attributes": [
+                {
+                  "key": "my.scope.attribute",
+                  "value": {
+                    "stringValue": "some scope attribute"
+                  }
+                }
+              ]
+            },
+            "logRecords": [
+              {
+                "timeUnixNano": "1544712660300000000",
+                "observedTimeUnixNano": "1544712660300000000",
+                "severityText": "Information",
+                "traceId": "5B8EFFF798038103D269B633813FC60C",
+                "spanId": "EEE19B7EC3C1B174",
+                "body": {
+                  "stringValue": "Example log record"
+                },
+                "attributes": [
+                  {
+                    "key": "string.attribute",
+                    "value": {
+                      "stringValue": "some string"
+                    }
+                  },
+                  {
+                    "key": "boolean.attribute",
+                    "value": {
+                      "boolValue": true
+                    }
+                  },
+                  {
+                    "key": "int.attribute",
+                    "value": {
+                      "intValue": "10"
+                    }
+                  },
+                  {
+                    "key": "double.attribute",
+                    "value": {
+                      "doubleValue": 637.704
+                    }
+                  },
+                  {
+                    "key": "array.attribute",
+                    "value": {
+                      "arrayValue": {
+                        "values": [
+                          {
+                            "stringValue": "many"
+                          },
+                          {
+                            "stringValue": "values"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "key": "map.attribute",
+                    "value": {
+                      "kvlistValue": {
+                        "values": [
+                          {
+                            "key": "some.map.key",
+                            "value": {
+                              "stringValue": "some value"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+```
+
+Flattened JSON:
+
+```json
+{
+  "body": "Example log record",
+  "instrumentation_scope_my.scope.attribute": "some scope attribute",
+  "instrumentation_scope_name": "my.library",
+  "instrumentation_scope_version": "1.0.0",
+  "log_record_array.attribute_many": "many",
+  "log_record_array.attribute_values": "values",
+  "log_record_boolean.attribute": true,
+  "log_record_double.attribute": "637.704",
+  "log_record_int.attribute": "10",
+  "log_record_string.attribute": "some string",
+  "observed_time_unix_nano": "1544712660300000000",
+  "p_metadata": "",
+  "p_tags": "",
+  "p_timestamp": "2024-06-20T10:28:30.185",
+  "resource_service.name": "my.service",
+  "severity_text": "Information",
+  "span_id": "EEE19B7EC3C1B174",
+  "time_unix_nano": "1544712660300000000",
+  "trace_id": "5B8EFFF798038103D269B633813FC60C"
+}
+```
+
+Parseable flattens the JSON based on the Key and the value. The key is formed by concatenating the parent key and the child key with a `.`. The value is the value of the child key.

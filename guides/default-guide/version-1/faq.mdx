@@ -1,0 +1,78 @@
+---
+title: FAQ
+description: Discover everything you need to know about Parseable with our FAQs. From features to benefits, get the answers you seek. Simplifying Parseable for you.
+slug: faq
+visibility: PUBLIC
+label: FAQ
+---
+
+<head>
+<title>FAQ - Frequently Asked Question | Parseable</title>
+<meta charSet="utf-8" />
+<meta name="twitter:card" content="summary" />
+</head>
+
+<details>
+  <summary>What is Parseable?</summary>
+  <div>
+      Parseable is a modern log analytics and storage platform. Written in Rust, it uses latest advancements in big data stack to provide a high performance, developer friendly and resource efficient platform.
+  </div>
+</details>
+
+<details>
+  <summary>Why are you building Parseable?</summary>
+  <div>
+    <p> Today, if you're in the market for a log analytics system, there are two broad options available to you - legacy FOSS or proprietary systems that don't scale very well or exorbitantly expensive SaaS platforms that lock you in. We wanted a better option. We needed a modern solution that brings in all the latest developments in the big data and analytics world, uses a fast and safer programming language and open data format. </p>
+    
+    <p> Hence we set out to build Parseable. Written in Rust, it gets the best out of hardware resources and performs extremely well. Parseable uses Apache Arrow and Parquet as the underlying formats, ensuring the log data is always compatible with any other data tool that you may want to use. </p>
+    
+    <p> Indexing in log engines is a relic of the past, when logging was more of a text search problem than storage or ingestion problem. With complex log formats, wide range of deployment environments, larger number of teams interacting to build software - log volumes are exploding and indexing based systems are just not able to catch up. </p>
+    
+    <p> We're building Parseable ground up as a modern log data analytics platform. Parseable is deeply focussed on performance, scalability, developer experience and resource utilization. </p>
+  </div>
+</details>
+
+<details>
+  <summary>How is Parseable different from Loki?</summary>
+  <div>
+    <ul>
+        <li> Parseable is written in Rust, with strong emphasis on performance, resource utilization, and excellent developer experience.</li>
+        <li> Parseable has a unified architecture, with all Parseable components (ingestion, query, storage management) available in a single binary. Not only this approach scales very well, it also leads to a much, much better developer experience. </li>
+        <li> Parseable log streams are explicitly created by users. This alleviates the problem of cardinality explosion, while ensuring a certain control over the data by users. </li>
+        <li> With REST API based ingestion, Parseable integrates with all the major logging agents out of the box. </li>
+    </ul>
+  </div>
+</details>
+
+<details>
+  <summary>How is Parseable different from Elasticsearch?</summary>
+  <div>
+    <ul>
+        <li> Parseable is written in Rust, with strong emphasis on performance, resource utilization, and excellent developer experience. </li>
+        <li> With a novel, indexing free approach, Parseable is resource efficient and faster than Elasticsearch. </li>
+        <li> Parseable has a unified architecture, with all Parseable components (ingestion, query, storage management) available in a single binary. Not only this approach scales very well, it also leads to a much, much better developer experience. </li>
+        <li> Parseable is built ground up with cloud native architecture, which means it can scale up dynamically based in incoming traffic, run natively in microservice / container based systems and natively use S3 (instead of snapshots) as primary data store. </li>
+    </ul>
+  </div>
+</details>
+
+<details>
+  <summary>How do I visualize log data?</summary>
+  <div>
+    Parseable binary bundles a web UI that gives you a tabular view to the log data. For more advanced visualizations, you can use <a href="https://github.com/parseablehq/parseable-datasource">Grafana with Parseable datasource</a>. 
+  </div>
+</details>
+
+<details>
+  <summary>What if log data schema changes?</summary>
+  <div>
+    Parseable supports dynamic schema evolution. This means that you can add new fields to your log data, and Parseable will automatically pick up the changes. Please refer the document here: <a href="https://www.parseable.com/docs/concepts/ingestion#schema">https://www.parseable.com/docs/concepts/ingestion#schema</a>.
+  </div>
+</details>
+
+<details>
+  <summary>Do you offer Enterprise License and support?</summary>
+  <div>
+    Yes, we offer commercial license for users who can't comply to AGPLv3 requirements. We also support Enterprise support for mission critical Parseable deployments. Please reach out to us at <a href="mailto:sales@parseable.com">sales@parseable.com</a> for more details. Customer references are available on request.
+  </div>
+</details>

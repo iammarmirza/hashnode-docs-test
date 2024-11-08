@@ -1,0 +1,116 @@
+---
+title: Get Started
+description: "Begin with Parseable: Install pb, configure profiles, manage streams, and track versions. Start optimizing data management effortlessly!"
+slug: get-started-with-pb
+visibility: PUBLIC
+label: Get Started
+---
+
+<head>
+<title>Get Started with pb | Parseable</title>
+<meta charSet="utf-8" />
+<meta name="twitter:card" content="summary" />
+</head>
+
+## Installation
+
+Download the latest [release from GitHub](https://github.com/parseablehq/pb/releases/latest) for your OS. Extract the contents of the tar file, and move the `pb` binary to a location in your `$PATH`. For example:
+
+```bash
+wget https://github.com/parseablehq/pb/releases/download/v0.4.0/pb_0.4.0_linux_amd64.tar.gz
+tar -xzf pb_0.4.0_linux_amd64.tar.gz
+chmod +x pb
+mv pb /usr/local/bin
+```
+
+You can also use `pb` with Docker. For example, to run the `pb stream list` command in a Docker container:
+
+```bash
+docker run parseable/pb stream list
+```
+
+This will list all the streams in the default profile i.e. demo that points to the [Demo Parseable Server](https://demo.parseable.com).
+
+## Profile
+
+A profile is a named configuration for connecting to a Parseable Server. ``pb` ships with a profile called `demo` which points to the [Demo Parseable Server](https://demo.parseable.com). `pb` can be used to configure several profiles.
+
+Profile command has the following sub-commands:
+
+### add
+
+You can create a new profile by running the `pb profile create` command. For example:
+
+```bash
+pb profile add mydemo https://demo.parseable.com admin admin
+```
+
+### list
+
+List add the profiles by running the `pb profile list` command. For example:
+
+```bash
+pb profile list
+```
+
+### default
+
+To avoid setting the a profile for every command, you can set the default profile by running the `pb profile default` command. For example:
+
+```bash
+pb profile default mydemo
+```
+
+By default the `demo` profile is set as the default profile.
+
+### delete
+
+You can delete a profile by running the `pb profile delete` command. For example:
+
+```bash
+pb profile delete mydemo
+```
+
+## Stream Management
+
+A stream is a collection of log events. `pb` can be used to manage streams on a Parseable server. Stream command has the following sub-commands:
+
+### add
+
+You can create a new stream by running the `pb stream add` command. For example:
+
+```bash
+pb stream add teststream
+```
+
+### info
+
+You can get information about a stream by running the `pb stream info` command. For example:
+
+```bash
+pb stream info frontend
+```
+
+### list 
+
+You can list all the streams by running the `pb stream list` command. For example:
+
+```bash
+pb stream list
+```
+
+### remove
+
+You can remove a stream by running the `pb stream remove` command. For example:
+
+```bash
+pb stream remove teststream
+```
+
+## Version
+
+Version command helps you get the version of `pb` instance and the connected Parseable server. 
+
+```
+pb version
+```

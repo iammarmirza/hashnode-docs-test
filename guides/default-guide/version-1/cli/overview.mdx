@@ -1,0 +1,44 @@
+---
+title: Overview
+description: pb is the client side, CLI for Parseable. pb is built to provide a way to use familiar tools like jq, grep, cut, awk, sed etc over all of the log data on Parseable.
+slug: pb-overview
+visibility: PUBLIC
+label: Overview
+---
+
+<head>
+<title>PB - Command Line Interface for Parseable | Parseable</title>
+<meta charSet="utf-8" />
+<meta name="twitter:card" content="summary" />
+</head>
+
+`pb` is the client side, command line interface for Parseable. `pb` is built with the goal to provide a way to use familiar tools like `jq`, `grep`, `cut`, `awk`, `sed` etc over all of your log data on Parseable.
+
+```
+➜ pb
+pb is the command line interface for Parseable
+Usage:
+  pb [flags]
+  pb [command]
+Available Commands:
+  help        Help about any command
+  profile     Manage different Parseable targets
+  query       Run SQL query on a log stream
+  role        Manage roles
+  stream      Manage streams
+  tail        Tail a log stream
+  user        Manage users
+  version     Print version
+Flags:
+  -h, --help      help for pb
+  -v, --version   Print version
+Use "pb [command] --help" for more information about a command.
+```
+
+Refer the command specific pages for documentation on each command.
+
+| Command                 | Documentation                                       |
+|-----------------------  |-----------------------------------------------------|
+| Get Started             | https://www.parseable.com/docs/cli/get-started-with-pb        |
+| Query & Live Tail       | https://www.parseable.com/docs/cli/live-tail-and-query              |
+| User & Role Management  | https://www.parseable.com/docs/cli/pb-user-management    |

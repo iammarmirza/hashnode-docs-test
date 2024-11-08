@@ -1,0 +1,54 @@
+.customPageContainer {
+  display: flex;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  width: 90rem;
+  height: 70vh;
+}
+
+.HeadTitle {
+  text-align: center;
+}
+
+.card :hover {
+  border: 5px dotted black;
+}
+
+.card {
+  border: 2px solid green;
+  width: 25em;
+  height: 15rem;
+  display: flex;
+  /* justify-content: center; */
+  margin: 5px;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0.0625rem 0.1875rem,
+    rgba(0, 0, 0, 0.05) 0px 1.25rem 1.5625rem -0.3125rem,
+    rgba(0, 0, 0, 0.04) 0px 0.625rem 0.625rem -0.3125rem;
+}
+
+.cardContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  /* justify-content: center; */
+  flex-direction: row;
+  width: inherit;
+  height: inherit;
+  flex-wrap: wrap;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.link {
+  text-decoration: none;
+}

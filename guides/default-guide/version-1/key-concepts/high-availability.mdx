@@ -1,0 +1,47 @@
+---
+title: High Availability
+description: Discover Parseable's distributed architecture for high availability and fault tolerance. Explore essential insights and principles for efficient data management.
+slug: distributed-architecture
+visibility: PUBLIC
+label: High Availability
+---
+
+<head>
+<title>Parseable Distributed Cluster | Parseable</title>
+<meta charSet="utf-8" />
+<meta name="twitter:card" content="summary" />
+</head>
+
+From the release v1.0.0 and onwards, Parseable supports a distributed, high-availability mode for production use cases where downtime is not an option. The distributed setup is designed to ensure fault tolerance and high availability for log ingestion. 
+
+The distributed setup consists of multiple Parseable ingestion server, a query server and a S3 (or other object store) bucket. The cluster is managed by a leader server, doubling up as the query server.
+
+The Query (and leader) server uses metadata stored in the object store to query the data. The query server uses the Parseable manifest file and the Parquet footers in tandem to ensure that the data is read in fewest possible object store API calls.
+
+### Architecture
+
+Parseable distributed mode is based on a completely decoupled design with clear segregation between the compute and storage. Different components like the ingestor and querier, are on independent paths, and can be scaled independently.
+
+Each ingestor creates its own set of metadata files and data files - storing these files in a (internally) well-known location within the object storage system. This allows for a simple, clean path to scale ingestors as workloads increase. Similarly, this allows for clean scaling down of ingestors when workloads decrease. You can even scale ingestors to zero, and the system will continue to operate normally.
+
+The Query server primarily serves as a reader server, barring a few metadata files that it writes to the object store. This allows for a clean separation of concerns, and allows for the query server to be scaled vertically as needed. Query server also maintains a lazy list of ingestors that are currently active and uses this list to query the data.
+
+<p align="center">
+  <img src="/img/distributed.png" alt="Parseable distributed cluster" width="800" height="650" />
+</p>
+
+### Migration from Standalone to Distributed
+
+If you're already running Parseable in standalone mode, and want to migrate to distributed mode, you can start the Parseable server(s) in distributed mode, and the server will automatically migrate the metadata and other relevant manifest files to the distributed mode. There is no additional step involved. 
+
+Please note that this is a one way and one time process. It is not possible to move from a distributed deployment to a standalone deployment.
+
+### Pending features
+
+There are a few features that are not yet available in distributed mode. These will be added in future releases.
+
+- Live querying from all the staging data in all the ingestors. Currently the query server queries all the data that is already pushed to the object store.
+- Caching of data in ingestors while ingestion. 
+- Alerting is not yet supported in distributed mode. We're working on a way to provide alerts in distributed mode as well.
+- Live tail support is not yet available for distributed mode.
+

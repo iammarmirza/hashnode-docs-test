@@ -1,0 +1,64 @@
+---
+title: Live Tail & Query
+description: "Experience real-time insights: Live Tail & Query on Parseable PB. Streamline data analysis and optimize performance instantly. Explore now!"
+slug: live-tail-and-query
+visibility: PUBLIC
+label: Live Tail & Query
+---
+
+<head>
+  <title>Live Tail & Query on Parseable PB | Parseable</title>
+  <meta charSet="utf-8" />
+  <meta name="twitter:card" content="summary" />
+</head>
+
+## Query
+
+To query log data on Parseable, you can use the `pb query` command.
+
+```bash
+pb query run "select * from frontend limit 50" --from=1m --to=now
+```
+
+You can also pipe the query output to other familiar tools like `jq`, `grep`, `cut`, `awk`, `sed` etc to process the JSON output. For example:
+
+```bash
+pb query run "select * from frontend" --from=1m --to=now | jq . | less
+pb query run "select host, id, method, status from frontend where status = 500" --from=1m --to=now | jq . | less
+pb query run "select host, id, method, status from frontend where status = 500" --from=1m --to=now | grep "POST" | jq . | less
+```
+
+### Supported flags
+
+Below are the flags supported by `query` command.
+
+- `from` or `f`: Used to specify the start time of the query. Takes date as '2023-10-12T07:20:50.52Z' or string like '10m', '1hr'. Default value is '1m'.
+- `to` or `t`: Used to specify the end time of the query. Takes date as '2023-10-12T07:20:50.52Z' or 'now'. Default value is 'now'.
+- `save-as` or `s`: Used to save a filter with the specified query. Takes a filter name.
+- `with-time` or `w` : To store the filter along with the specified time range chain `save-as` or `s` flag with `with-time` or `w` flag.
+
+### Manage Filters
+
+To manage the saved filters for the active user you can use the `list` command. For example:
+
+```bash
+pb query list
+```
+
+This will open an interactive TUI which will show the available filters along with options for applying and deleting.
+
+## Live Tail
+
+`pb` allows live tailing log events as well. `pb` hooks on to the Parseable websocket endpoint and streams the log events to the terminal. Streaming live tail events is as simple as running the `pb tail` command for a given log stream. For example:
+
+```bash
+pb tail frontend
+```
+
+You can pipe the tail output to other familiar tools like `jq`, `grep`, `cut`, `awk`, `sed` etc to process the JSON output. For example:
+
+```bash
+pb tail frontend | jq . | less
+pb tail frontend | grep "POST" | jq . | less
+pb tail frontend | jq '. | select(.method == "PATCH")'
+```

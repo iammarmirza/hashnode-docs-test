@@ -1,0 +1,38 @@
+---
+title: SSE-C Support for S3
+description: Parseable supports server side encryption for AWS S3 or compatible services with customer provided encryption keys (SSE-C)
+slug: s3-ssec-support  
+visibility: PUBLIC
+label: SSE-C
+---
+
+<head>
+<title>Set up SSE-C support for S3 or compatible services | Parseable </title>
+<meta charSet="utf-8" />
+<meta name="twitter:card" content="summary" />
+</head>
+
+Parseable supports server side encryption for AWS S3 with customer provided encryption keys (SSE-C). By using the SSE-C, you can store your data encrypted with your own encryption keys. Amazon S3 manages data encryption and decryption transparently, as Parseable stores the log data in S3. Note that SSE-C requires HTTPS and Amazon S3 or compatible service might reject any requests made over HTTP when using SSE-C.
+
+### Setting up
+
+The encryption key must be a 256-bit key for AES-256 encryption. To add SSE-C encryption key, add the environment variable `P_S3_SSEC_ENCRYPTION_KEY` before starting the server. The value should be in the format - `SSE-C:AES256:<base64_encryption_key>`. Here is example of adding the SSE-C encryption key to Parseable
+
+Generate a 256-bit (32-byte) AES key and base64 encode it
+
+```
+ENCRYPTION_KEY=$(openssl rand -base64 32)
+echo "Encryption Key: $ENCRYPTION_KEY"
+```
+
+Add the Base64 encoded encryption key to the environment variable 
+
+```
+P_S3_SSEC_ENCRYPTION_KEY=SSE-C:AES256:$ENCRYPTION_KEY
+```
+
+### Considerations
+
+For distributed deployments, the environment variable `P_S3_SSEC_ENCRYPTION_KEY` need to be set for Query as well as Ingestor nodes.
+
+If you lose the encryption key, any GET request for an object without its encryption key fails, and you lose the object. Hence, it is recommended to use secure storage for the encryption key such as AWS Secrets Manager.

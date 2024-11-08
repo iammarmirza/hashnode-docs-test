@@ -1,0 +1,33 @@
+---
+title: Staging
+description: Staging Behaviour in Parseable
+slug: staging
+visibility: PUBLIC
+label: Staging
+---
+
+<head>
+<title>Parseable Staging Behaviour: How does ingestion work in Parseable | Parseable</title>
+<meta charSet="utf-8" />
+<meta name="twitter:card" content="summary" />
+</head>
+
+Staging in Parseable refers to the process of storing log data on locally attached storage before it is pushed to a long term and persistent store like S3 or something similar. Staging acts as a buffer for incoming events and allows a stable approach to pushing events to the persistent store.
+
+### How does staging work?
+
+Once an HTTP call is received on the Parseable server, events are parsed and converted to Arrow format in memory. This Arrow data is then written to the staging directory (defaults to `$PWD/staging`). Every minute, the server converts the Arrow data to Parquet format and pushes it to the persistent store. We chose a minute as the default interval, so there is a clear boundary between events, and the prefix structure on S3 is predictable. 
+
+The query flow in Parseable allows transparent access to the data in the staging directory. This means that the data in the staging directory is queryable in real-time. As a user, you won't see any difference in the data fetched from the staging directory or the persistent store.
+
+:::tip Note
+The staging directory can be configured using the `P_STAGING_DIR` environment variable, as explained in the [environment vars](/docs/environment-variables) section.
+:::
+
+### Planning for Production
+
+When planning for the production deployment of Parseable, the two most important considerations from a staging perspective are:
+
+- **Storage size**: Ensure that the staging area has sufficient capacity to handle the anticipated log volume. This prevents data loss due to disk space exhaustion. To calculate the storage size, consider the average log event size, the expected log volume for 5-10 minutes. This is done as under high loads, the conversion to Parquet and subsequent push to S3 may lag behind.
+
+- **Local storage redundancy**: Data in staging has not been committed to persistent store, it is important to have the staging itself reliable and redundant. This way, the staging data is protected from data loss due to simple disk failures. If using AWS, choose from services like EBS (Elastic Block Store) or EFS (Elastic File System), and mount these volumes on the Parseable server. Similarly, on Azure chose from Managed Disks or Azure Files. If you're using a private cloud, a reliable mounted volume from a NAS or SAN can be used.

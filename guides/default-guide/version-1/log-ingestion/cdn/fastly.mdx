@@ -1,0 +1,72 @@
+---
+title: Fastly
+description: Learn how to integrate Fastly CDN with Parseable for efficient log management. This guide covers configuration steps and advanced options.
+slug: fastly-logs-to-parseable
+visibility: PUBLIC
+label: Fastly
+---
+
+<head>
+<title>Ingest Fastly logs to Parseable | Parseable</title>
+<meta charSet="utf-8" />
+<meta name="twitter:card" content="summary" />
+</head>
+
+Fastly’s Real-Time Log Streaming feature enables the transmission of log data to an HTTPS endpoint. This guide outlines the steps to configure Fastly to send logs to a Parseable instance via an HTTPS endpoint.
+
+### Prerequisites
+
+Before setting up Fastly to send logs to Parseable, ensure you have the following:
+
+- A Fastly account with logs that you want to push to Parseable.
+- An active Parseable instance to receive logs. Refer the [installation docs here](https://www.parseable.com/docs/installation).
+- Credentials for the Parseable instance, so you can send requests for ingestion.
+- Ensure a stream is created in Parseable where these logs will be sent. Replace the `$LOG_STREAM` placeholder with the actual stream name below.
+
+### Validate Domain Ownership
+
+Fastly requires that you have validated ownership of the domain specified in the URL field (for log target). Review the [Fastly documentation](https://docs.fastly.com/en/guides/log-streaming-https#prerequisites) for more information on domain validation.
+
+To validate your Parseable endpoint as a logging target, you'll need to add a load balancer or proxy in front of your Parseable instance. So Fastly can verify the SHA challenge.
+
+### Adding HTTPS as a Logging Endpoint
+
+To configure Fastly to send logs to your Parseable instance, follow these steps:
+
+- Navigate to Log streaming settings: Log in to your Fastly account and access the log streaming configuration section.
+
+- Create a new HTTPS endpoint: In the HTTPS logging section, click on Create endpoint.
+   
+- Configure the HTTPS Endpoint:
+   - Name: Enter a recognizable name for this logging endpoint.
+   - Placement: Select where the logging call should be placed in the VCL. You can choose from options like `Format Version Default`, `waf_debug`, or `None`. Refer to [Fastly documentation on log placement](https://docs.fastly.com/en/guides/changing-log-placement).
+   - Log format: Optionally, you can define how the logs should be formatted using an Apache-style string or VCL variables. For example:
+   
+     ```plaintext
+     {
+       "timestamp": "%{strftime({"%Y-%m-%dT%H:%M:%S%z"}, time.start)}V",
+       "client_ip": "%{req.http.Fastly-Client-IP}V",
+       "geo_country": "%{client.geo.country_name}V",
+       "geo_city": "%{client.geo.city}V",
+       "host": "%{if(req.http.Fastly-Orig-Host, req.http.Fastly-Orig-Host, req.http.Host)}V",
+       "url": "%{json.escape(req.url)}V",
+       "request_method": "%{json.escape(req.method)}V",
+       "request_protocol": "%{json.escape(req.proto)}V",
+       "request_referer": "%{json.escape(req.http.referer)}V",
+       "request_user_agent": "%{json.escape(req.http.User-Agent)}V",
+       "response_state": "%{json.escape(fastly_info.state)}V",
+       "response_status": %{resp.status}V,
+       "response_reason": %{if(resp.response, "%22"+json.escape(resp.response)+"%22", "null")}V,
+       "response_body_size": %{resp.body_bytes_written}V,
+       "fastly_server": "%{json.escape(server.identity)}V,
+       "fastly_is_edge": %{if(fastly.ff.visits_this_service == 0, "true", "false")}V
+     }
+     ```
+   
+   - URL: Enter the Parseable HTTPS endpoint URL where the logs will be sent, such as `https://logs.parseable.com/`.
+   - Maximum logs (optional): Specify the maximum number of log entries to send in a single batch.
+   - Maximum bytes (optional): Set the maximum size of a log batch in bytes.
+
+- Create and Deploy:
+   - Click Create to finalize the HTTPS endpoint setup.
+   - Finally, click Activate to deploy these changes and start streaming logs to the specified endpoint.

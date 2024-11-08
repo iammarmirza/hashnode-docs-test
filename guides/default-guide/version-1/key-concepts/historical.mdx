@@ -1,0 +1,46 @@
+---
+title: Historical Data Ingestion
+description: Discover Parseable's key concepts of ingesting historical log data. Explore the best practices for efficient log data management.
+slug: historical
+visibility: PUBLIC
+label: Historical Data Ingestion
+---
+
+<head>
+<title>Parseable Historical Data Ingestion: Ingest historical data | Parseable</title>
+<meta charSet="utf-8" />
+<meta name="twitter:card" content="summary" />
+</head>
+
+By default, Parseable partitions events based on the time when they were ingested. This default partitioning is based on the `p_timestamp` field, which is automatically added to every log event. This way of partitioning offers a simple and efficient way to manage real time data ingestion. In several cases, users may want to partition data based on their own time fields. 
+
+For example, let's say an application generates logs with a well defined time field called `timestamp`. And users want to query the data based on this application generated time field (instead of time of ingestion). In this case you can partition the data based on `timestamp` (instead of the default `p_timestamp` field). This can be achieved with custom time partitioning.
+
+Another case for custom time partitioning is when you want to ingest historical data. For example, you have logs from the past that you want to ingest into Parseable. In this case, you can use custom time partitioning to ingest historical data. We'll discuss how to ingest historical data in the below sections.
+
+### Time partitioning in Parseable
+
+While creating a stream, you can specify a custom time field for partitioning. This field should be of type `string` (that can be parsed as a timestamp). Once the stream is created, Parseable will automatically create physical partitions based on the time field values.
+
+Now, when any query is run, Parseable will now expect the `startime` and `endtime` based on the custom time field. For example, if you have a custom time field `timestamp`. You can run queries like `select * from logs where timestamp >= '2021-01-01T00:00:00Z' and timestamp < '2021-01-02T00:00:00Z'`.
+
+:::tip Note
+- Custom time partition is a one-time setting and hence cannot be changed once the stream is created. If you want to change the time field, please create a new stream.
+- If there is an event that doesn't have the `timestamp` field, then that ingestion call will fail, because Parseable doesn't know how to partition that event. 
+:::
+
+### How to ingest historical data
+
+While ingesting historical data, it is critical to use custom time partitioning. This is because if you ingest historical data in the default configuration, ingestion will happen, but events will be partitioned based on the time of ingestion. With this, the querying will become tricky, because users will need to pass the time when the event was ingested. This is not practical.
+
+To ingest historical data, we recommend using custom time partitioning. Here are the high level steps to follow when you want to ingest historical data:
+
+- Create a stream with custom time partitioning. Specify the time field that you want to use for partitioning. For example, if you have a time field called `timestamp`, you can specify this field while creating the stream. The assumption here is that the historical data has the time field existing in the logs.
+- Ingest the historical data into the stream using an agent that can read the log files and send them to Parseable. While ingesting the data, Parseable will automatically create physical partitions based on the time field values. This way, the data will be partitioned based on the time field values and not on the time of ingestion.
+- Now, at the time of querying, it is straightforward to query the data based on the application's timestamp that was present in the logs. 
+
+By default, the Parseable server allows ingesting data that is up to 30 days old. If you have data older than 30 days, please configure the duration at the time of stream creation. We've chosen 30 days as a sensible default, but you can configure this to be longer or shorter based on your needs. The impact of ingesting very old (> 30 days) data is that ingestion performance may degrade as the server tries to find the right partition for each and every event.
+
+:::tip Note
+It is recommended to send data worth a smaller (few minutes) time range in a single ingest call. If a single ingest call has data from a wide range of time periods, it is expected to have an ingestion performance impact because the server needs to find the right partition for each event. 
+:::

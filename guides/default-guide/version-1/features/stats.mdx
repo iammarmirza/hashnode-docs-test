@@ -1,0 +1,76 @@
+---
+title: Stats and Info
+description: Explore the stats of a log stream. Explore the best practices for efficient log data management.
+slug: stats
+visibility: PUBLIC
+label: Stats
+---
+
+<head>
+<title> Statistics and information of a log stream | Parseable</title>
+<meta charSet="utf-8" />
+<meta name="twitter:card" content="summary" />
+</head>
+
+Stats in the context of a logstream, refers to the statistical data about logs ingested in a logstream. The stats include count of events ingested, ingestion size (total size of the ingested data in bytes), and storage size (size of data in storage after compression). In distributed mode, stats are accessible for 
+
+- Querier node (gives the accumulative stats from all ingestors)
+- Ingestor node (gives the stats from a particular ingestor)
+
+### Sample Stats
+
+```json
+{
+    "stream": "backend",
+    "time": "2024-06-11T14:20:36.890789699Z",
+    "ingestion": {
+        "count": 1680817,
+        "size": "552346743 Bytes",
+        "format": "json",
+        "lifetime_count": 1680817,
+        "lifetime_size": "552346743 Bytes",
+        "deleted_count": 0,
+        "deleted_size": "0 Bytes"
+    },
+    "storage": {
+        "size": "77341270 Bytes",
+        "format": "parquet",
+        "lifetime_size": "77341270 Bytes",
+        "deleted_size": "0 Bytes"
+    }
+}
+```
+
+Here is the breakdown of the stats output:
+
+- `stream`: The name of the data stream, in this case, "backend"
+- `time`: The current UTC timestamp (at time of generation of this stats)
+- `ingestion`: Details about the count, size and the format of the events ingested
+  - `count`: Current count of events ingested
+  - `size`: Current size of the total ingested data in bytes
+  - `format`: Format of the ingested data (e.g., "json")
+  - `lifetime_count`: Total count of events ingested (sum of current and deleted events count)
+  - `lifetime_size`: Total size of events ingested (sum of current and deleted events size)
+  - `deleted_count`: Events count deleted by retention
+  - `deleted_size`: Size of the ingested data deleted by retention
+- `storage`: Information about size and format of the events stored by Parseable
+  - `size`: Size of the data in storage after compression.
+  - `format`: file format in storage
+  - `lifetime_size`: Size of total data in storage (sum of current and deleted storage size)
+  - `deleted_size`: Size of the data in storage deleted by retention
+
+### Using Stats
+
+You can see the current event count, ingestion size, storage size and the compression percentage (storage size / ingestion size) on the Console landing page. Detailed breakdown of lifetime, current and deleted events and their size is available in the stream manage page.
+
+Refer the demo instance to see this in action https://demo.parseable.com/backend/manage?q=eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbiJ9
+
+#### API Access for Stats
+
+You can access a logstream's stats through below Parseable's API endpoint
+
+- `GET <parseable-endpoint>/api/vi/logstream/<logstream-name>/stats`
+
+You can also access the stats for a specific date at which events were ingested
+
+- `GET <parseable-endpoint>/api/v1/logstream/<logstream-name>/stats?date={date in yyyy-mm-dd format}`

@@ -1,0 +1,27 @@
+---
+title: Ingestion
+description: Efficiently ingest logs into Parseable with our log ingestion API. Streamline data collection and analysis for enhanced log management.
+slug: log-ingestion
+visibility: PUBLIC
+label: Ingestion
+---
+
+<head>
+<title>Parseable Log Ingestion API | Parseable</title>
+<meta charSet="utf-8" />
+<meta name="twitter:card" content="summary" />
+</head>
+
+Log event can be sent via POST request to the log ingestion API. There are two ways to send log events to the API:
+
+- [Log Ingestion API via Ingestion endpoint and HTTP Header](https://www.postman.com/parseable/workspace/parseable/request/22353706-bb6c5161-4912-4bdb-98be-ce9888f3e854): In this case, you can add the `x-p-stream` header to the request to specify the stream name. If the stream does not exist, it will be created automatically. This is useful for automation scenarios where you want to create a stream and send logs to it via agents.
+- [Log Ingestion API via Stream endpoint](https://www.postman.com/parseable/workspace/parseable/request/22353706-c721c0c3-e7e7-49ce-9979-cf8fc3311400): In this approach you need to create a stream first, using the [Create Stream API](https://www.postman.com/parseable/workspace/parseable/request/22353706-17404a3d-c70c-4a81-ade3-7cbdbb0e7a9b). Once the stream is created, you can send logs to the stream ingestion API endpoint - `http://{{endpoint}}/api/v1/logstream/{{stream_name}}`. This API doesn't require any headers for stream name.
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/22353706-b3ca898f-d3e3-4c4e-87b4-ba1b426f5458?action=collection%2Ffork&collection-url=entityId%3D22353706-b3ca898f-d3e3-4c4e-87b4-ba1b426f5458%26entityType%3Dcollection%26workspaceId%3De84052ac-c01a-435a-bb68-d2076623474a)
+
+:::tip Note
+
+- To add metadata with a log event, please add the a HTTP header `X-P-Meta-<key>` with the value of the metadata. For example, to add a metadata `user_id` with value `123`, you can add a header `X-P-Meta-user_id: 123`. 
+- To add a tag with a log event, please add the a HTTP header `X-P-Tag-<key>` with the value of the tag. For example, to add a tag `app` with value `kafka`, you can add a header `X-P-Tag-app: kafka`.
+
+:::

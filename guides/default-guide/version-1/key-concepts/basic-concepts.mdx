@@ -1,0 +1,150 @@
+---
+title: Basic Concepts
+description: Discover Parseable's key concepts for streamlined log analytics. Explore essential insights and principles for efficient data management.
+slug: concepts
+visibility: PUBLIC
+label: Basic Concepts
+---
+
+<head>
+<title>Parseable Key Concepts | Parseable</title>
+<meta charSet="utf-8" />
+<meta name="twitter:card" content="summary" />
+</head>
+
+### Authentication
+
+Parseable API calls require Basic Authentication. You can find the username and password for your Parseable server in the environment variables `P_USERNAME` and `P_PASSWORD`. If not set, the default username and password is `admin` and `admin`. HTTP clients generate basic auth headers from the username and password. 
+
+In case you want to manually add the basic auth header, use the following command.
+
+```bash
+echo -n '<username>:<password>' | base64
+```
+
+Then add the following HTTP header to the API call.
+
+```bash
+Authorization: Basic <output-from-previous-command>
+```
+
+You can also use OAuth2 tokens for authentication. Refer to the [OIDC](https://www.parseable.com/docs/oidc-openid-connect) section for more details.
+
+### High Availability
+
+Parseable can be deployed in a high-availability configuration. In this configuration, Parseable runs in a cluster of multiple ingestors and a query node, also serving as the main node. The ingestors can be load balanced in a standard round robin configuration. In case an ingestor fails, the load balancer will automatically route the requests to the healthy ingestors.
+
+The query node is responsible for executing the queries and fetching the data from the storage. The query node can be scaled vertically to handle more queries. Refer to the [High Availability](https://www.parseable.com/docs/concepts/parseable-distributed-architecture) section for more details.
+
+### Storage
+
+Once the JSON payload data reaches the server, it is validated and parsed to a columnar [Apache Arrow](https://arrow.apache.org/) format in memory. Subsequent events are appended to the Arrow record batch in memory, and a copy is kept on disk (to prevent data loss). Finally, after a configurable duration, the Arrow record batch is converted to [Parquet](https://parquet.apache.org/) and then pushed to the S3 (or compatible) bucket.
+
+Parquet on object storage is organized into prefixes based on stream name, date, and time. This ensures the server fetches specific dataset(s) based on the query time range. We're working on a compaction approach that will further compress and optimize the storage while ensuring queryable data at all times.
+
+#### Modes
+
+Parseable can use a drive (mount points) or S3 (and compatible) bucket as the backend storage. The storage mode can be configured while starting the Parseable server with the sub-commands `local-store` or `s3-store`, for drive or object storage, respectively. 
+
+Based on the storage mode, the server requires certain environment variables to be set. Refer to the [environment variables section](https://parseable.com/docs/env-vars) for more details. 
+
+We recommend the `local-store` mode for only development and testing purposes. Note that once the server is started, the storage mode can't be changed.
+
+#### Stats
+
+To fetch the ingested data and the actual compressed data size for a stream, use the [Get Stats API](https://www.postman.com/parseable/workspace/parseable/request/22353706-b32abe55-f0c4-4ed2-9add-110d265888c3). Sample response:
+
+```json
+{
+	"ingestion": {
+		"format": "json",
+		"size": "12800 Bytes"
+	},
+	"storage": {
+		"format": "parquet",
+		"size": "15517 Bytes"
+	},
+	"stream": "reactapplogs",
+	"time": "2022-11-17T07:03:13.134992Z"
+}
+```
+
+### Compression
+
+Parseable uses `lz4` as the default compression algorithm for Parquet files. To choose a different compression algorithm, set the environment variable `P_PARQUET_COMPRESSION_ALGO` to one of the following - `uncompressed`, `snappy`, `gzip`,  `lzo`, `brotli`, `lz4`, `zstd`.
+
+You can even change the compression algorithm in run time. For example, to change the compression algorithm in an existing Parseable instance, stop the instance first. Next, set the environment variable `P_PARQUET_COMPRESSION_ALGO` to the desired compression algorithm and start the instance. The Parquet files created after the change will use the new compression algorithm. You can, in the meantime, continue to query the existing data seamlessly.
+
+### Storage manifest
+
+For each day, Parseable creates a manifest file that contains the metadata of the Parquet files ingested for that day. The manifest file is stored in the same S3 bucket as the Parquet files. The query server uses the manifest file to filter out the relevant Parquet files based on the query filters and the time range.
+
+### Access control
+
+Parseable supports multiple users and granular access controls for resource-based roles assigned to each user. Refer to the [Access Control](https://parseable.com/docs/rbac) section for more details.
+
+### Multitenancy
+
+Parseable supports multi tenancy using the Parseable Kubernetes Operator. Using the operator, you can create multiple Parseable instances in a single Kubernetes cluster. Each Parseable instance is isolated from other instances and has its own storage, users, and access control. Refer to the [Operator](https://www.parseable.com/docs/installation/kubernetes-operator) section for more details.
+
+### Internal log stream
+
+Parseable creates an internal stream called `pmeta` (only when deployed in distributed mode). This stream captures internal metadata information like the cluster metrics (which will be used to capture more information in the future).
+
+The query node internally populates this stream, completely outside of the read or write paths for events. The query node captures the metrics information from all the ingestor nodes using the [Prometheus metrics endpoint](/docs/integrations/prometheus) and also the `/about` API. The query node then combines all this information and updates the `pmeta` stream every minute.
+
+This is the list of metrics captured by the query node from the ingestor nodes:
+
+ - `parseable_events_ingested`
+ - `parseable_events_ingested_size`
+ - `parseable_lifetime_events_ingested`
+ - `parseable_lifetime_events_ingested_size`
+ - `parseable_deleted_events_ingested`
+ - `parseable_deleted_events_ingested_size`
+ - `parseable_staging_files`
+ - `process_resident_memory_bytes`
+ - `parseable_storage_size`
+ - `parseable_lifetime_events_storage_size`
+ - `parseable_deleted_events_storage_size`
+
+The Query node fetches the below information using the `GET/about` API from the ingestor nodes:
+
+ - commit
+ - staging
+ - cache
+
+This is a sample data point in the `pmeta` stream. Note that each event in this stream corresponds to a specific data point from a specific ingestor node.
+
+```
+{
+  "address": "http://ec2-3-136-154-35.us-east-2.compute.amazonaws.com:443/",
+  "cache": "Disabled",
+  "commit": "36aa929",
+  "event_time": "2024-06-12T04:58:01.210399510",
+  "event_type": "cluster-metrics",
+  "p_metadata": "",
+  "p_tags": "",
+  "p_timestamp": "2024-06-12T04:58:01.655",
+  "parseable_deleted_events_ingested": 0,
+  "parseable_deleted_events_ingested_size": 0,
+  "parseable_deleted_storage_size_data": 30521539,
+  "parseable_deleted_storage_size_staging": 0,
+  "parseable_events_ingested": 3699454,
+  "parseable_events_ingested_size": 1130289498,
+  "parseable_lifetime_events_ingested": 4383449,
+  "parseable_lifetime_events_ingested_size": 1339270864,
+  "parseable_lifetime_storage_size_data": 195599604,
+  "parseable_lifetime_storage_size_staging": 0,
+  "parseable_staging_files": 2,
+  "parseable_storage_size_data": 165078065,
+  "parseable_storage_size_staging": 0,
+  "process_resident_memory_bytes": 72146944,
+  "staging": "/home/ubuntu/parseable/staging"
+}
+```
+
+The Console queries the `pmeta` stream to show detailed information about the ingestor node. The `pmeta` stream is also queryable like any other stream, you can set up alerts, retention, access control, and other configurations for this stream like a regular stream.
+
+:::tip Note
+Since `pmeta` is a reserved name, Parseable will report an error if you try to create a stream with the name `pmeta`.
+:::
