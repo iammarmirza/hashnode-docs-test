@@ -22,11 +22,10 @@ There are five entities in Parseable Access Control model - `Action`, `Privilege
 - Roles: Roles are dynamic, named entities on a Parseable server instance. Each role has a set of privileges and resources associated with it. A role can be assigned to several users. A user can have multiple roles assigned to it. 
 - Users: Users refer to human or machine entities that can perform actions on a Parseable server instance. Each user has a unique username and password. A user can be assigned one or more roles.
 
-:::note Important
-
+<Callout type="info">
+**Important**\
 User passwords are hashed and stored in Parseable metadata file. Parseable does not store the password in plain text.
-
-:::
+</Callout>
 
 ### Overview of Roles & Access
 
@@ -200,8 +199,7 @@ In any case if you need to reset password for a user. This can be done through [
 
 To delete a user, use the [Delete User API](https://www.postman.com/parseable/workspace/parseable/request/22353706-29cbc875-0d1f-405f-83ec-acf57661ad56). This API will delete the user and all the roles assigned to it.
 
-:::note OpenID Connect
-
+<Callout type="info">
+**OpenID Connect**\
 For managing roles for your OAuth2 users, refer to [OIDC section](https://www.parseable.com/docs/oidc). Roles are automatically assigned by matching the role name with group name that is obtained to groups claim in the id token.
-
-:::
+</Callout>

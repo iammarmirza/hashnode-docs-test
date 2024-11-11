@@ -18,9 +18,7 @@ Log event can be sent via POST request to the log ingestion API. There are two w
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/22353706-b3ca898f-d3e3-4c4e-87b4-ba1b426f5458?action=collection%2Ffork&collection-url=entityId%3D22353706-b3ca898f-d3e3-4c4e-87b4-ba1b426f5458%26entityType%3Dcollection%26workspaceId%3De84052ac-c01a-435a-bb68-d2076623474a)
 
-:::tip Note
-
+<Callout type="tip">
 - To add metadata with a log event, please add the a HTTP header `X-P-Meta-<key>` with the value of the metadata. For example, to add a metadata `user_id` with value `123`, you can add a header `X-P-Meta-user_id: 123`. 
 - To add a tag with a log event, please add the a HTTP header `X-P-Tag-<key>` with the value of the tag. For example, to add a tag `app` with value `kafka`, you can add a header `X-P-Tag-app: kafka`.
-
-:::
+</Callout>

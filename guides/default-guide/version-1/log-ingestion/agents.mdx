@@ -1,7 +1,28 @@
 ---
 title: Log Agents
-slug: log-agents
+slug: agents
 visibility: PUBLIC
 label: Log Agents
 ---
 Understand how to ingest log data from log agents. Ingest logs effortlessly and gain insights for enhanced operational efficiency.
+
+<CardGroup cols={2}>
+  <Card title="Fluent Bit" href="/docs-beta/default-guide/log-ingestion/log-agents/how-to-setup-fluent-bit">
+    Learn how to set up Fluent Bit to ship logs to Parseable using Fluent Bit's Memory Metrics Input plugin as the source of logs and send the data to Parseable using the HTTP output plugin.
+  </Card>
+  <Card title="Vector" href="/docs-beta/default-guide/log-ingestion/log-agents/how-to-setup-vector">
+    How to set up Vector to ship logs to Parseable on a Kubernetes cluster using Vector's kubernetes_logs source to collect logs from Kubernetes pods.
+  </Card>
+  <Card title="OpenTelemetry Collector" href="/docs-beta/default-guide/log-ingestion/log-agents/how-to-setup-opentelemetry-collector">
+    Learn how to set up OpenTelemetry Collector to ship logs to Parseable in opentelemetry log format
+  </Card>
+  <Card title="Logstash" href="/docs-beta/default-guide/log-ingestion/log-agents/how-to-setup-logstash">
+    Learn how to set up Logstash to ship logs to Parseable in Docker Compose using Logstash's generator input plugin to generate sample log data.
+  </Card>
+  <Card title="syslog-ng" href="/docs-beta/default-guide/log-ingestion/log-agents/how-to-setup-syslog-ng">
+    Learn how to set up syslog-ng to ship logs to Parseable using a demo application Flog running in Docker Compose to generate logs.
+  </Card>
+  <Card title="Apache Log4j 2" href="/docs-beta/default-guide/log-ingestion/log-agents/apache-log4j-2">
+    Learn how to use the Log4j 2 HTTP appender to send logs to Parseable. Apache Log4j 2 is a Java-based logging framework.
+  </Card>
+</CardGroup>

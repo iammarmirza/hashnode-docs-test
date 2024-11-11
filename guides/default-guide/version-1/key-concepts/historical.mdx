@@ -23,10 +23,10 @@ While creating a stream, you can specify a custom time field for partitioning. T
 
 Now, when any query is run, Parseable will now expect the `startime` and `endtime` based on the custom time field. For example, if you have a custom time field `timestamp`. You can run queries like `select * from logs where timestamp >= '2021-01-01T00:00:00Z' and timestamp < '2021-01-02T00:00:00Z'`.
 
-:::tip Note
+<Callout type="tip">
 - Custom time partition is a one-time setting and hence cannot be changed once the stream is created. If you want to change the time field, please create a new stream.
 - If there is an event that doesn't have the `timestamp` field, then that ingestion call will fail, because Parseable doesn't know how to partition that event. 
-:::
+</Callout>
 
 ### How to ingest historical data
 
@@ -40,6 +40,6 @@ To ingest historical data, we recommend using custom time partitioning. Here are
 
 By default, the Parseable server allows ingesting data that is up to 30 days old. If you have data older than 30 days, please configure the duration at the time of stream creation. We've chosen 30 days as a sensible default, but you can configure this to be longer or shorter based on your needs. The impact of ingesting very old (> 30 days) data is that ingestion performance may degrade as the server tries to find the right partition for each and every event.
 
-:::tip Note
+<Callout type="tip">
 It is recommended to send data worth a smaller (few minutes) time range in a single ingest call. If a single ingest call has data from a wide range of time periods, it is expected to have an ingestion performance impact because the server needs to find the right partition for each event. 
-:::
+</Callout>
