@@ -365,7 +365,7 @@ export default {
         },
         {
             type: "page",
-            path: "./telemetr.mdx",
+            path: "./telemetry.mdx",
         },
         {
             type: "page",
