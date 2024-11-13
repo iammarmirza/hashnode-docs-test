@@ -23,7 +23,7 @@ export default {
                     // Page can only have two attributes: type and path
                     type: "page",
                     // Relative to the version folder
-                    path: "./getting-started/intrduction.mdx",
+                    path: "./getting-started/introduction.mdx",
                     pages: []
                 },
                 {
