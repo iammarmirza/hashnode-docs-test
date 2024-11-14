@@ -19,7 +19,11 @@ Returns a `boolean` indicating whether the `Dayjs`'s date is valid.
 - Strict check.
 
   Checks if the value could be parsed to a Date time and it is a valid date. The last two arguments `format` and `strict` must be provided.
-> This requires the **`CustomParseFormat`** plugin to work
+
+  <Callout type="info">
+  This requires the **`CustomParseFormat`** plugin to work
+  </Callout>
+
   ```js
   dayjs('2022-02-31', 'YYYY-MM-DD', true).isValid();
   // false
