@@ -1,0 +1,17 @@
+---
+title: ISO Day of Week
+slug: iso-weekday
+label: ISO Day of Week
+visibility: PUBLIC
+---
+
+Gets or sets the [ISO day of the week](https://en.wikipedia.org/wiki/ISO_week_date) with 1 being Monday and 7 being Sunday.
+
+> This requires the **`IsoWeek`** plugin to work.
+
+```javascript
+dayjs.extend(isoWeek)
+
+dayjs().isoWeekday() // gets the current ISO day of the week
+dayjs().isoWeekday(1); // Monday
+```

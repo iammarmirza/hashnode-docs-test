@@ -1,0 +1,20 @@
+---
+slug: weekday-abbreviations
+title: Weekday Abbreviations
+visibility: PUBLIC
+label: Weekday Abbreviations
+---
+
+`Locale#weekdaysShort` should be an array of the weekdays abbreviations.
+
+<Callout type="info">
+This requires the `UpdateLocale` plugin to work
+</Callout>
+
+```js
+dayjs.extend(updateLocale)
+
+dayjs.updateLocale('en', {
+  weekdaysShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+})
+```

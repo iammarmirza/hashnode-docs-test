@@ -1,0 +1,20 @@
+---
+slug: weekday-min
+title: Minimal Weekday Abbreviations
+visibility: PUBLIC
+label: Minimal Weekday Abbreviations
+---
+
+`Locale#weekdaysMin` should be an array of two letter weekday abbreviations.
+
+<Callout type="info">
+This requires the `UpdateLocale` plugin to work
+</Callout>
+
+```js
+dayjs.extend(updateLocale)
+
+dayjs.updateLocale('en', {
+  weekdaysMin: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
+})
+```

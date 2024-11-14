@@ -1,0 +1,15 @@
+---
+title: As Array
+slug: as-array
+label: As Array
+visibility: PUBLIC
+---
+Returns an array that mirrors the parameters
+
+> This requires the **`ToArray`** plugin to work.
+
+```js
+dayjs.extend(toArray)
+
+dayjs('2019-01-25').toArray() // [ 2019, 0, 25, 0, 0, 0, 0 ]
+```

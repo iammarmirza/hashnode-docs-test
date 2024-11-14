@@ -1,0 +1,17 @@
+---
+title: Quarter
+slug: quarter
+label: Quarter
+visibility: PUBLIC
+---
+
+Gets or sets the quarter.
+
+> This requires the **`QuarterOfYear`** plugin to work.
+
+```js
+dayjs.extend(quarterOfYear)
+
+dayjs('2010-04-01').quarter() // 2
+dayjs('2010-04-01').quarter(2) // returns new dayjs object
+```

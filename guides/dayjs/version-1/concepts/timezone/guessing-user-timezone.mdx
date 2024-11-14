@@ -1,0 +1,18 @@
+---
+slug: guessing-user-timezone
+title: Guessing user zone
+visibility: PUBLIC
+label: Guessing user zone
+---
+
+Return the user's time zone.
+
+<Callout type="info">
+This requires the `Timezone` plugin to work
+</Callout>
+
+```javascript
+dayjs.extend(utc)
+dayjs.extend(timezone)
+dayjs.tz.guess() // America/Chicago
+```

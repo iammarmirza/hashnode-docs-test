@@ -1,0 +1,22 @@
+---
+slug: weekday-names
+title: Weekday Names
+visibility: PUBLIC
+label: Weekday Names
+---
+
+`Locale#weekdays` should be an array of the weekdays names.
+
+<Callout type="info">
+This requires the `UpdateLocale` plugin to work
+</Callout>
+
+```js
+dayjs.extend(updateLocale)
+
+dayjs.updateLocale('en', {
+  weekdays: [
+    "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+  ]
+})
+```

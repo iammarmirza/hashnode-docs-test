@@ -1,0 +1,18 @@
+---
+title: Local
+slug: local
+label: Local
+visibility: PUBLIC
+---
+
+This returns a Day.js object with a flag to use local time.
+
+> This requires the **`UTC`** plugin to work.
+
+```js
+dayjs.extend(utc)
+
+var a = dayjs.utc()
+a.format() // 2019-03-06T00:00:00Z
+a.local().format() //2019-03-06T08:00:00+08:00
+```
