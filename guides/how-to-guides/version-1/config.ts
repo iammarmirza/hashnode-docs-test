@@ -64,7 +64,7 @@ export default {
                 },
                 {
                     type: "page",
-                    path: "./how-to-add-a-priority-to-a-comment.mdx",
+                    path: "./how-to-add-a-priority.mdx",
                 },
                 {
                     type: "page",
