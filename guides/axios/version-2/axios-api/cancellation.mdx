@@ -1,0 +1,113 @@
+---
+title: Cancellation
+label: Cancellation
+slug: cancellation
+visibility: PUBLIC
+---
+
+Axios provides a flexible mechanism to cancel requests using **Cancel Tokens**, which is useful in scenarios where a request is no longer needed. In addition to basic cancellation, there are advanced use cases and best practices that ensure your application is handling request cancellations efficiently.
+
+## Common Use Cases for Cancellation
+
+### 1. Navigating Between Pages
+
+When users navigate away from a page, you may want to cancel ongoing requests to prevent unnecessary network activity. For instance, if a request is being made to fetch large data, but the user switches to a different page before the request completes, canceling the request can save bandwidth and improve performance.
+
+```js
+import axios from 'axios';
+import { useEffect } from 'react';
+
+const fetchData = () => {
+  const source = axios.CancelToken.source();
+
+  axios.get('https://api.example.com/data', {
+    cancelToken: source.token
+  })
+  .then(response => {
+    console.log('Data:', response.data);
+  })
+  .catch(error => {
+    if (axios.isCancel(error)) {
+      console.log('Request canceled:', error.message);
+    } else {
+      console.error('Error fetching data:', error);
+    }
+  });
+
+  // Cleanup function to cancel the request when the component unmounts
+  return () => {
+    source.cancel('Request canceled because of page navigation.');
+  };
+};
+
+// Calling the function inside a useEffect in React
+useEffect(() => {
+  fetchData();
+}, []);
+```
+
+### 2. Debouncing API Requests (Search)
+In search interfaces, you may want to cancel an existing request if the user types new input before the previous request finishes. This prevents outdated results from showing up and reduces server load.
+
+```js
+import axios from 'axios';
+
+let cancelRequest;
+
+const searchAPI = (query) => {
+  if (cancelRequest) {
+    cancelRequest('Previous search canceled.');
+  }
+
+  axios.get(`https://api.example.com/search?q=${query}`, {
+    cancelToken: new axios.CancelToken(c => {
+      cancelRequest = c;
+    })
+  })
+  .then(response => {
+    console.log('Search results:', response.data);
+  })
+  .catch(error => {
+    if (axios.isCancel(error)) {
+      console.log(error.message);
+    } else {
+      console.error('Error fetching search results:', error);
+    }
+  });
+};
+```
+
+### 3. Polling
+In scenarios where you're polling the server (e.g., checking for status updates), you might want to cancel previous requests before sending new ones. This ensures that only the latest request is active.
+
+```js
+let cancelPoll;
+
+const pollServer = () => {
+  if (cancelPoll) {
+    cancelPoll('Previous poll request canceled.');
+  }
+
+  axios.get('https://api.example.com/status', {
+    cancelToken: new axios.CancelToken(c => {
+      cancelPoll = c;
+    })
+  })
+  .then(response => {
+    console.log('Status update:', response.data);
+  })
+  .catch(error => {
+    if (axios.isCancel(error)) {
+      console.log(error.message);
+    } else {
+      console.error('Error in polling:', error);
+    }
+  });
+
+  // Continue polling every 5 seconds
+  setTimeout(pollServer, 5000);
+};
+
+// Start polling
+pollServer();
+```

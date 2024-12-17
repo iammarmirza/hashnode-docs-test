@@ -5,9 +5,9 @@
 export default {
     // These settings are ignored on DB level for now 
     settings: {
-        name: "V1",
-        slug: "v1",
-        isDefault: false,
+        name: "V2",
+        slug: "v2",
+        isDefault: true,
     },
     // Sidebar configuration goes here
     // It is an array of pages, sections or links
